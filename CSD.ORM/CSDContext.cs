@@ -71,6 +71,7 @@ namespace CSD.ORM
                 WithMany(x => x.City).
                 OnDelete(DeleteBehavior.Restrict);
 
+
             modelBuilder.Entity<City>().HasData(
                 new City { Id = 1, Name = "Bakı", CountryId = 1, Status = true },
                 new City { Id = 2, Name = "Gəncə", CountryId = 1, Status = true }
