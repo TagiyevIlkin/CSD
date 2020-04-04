@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSD.Entities.Computer_Engineering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,6 +13,12 @@ namespace CSD.Entities.Shared
         public Personel()
         {
             PersonPhone = new HashSet<PersonPhone>();
+            PersonDocument = new HashSet<PersonDocument>();
+            Education = new HashSet<Education>();
+            WorkExperience = new HashSet<WorkExperience>();
+            KnownProgram = new HashSet<KnownProgram>();
+            Certificate = new HashSet<Certificate>();
+            LevelOfLanguage = new HashSet<LevelOfLanguage>();
         }
         [Key]
         public int Id { get; set; }
@@ -49,11 +56,13 @@ namespace CSD.Entities.Shared
         [EmailAddress]
         public string Email { get; set; }
 
+
         public int CityId { get; set; }
 
         public int GenderId { get; set; }
 
         public int FamilyStatusId { get; set; }
+        public int AcademicDegreeId { get; set; }
 
         [ForeignKey("CityId")]
         public virtual City City { get; set; }
@@ -63,9 +72,18 @@ namespace CSD.Entities.Shared
         [ForeignKey("FamilyStatusId")]
         public virtual FamilyStatus FamilyStatus { get; set; }
 
+        [ForeignKey("AcademicDegreeId")]
+        public virtual AcademicDegree AcademicDegree { get; set; }
+
 
 
         public virtual ICollection<PersonPhone> PersonPhone { get; set; }
+        public virtual ICollection<Education> Education { get; set; }
+        public virtual ICollection<WorkExperience> WorkExperience { get; set; }
+        public virtual ICollection<KnownProgram> KnownProgram { get; set; }
+        public virtual ICollection<PersonDocument> PersonDocument { get; set; }
+        public virtual ICollection<Certificate> Certificate { get; set; }
+        public virtual ICollection<LevelOfLanguage> LevelOfLanguage { get; set; }
 
     }
 }

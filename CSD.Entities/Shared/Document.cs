@@ -6,26 +6,21 @@ using System.Text;
 
 namespace CSD.Entities.Shared
 {
-    [Table("City")]
-    public class City
+    //Tehsil ucun  tehsilin novu (Diplom,Atestat,Sedatname ve s)
+    [Table("Document")]
+    public class Document
     {
-        public City()
+        public Document()
         {
-            Personel = new HashSet<Personel>();
             Education = new HashSet<Education>();
+
         }
+
         [Key]
         public int Id { get; set; }
-        public int CountryId { get; set; }
-
-        [StringLength(50), MinLength(3), Required]
+        [MinLength(3), MaxLength(15), Required]
         public string Name { get; set; }
-        public bool Status { get; set; }
 
-        [ForeignKey("CountryId")]
-        public virtual Country Country { get; set; }
-
-        public virtual ICollection<Personel>  Personel { get; set; }
         public virtual ICollection<Education> Education { get; set; }
     }
 }
