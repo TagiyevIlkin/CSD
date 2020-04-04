@@ -63,7 +63,7 @@ namespace CSD.ORM
 
             modelBuilder.Entity<Country>().HasData(
                 new Country { Id = 1, Name = "Azərbaycan", NumCode = "222", Phonecode = "+994" },
-                new Country { Id = 2, Name = "Turkiyyə", NumCode = "333", Phonecode = "+122" }
+                new Country { Id = 2, Name = "Turkiyə", NumCode = "333", Phonecode = "+122" }
                 );
 
             modelBuilder.Entity<City>().
