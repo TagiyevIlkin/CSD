@@ -78,11 +78,44 @@ namespace CSD.ORM
                 );
 
             modelBuilder.Entity<Gender>().HasData(
-                new Gender { Id = 1, Type="Kişi" },
-                new Gender { Id = 1, Type="Qadın" }
+                new Gender { Id = 1, Type = "Kişi" },
+                new Gender { Id = 2, Type = "Qadın" }
                 );
 
+            modelBuilder.Entity<Level>().HasData(
+               new Level { Id = 1, Name = "Zəif" },
+               new Level { Id = 2, Name = "Kafi" },
+               new Level { Id = 3, Name = "Orta" },
+               new Level { Id = 4, Name = "Yaxşı" },
+               new Level { Id = 5, Name = "Əla" }
+               );
 
+            modelBuilder.Entity<Language>().HasData(
+                new Language { Id = 1, Name = "Azərbaycan" },
+                new Language { Id = 2, Name = "İngilis" },
+                new Language { Id = 3, Name = "Rus" },
+                new Language { Id = 4, Name = "Çin" }
+                );
+
+            modelBuilder.Entity<FamilyStatus>().HasData(
+               new FamilyStatus { Id = 1, Name = "Evli" },
+               new FamilyStatus { Id = 2, Name = "Subay" }
+               );
+
+            modelBuilder.Entity<AcademicDegree>().HasData(
+           new AcademicDegree { Id = 1, Name = "Peşə təhsili" },
+           new AcademicDegree { Id = 2, Name = "Orta təhsil" },
+           new AcademicDegree { Id = 3, Name = "İbtidai təhsil" },
+           new AcademicDegree { Id = 4, Name = "Doktrantura təhsili" },
+           new AcademicDegree { Id = 5, Name = "Magistratura təhsili" },
+           new AcademicDegree { Id = 6, Name = "Bakalavr təhsili" }
+           );
+
+
+            modelBuilder.Entity<Personel>().HasData(
+               new Personel { Id = 1, Firstname = "Ilkin",Lastname="Tağıyev",FatherName="Rafiq",Birthdate=DateTime.Now,CityId=1,AcademicDegreeId=6,Email="ilkintagiyev06@gmail.com",FamilyStatusId=2,FinCode="111111",GenderId=1,Residence="Oktay Veliyev",SerialNumber="09876543", },
+               new Personel { Id = 2, Firstname = "Eltac",Lastname="Tağıyev",FatherName="Rafiq",Birthdate=DateTime.Now,CityId=1,AcademicDegreeId=4,Email="ilkintagiyev06@gmail.com",FamilyStatusId=2,FinCode="111111",GenderId=1,Residence="Oktay Veliyev",SerialNumber="09876543", }
+               );
 
         }
 
