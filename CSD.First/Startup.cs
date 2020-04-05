@@ -25,6 +25,7 @@ namespace CSD.First
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<CSDContext>(options =>
               options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
@@ -48,8 +49,6 @@ namespace CSD.First
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
             }
             app.UseStatusCodePages();
             app.UseStaticFiles();

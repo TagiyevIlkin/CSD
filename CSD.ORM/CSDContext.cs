@@ -111,10 +111,15 @@ namespace CSD.ORM
            new AcademicDegree { Id = 6, Name = "Bakalavr təhsili" }
            );
 
+            modelBuilder.Entity<Education>().
+               HasOne(x => x.Personel).
+               WithMany(x => x.Education).
+               OnDelete(DeleteBehavior.Restrict);
+
 
             modelBuilder.Entity<Personel>().HasData(
-               new Personel { Id = 1, Firstname = "Ilkin",Lastname="Tağıyev",FatherName="Rafiq",Birthdate=DateTime.Now,CityId=1,AcademicDegreeId=6,Email="ilkintagiyev06@gmail.com",FamilyStatusId=2,FinCode="111111",GenderId=1,Residence="Oktay Veliyev",SerialNumber="09876543", },
-               new Personel { Id = 2, Firstname = "Eltac",Lastname="Tağıyev",FatherName="Rafiq",Birthdate=DateTime.Now,CityId=1,AcademicDegreeId=4,Email="ilkintagiyev06@gmail.com",FamilyStatusId=2,FinCode="111111",GenderId=1,Residence="Oktay Veliyev",SerialNumber="09876543", }
+               new Personel { Id = 1, Firstname = "Ilkin", Lastname = "Tağıyev", FatherName = "Rafiq", Birthdate = DateTime.Now, CityId = 1, AcademicDegreeId = 6, Email = "ilkintagiyev06@gmail.com", FamilyStatusId = 2, FinCode = "111111", GenderId = 1, Residence = "Oktay Veliyev", SerialNumber = "09876543", },
+               new Personel { Id = 2, Firstname = "Eltac", Lastname = "Tağıyev", FatherName = "Rafiq", Birthdate = DateTime.Now, CityId = 1, AcademicDegreeId = 4, Email = "ilkintagiyev06@gmail.com", FamilyStatusId = 2, FinCode = "111111", GenderId = 1, Residence = "Oktay Veliyev", SerialNumber = "09876543", }
                );
 
         }
