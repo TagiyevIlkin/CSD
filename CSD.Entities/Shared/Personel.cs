@@ -19,6 +19,7 @@ namespace CSD.Entities.Shared
             KnownProgram = new HashSet<KnownProgram>();
             Certificate = new HashSet<Certificate>();
             LevelOfLanguage = new HashSet<LevelOfLanguage>();
+            UserApp = new HashSet<UserApp>();
         }
         [Key]
         public int Id { get; set; }
@@ -84,6 +85,7 @@ namespace CSD.Entities.Shared
         public virtual ICollection<PersonDocument> PersonDocument { get; set; }
         public virtual ICollection<Certificate> Certificate { get; set; }
         public virtual ICollection<LevelOfLanguage> LevelOfLanguage { get; set; }
+        public virtual ICollection<UserApp> UserApp { get; set; }
 
     }
 }

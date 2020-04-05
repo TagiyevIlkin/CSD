@@ -1,5 +1,6 @@
 ﻿using CSD.Entities.Computer_Engineering;
 using CSD.Entities.Shared;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,17 @@ using System.Text;
 
 namespace CSD.ORM
 {
-    public class CSDContext : DbContext
+    public class CSDContext : IdentityDbContext<UserApp>
     {
         public CSDContext(DbContextOptions<CSDContext> options) : base(options)
         {
 
         }
+        public CSDContext()
+        {
+
+        }
+
 
         #region DbSEet
 
