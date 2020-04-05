@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\Upload\PersonelFiles\2020\" />
   </ItemGroup>
 
