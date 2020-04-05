@@ -28,7 +28,7 @@ namespace CSD.First.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }

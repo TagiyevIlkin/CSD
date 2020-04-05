@@ -15,13 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CSD.ComSciDep.Utility\CSD.ComSciDep.Utility.csproj" />
     <ProjectReference Include="..\CSD.ORM\CSD.ORM.csproj" />
     <ProjectReference Include="..\CSD.Repositories\CSD.Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Shared\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\Upload\PersonelFiles\2020\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="~/assets/images/icon/favicon.ico">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> <!--4.3.1-->
+    <link rel="stylesheet" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/metisMenu.css">
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/assets/css/slicknav.min.css">
+    <!-- amchart css -->
+    <link href="~/assets/css/export.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <!-- others css -->
+    <link rel="stylesheet" href="~/assets/css/typography.css">
+    <link rel="stylesheet" href="~/assets/css/default-css.css">
+    <link rel="stylesheet" href="~/assets/css/styles.css">
+    <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <link href="~/Select2/select2.css" rel="stylesheet" />
+    <script src="~/assets/js/vendor/modernizr-2.8.3.min.js" type="cff1c652e04bc587c2968792-text/javascript"></script>
+
+    <link href="~/jqueryui/themes/black-tie/jquery-ui.min.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+
+
+    <div class="main-content-inner">
+        @RenderBody()
+    </div>
+
+
+    <script src="~/jquery/jquery.min.js"></script>
+
+    <!-- bootstrap 4 js -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assets/js/popper.min.js" type="07358c43f3bada22b561de57-text/javascript"></script>
+    @*<script src="~/assets/js/bootstrap.min.js" type="07358c43f3bada22b561de57-text/javascript"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js" type="07358c43f3bada22b561de57-text/javascript"></script>
+    <script src="~/assets/js/metisMenu.min.js" type="07358c43f3bada22b561de57-text/javascript"></script>
+    <script src="~/assets/js/jquery.slimscroll.min.js" type="07358c43f3bada22b561de57-text/javascript"></script>
+    <script src="~/assets/js/jquery.slicknav.min.js" type="07358c43f3bada22b561de57-text/javascript"></script>
+
+
+    <!-- others plugins -->
+    <script src="~/assets/js/plugins.js" type="07358c43f3bada22b561de57-text/javascript"></script>
+    <script src="~/assets/js/scripts.js" type="07358c43f3bada22b561de57-text/javascript" asp-append-version="true"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="~/assets/js/googleTagManager.js" type="07358c43f3bada22b561de57-text/javascript"></script>
+    <script type="07358c43f3bada22b561de57-text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script src="~/assets/js/rocket-loader.min.js" data-cf-settings="07358c43f3bada22b561de57-|49" defer=""></script>
+    <script src="~/assets/js/JqueryConfirm.js"></script>
+
+    <script src="~/assets/js/sweetAlert.js"></script>
+
+    <script src="~/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/Select2/select2.js"></script>
+    <script src="~/jquery-cookie/jquery.cookie.min.js"></script>
+    <!-- Custom js -->
+    <script src="~/Custom/Global.js" asp-append-version="true"></script>
+    <script src="~/assets/js/Custom.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
