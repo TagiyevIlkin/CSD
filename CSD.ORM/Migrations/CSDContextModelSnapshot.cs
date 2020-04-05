@@ -548,7 +548,7 @@ namespace CSD.ORM.Migrations
                         {
                             Id = 1,
                             AcademicDegreeId = 6,
-                            Birthdate = new DateTime(2020, 4, 5, 7, 50, 39, 893, DateTimeKind.Local).AddTicks(2322),
+                            Birthdate = new DateTime(2020, 4, 5, 9, 53, 6, 5, DateTimeKind.Local).AddTicks(874),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -564,7 +564,7 @@ namespace CSD.ORM.Migrations
                         {
                             Id = 2,
                             AcademicDegreeId = 4,
-                            Birthdate = new DateTime(2020, 4, 5, 7, 50, 39, 897, DateTimeKind.Local).AddTicks(3202),
+                            Birthdate = new DateTime(2020, 4, 5, 9, 53, 6, 7, DateTimeKind.Local).AddTicks(3225),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -689,6 +689,9 @@ namespace CSD.ORM.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Name")
                         .HasMaxLength(256);
 
@@ -703,6 +706,8 @@ namespace CSD.ORM.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -769,11 +774,16 @@ namespace CSD.ORM.Migrations
 
                     b.Property<string>("RoleId");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<string>");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -789,6 +799,30 @@ namespace CSD.ORM.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.ApplicationRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
+
+                    b.Property<string>("Description");
+
+                    b.HasDiscriminator().HasValue("ApplicationRole");
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.ApplicationUserRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<string>");
+
+                    b.Property<string>("RoleId1");
+
+                    b.Property<string>("UserId1");
+
+                    b.HasIndex("RoleId1");
+
+                    b.HasIndex("UserId1");
+
+                    b.HasDiscriminator().HasValue("ApplicationUserRole");
                 });
 
             modelBuilder.Entity("CSD.Entities.Computer_Engineering.KnownProgram", b =>
@@ -979,6 +1013,17 @@ namespace CSD.ORM.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.ApplicationUserRole", b =>
+                {
+                    b.HasOne("CSD.Entities.Shared.ApplicationRole", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId1");
+
+                    b.HasOne("CSD.Entities.Shared.UserApp", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }
