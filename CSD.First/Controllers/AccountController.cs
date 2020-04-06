@@ -62,7 +62,6 @@ namespace CSD.First.Controllers
                                                                   model.Password,
                                                                   model.RememberMe,
                                                                   true);
-
             if (result.IsLockedOut)
             {
                 ModelState.AddModelError("", CsResultConst.LockedOut);

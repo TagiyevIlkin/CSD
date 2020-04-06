@@ -12,7 +12,6 @@ namespace CSD.First.Helper
     {
         public MappingEntity()
         {
-            CreateMap<Register, RegisterViewModel>().ReverseMap();
 
         }
     }
