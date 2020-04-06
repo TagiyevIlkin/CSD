@@ -23,6 +23,8 @@ namespace CSD.ORM
         #region DbSEet
 
         #region Shared
+
+        public DbSet<Register>  Registers { get; set; }
         public DbSet<UserApp> UserApps { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }

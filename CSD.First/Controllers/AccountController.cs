@@ -31,6 +31,7 @@ namespace CSD.First.Controllers
 
 
         #region Login
+
         public IActionResult Login()
         {
             return View();
@@ -77,7 +78,6 @@ namespace CSD.First.Controllers
         }
         #endregion
 
-
         #region logout
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -92,6 +92,13 @@ namespace CSD.First.Controllers
 
         public IActionResult AccessDenied()
         {
+            return View();
+        }
+
+
+        public IActionResult Register()
+        {
+
             return View();
         }
     }

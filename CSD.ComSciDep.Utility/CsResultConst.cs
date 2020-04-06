@@ -36,5 +36,11 @@ namespace CSD.ComSciDep.Utility
         public const string UsernameorPassWrong = "İstifadəçi Adı və ya Şifrə düz deyil!";
 
         #endregion
+
+        #region Registration
+        public const string Minlength6 = "Ən az 6 simvol daxil edilməlidir";
+
+
+        #endregion
     }
 }

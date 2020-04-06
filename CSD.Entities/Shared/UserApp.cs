@@ -12,7 +12,7 @@ namespace CSD.Entities.Shared
         {
 
         }
-        public int PersonelId { get; set; }
+        public int ? PersonelId { get; set; }
         public bool Status { get; set; }
 
         [ForeignKey("PersonelId")]
