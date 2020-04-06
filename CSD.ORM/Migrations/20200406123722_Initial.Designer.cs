@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSD.ORM.Migrations
 {
     [DbContext(typeof(CSDContext))]
-    [Migration("20200405165306_Initial_Migration")]
-    partial class Initial_Migration
+    [Migration("20200406123722_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -550,7 +550,7 @@ namespace CSD.ORM.Migrations
                         {
                             Id = 1,
                             AcademicDegreeId = 6,
-                            Birthdate = new DateTime(2020, 4, 5, 9, 53, 6, 5, DateTimeKind.Local).AddTicks(874),
+                            Birthdate = new DateTime(2020, 4, 6, 5, 37, 21, 558, DateTimeKind.Local).AddTicks(9778),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -566,7 +566,7 @@ namespace CSD.ORM.Migrations
                         {
                             Id = 2,
                             AcademicDegreeId = 4,
-                            Birthdate = new DateTime(2020, 4, 5, 9, 53, 6, 7, DateTimeKind.Local).AddTicks(3225),
+                            Birthdate = new DateTime(2020, 4, 6, 5, 37, 21, 561, DateTimeKind.Local).AddTicks(5398),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -593,6 +593,35 @@ namespace CSD.ORM.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PhoneType");
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.Register", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Firstname")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Register");
                 });
 
             modelBuilder.Entity("CSD.Entities.Shared.UserApp", b =>
@@ -622,7 +651,7 @@ namespace CSD.ORM.Migrations
 
                     b.Property<string>("PasswordHash");
 
-                    b.Property<int>("PersonelId");
+                    b.Property<int?>("PersonelId");
 
                     b.Property<string>("PhoneNumber");
 
@@ -960,8 +989,7 @@ namespace CSD.ORM.Migrations
                 {
                     b.HasOne("CSD.Entities.Shared.Personel", "Personel")
                         .WithMany("UserApp")
-                        .HasForeignKey("PersonelId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PersonelId");
                 });
 
             modelBuilder.Entity("CSD.Entities.Shared.WorkExperience", b =>

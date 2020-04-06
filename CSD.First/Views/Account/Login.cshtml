@@ -51,12 +51,12 @@
                         <i class="zmdi zmdi-font"></i>
                     </span>
 
-                    <div class="wrap-input100 validate-input" >
+                    <div class="wrap-input100 validate-input" data-validate="İstifadəçi adını daxil edin!">
                         <input asp-for="Username" class="input100" type="text" >
                         <span class="focus-input100" data-placeholder="İstifadəçi adı"></span>
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <div class="wrap-input100 validate-input"  data-validate="Şifreni daxil edin!">
                         <span class="btn-show-pass">
                             <i class="zmdi zmdi-eye"></i>
                         </span>
@@ -78,7 +78,7 @@
                             Hesabınız yoxdur?
                         </span>
 
-                        <a class="txt2 ml-2"  asp-action="Register" asp-controller="Account">
+                        <a class="txt2 ml-2"  asp-action="CreatMember" asp-controller="Register">
                             Qeydiyyat
                         </a>
                     </div>

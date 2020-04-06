@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CSD.Entities.Shared;
+using CSD.First.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,8 @@ namespace CSD.First.Helper
     {
         public MappingEntity()
         {
-              
+            CreateMap<Register, RegisterViewModel>().ReverseMap();
+
         }
     }
 }

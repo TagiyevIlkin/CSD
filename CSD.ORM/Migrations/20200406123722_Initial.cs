@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSD.ORM.Migrations
 {
-    public partial class Initial_Migration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -170,6 +170,23 @@ namespace CSD.ORM.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Register",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Firstname = table.Column<string>(maxLength: 50, nullable: false),
+                    Lastname = table.Column<string>(maxLength: 50, nullable: false),
+                    Username = table.Column<string>(maxLength: 50, nullable: false),
+                    Password = table.Column<string>(maxLength: 50, nullable: false),
+                    Email = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Register", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -278,7 +295,7 @@ namespace CSD.ORM.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    PersonelId = table.Column<int>(nullable: false),
+                    PersonelId = table.Column<int>(nullable: true),
                     Status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -289,7 +306,7 @@ namespace CSD.ORM.Migrations
                         column: x => x.PersonelId,
                         principalTable: "Personel",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -687,12 +704,12 @@ namespace CSD.ORM.Migrations
             migrationBuilder.InsertData(
                 table: "Personel",
                 columns: new[] { "Id", "AcademicDegreeId", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 1, 6, new DateTime(2020, 4, 5, 9, 53, 6, 5, DateTimeKind.Local).AddTicks(874), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                values: new object[] { 1, 6, new DateTime(2020, 4, 6, 5, 37, 21, 558, DateTimeKind.Local).AddTicks(9778), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.InsertData(
                 table: "Personel",
                 columns: new[] { "Id", "AcademicDegreeId", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 2, 4, new DateTime(2020, 4, 5, 9, 53, 6, 7, DateTimeKind.Local).AddTicks(3225), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                values: new object[] { 2, 4, new DateTime(2020, 4, 6, 5, 37, 21, 561, DateTimeKind.Local).AddTicks(5398), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -893,6 +910,9 @@ namespace CSD.ORM.Migrations
 
             migrationBuilder.DropTable(
                 name: "PersonPhone");
+
+            migrationBuilder.DropTable(
+                name: "Register");
 
             migrationBuilder.DropTable(
                 name: "WorkExperience");
