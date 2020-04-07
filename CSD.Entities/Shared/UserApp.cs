@@ -12,11 +12,17 @@ namespace CSD.Entities.Shared
         {
 
         }
-        public int  PersonelId { get; set; }
+        public int PersonelId { get; set; }
         public bool Status { get; set; }
 
         [ForeignKey("PersonelId")]
         public virtual Personel Personel { get; set; }
+
+        // Identity
+        public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
+        public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+        public virtual ICollection<IdentityUserToken<string>> Tokens { get; set; }
+        public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
 
     }
 
@@ -33,7 +39,7 @@ namespace CSD.Entities.Shared
         public string Description { get; set; }
 
         public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
-        
+
     }
 
     public class ApplicationUserRole : IdentityUserRole<string>

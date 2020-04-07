@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "Personel";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+@section styles{
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<!-- #region DataTable Person List -->
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <a asp-controller="Personel" asp-action="Create" class="btn btn-outline-secondary "><span class="ti-plus mr-2"></span>Yeni işçi əlavə et</a>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class=" d-flex justify-content-between">
+                <h4 class="header-title">İşçilər</h4>
+            </div>
+            <hr />
+            <br />
+            <div class="single-table">
+                <div class="table-responsive">
+                    <table id="dataTable" style="width: 1375px;" class="table table-hover progress-table text-center">
+                        <thead>
+                            <tr role="row">
+                            <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>Personal Id</th>
+                                <th>Istifadəçi adi</th>
+                                <th>A.S.A</th>
+                                <th>Doğum tarixi</th>
+                                <th>Doğum yeri</th>
+                                <th>Ailə vəziyyəti</th>
+                                <th>Cins</th>
+                                <th>Fin kod</th>
+                                <th>Seriya</th>
+                                <th>Yasayış ünvanı</th>
+                                <th>Nömrə</th>
+                                <th>Elektron Poçt</th>
+                                <th>UserId</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="createUserModal" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+
+    </div>
+</div>
+<div id="editUserModal" class="modal fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js"></script>>
+    <script src="~/DataTables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Custom/Personel/PersonListFo rDataTables.js" asp-append-version="true"></script>
+    <script src="~/Custom/Personel/global.js" asp-append-version="true"></script>
+}
+<!-- #endregion -->
+

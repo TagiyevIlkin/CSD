@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CSD.Entities.Shared;
 using CSD.First.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,8 @@ namespace CSD.First.Controllers
     {
         public IActionResult Index()
         {
+
+          
             return View();
         }
 
