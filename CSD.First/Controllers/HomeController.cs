@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CSD.First.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()

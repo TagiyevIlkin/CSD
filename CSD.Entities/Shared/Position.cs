@@ -6,20 +6,18 @@ using System.Text;
 
 namespace CSD.Entities.Shared
 {
-    [Table("AcademicDegree")]
-    public class AcademicDegree
+    [Table("Position")]
+    public class Position
     {
-        public AcademicDegree()
+        public Position()
         {
             DepartmentPosition = new HashSet<DepartmentPosition>();
         }
         [Key]
         public int Id { get; set; }
 
-        [MinLength(3), MaxLength(20), Required]
         public string Name { get; set; }
 
-        public virtual ICollection<DepartmentPosition> DepartmentPosition { get; set; }
-
+        public virtual ICollection< DepartmentPosition> DepartmentPosition { get; set; }
     }
 }

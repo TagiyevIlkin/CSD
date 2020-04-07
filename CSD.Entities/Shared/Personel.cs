@@ -20,6 +20,7 @@ namespace CSD.Entities.Shared
             Certificate = new HashSet<Certificate>();
             LevelOfLanguage = new HashSet<LevelOfLanguage>();
             UserApp = new HashSet<UserApp>();
+            DepartmentPosition = new HashSet<DepartmentPosition>();
         }
         [Key]
         public int Id { get; set; }
@@ -63,7 +64,6 @@ namespace CSD.Entities.Shared
         public int GenderId { get; set; }
 
         public int FamilyStatusId { get; set; }
-        public int AcademicDegreeId { get; set; }
 
         [ForeignKey("CityId")]
         public virtual City City { get; set; }
@@ -73,8 +73,6 @@ namespace CSD.Entities.Shared
         [ForeignKey("FamilyStatusId")]
         public virtual FamilyStatus FamilyStatus { get; set; }
 
-        [ForeignKey("AcademicDegreeId")]
-        public virtual AcademicDegree AcademicDegree { get; set; }
 
 
 
@@ -86,6 +84,7 @@ namespace CSD.Entities.Shared
         public virtual ICollection<Certificate> Certificate { get; set; }
         public virtual ICollection<LevelOfLanguage> LevelOfLanguage { get; set; }
         public virtual ICollection<UserApp> UserApp { get; set; }
+        public virtual ICollection<DepartmentPosition> DepartmentPosition { get; set; }
 
     }
 }

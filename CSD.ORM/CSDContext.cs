@@ -14,13 +14,10 @@ namespace CSD.ORM
         {
 
         }
-        public CSDContext()
-        {
-
-        }
-
 
         #region DbSEet
+
+
 
         #region Shared
 
@@ -44,6 +41,8 @@ namespace CSD.ORM
         public DbSet<PhoneType> PhoneTypes { get; set; }
         public DbSet<PersonPhone> PersonPhones { get; set; }
         public DbSet<WorkExperience> WorkExperiences { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<DepartmentPosition> DepartmentPosition { get; set; }
 
 
 
@@ -67,7 +66,6 @@ namespace CSD.ORM
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
 
 
             modelBuilder.Entity<Country>().HasData(
@@ -112,12 +110,8 @@ namespace CSD.ORM
                );
 
             modelBuilder.Entity<AcademicDegree>().HasData(
-           new AcademicDegree { Id = 1, Name = "Peşə təhsili" },
-           new AcademicDegree { Id = 2, Name = "Orta təhsil" },
-           new AcademicDegree { Id = 3, Name = "İbtidai təhsil" },
-           new AcademicDegree { Id = 4, Name = "Doktrantura təhsili" },
-           new AcademicDegree { Id = 5, Name = "Magistratura təhsili" },
-           new AcademicDegree { Id = 6, Name = "Bakalavr təhsili" }
+           new AcademicDegree { Id = 1, Name = "Dosent" },
+           new AcademicDegree { Id = 2, Name = "Professor" }
            );
 
             modelBuilder.Entity<Education>().
@@ -127,10 +121,46 @@ namespace CSD.ORM
 
 
             modelBuilder.Entity<Personel>().HasData(
-               new Personel { Id = 1, Firstname = "Ilkin", Lastname = "Tağıyev", FatherName = "Rafiq", Birthdate = DateTime.Now, CityId = 1, AcademicDegreeId = 6, Email = "ilkintagiyev06@gmail.com", FamilyStatusId = 2, FinCode = "111111", GenderId = 1, Residence = "Oktay Veliyev", SerialNumber = "09876543", },
-               new Personel { Id = 2, Firstname = "Eltac", Lastname = "Tağıyev", FatherName = "Rafiq", Birthdate = DateTime.Now, CityId = 1, AcademicDegreeId = 4, Email = "ilkintagiyev06@gmail.com", FamilyStatusId = 2, FinCode = "111111", GenderId = 1, Residence = "Oktay Veliyev", SerialNumber = "09876543", }
+               new Personel { Id = 1, Firstname = "Ilkin", Lastname = "Tağıyev", FatherName = "Rafiq", Birthdate = DateTime.Now, CityId = 1, Email = "ilkintagiyev06@gmail.com", FamilyStatusId = 2, FinCode = "111111", GenderId = 1, Residence = "Oktay Veliyev", SerialNumber = "09876543", },
+               new Personel { Id = 2, Firstname = "Eltac", Lastname = "Tağıyev", FatherName = "Rafiq", Birthdate = DateTime.Now, CityId = 1, Email = "ilkintagiyev06@gmail.com", FamilyStatusId = 2, FinCode = "111111", GenderId = 1, Residence = "Oktay Veliyev", SerialNumber = "09876543", }
                );
 
+
+            modelBuilder.Entity<Document>().HasData(
+                     new Document { Id = 1, Name = "Diplom" },
+                     new Document { Id = 2, Name = "Atestat" },
+                     new Document { Id = 3, Name = "Şəhadətnamə" },
+                     new Document { Id = 4, Name = "Vəsiqə" }
+                     );
+
+            modelBuilder.Entity<DocumetType>().HasData(
+         new DocumetType { Id = 1, Name = "Şəkil" },
+         new DocumetType { Id = 2, Name = "CV" },
+         new DocumetType { Id = 3, Name = "Şəhadətnamə" },
+         new DocumetType { Id = 4, Name = "Vəsiqə" },
+         new DocumetType { Id = 4, Name = "Atestat" },
+         new DocumetType { Id = 4, Name = "Diplom" }
+
+         );
+
+            modelBuilder.Entity<EducationDegree>().HasData(
+          new EducationDegree { Id = 1, Name = "Peşə təhsili" },
+          new EducationDegree { Id = 2, Name = "Orta təhsil" },
+          new EducationDegree { Id = 3, Name = "İbtidai təhsil" },
+          new EducationDegree { Id = 4, Name = "Doktrantura təhsili" },
+          new EducationDegree { Id = 5, Name = "Magistratura təhsili" },
+          new EducationDegree { Id = 6, Name = "Bakalavr təhsili" }
+          );
+
+            modelBuilder.Entity<PhoneType>().HasData(
+                new PhoneType() { Id = 1, Type = "Ev" },
+                new PhoneType() { Id = 2, Type = "Mobil" },
+                new PhoneType() { Id = 3, Type = "Iş" });
+
+            modelBuilder.Entity<Position>().HasData(
+                new Position() { Id = 1, Name = "Müəllim" },
+                new Position() { Id = 2, Name = "Başmüəllim" },
+                new Position() { Id = 3, Name = "Texnik" });
         }
 
         #endregion
