@@ -157,6 +157,19 @@ namespace CSD.ORM.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Position",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Position", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Program",
                 columns: table => new
                 {
@@ -227,18 +240,11 @@ namespace CSD.ORM.Migrations
                     Email = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: false),
                     GenderId = table.Column<int>(nullable: false),
-                    FamilyStatusId = table.Column<int>(nullable: false),
-                    AcademicDegreeId = table.Column<int>(nullable: false)
+                    FamilyStatusId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Personel", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Personel_AcademicDegree_AcademicDegreeId",
-                        column: x => x.AcademicDegreeId,
-                        principalTable: "AcademicDegree",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Personel_City_CityId",
                         column: x => x.CityId,
@@ -278,9 +284,7 @@ namespace CSD.ORM.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    Firstname = table.Column<string>(nullable: true),
-                    Lastname = table.Column<string>(nullable: true),
-                    PersonelId = table.Column<int>(nullable: true),
+                    PersonelId = table.Column<int>(nullable: false),
                     Status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -291,7 +295,7 @@ namespace CSD.ORM.Migrations
                         column: x => x.PersonelId,
                         principalTable: "Personel",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -312,6 +316,39 @@ namespace CSD.ORM.Migrations
                         name: "FK_Certificate_Personel_PersonelId",
                         column: x => x.PersonelId,
                         principalTable: "Personel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DepartmentPosition",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PersonelId = table.Column<int>(nullable: false),
+                    PositionId = table.Column<int>(nullable: false),
+                    AcademicDegreeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DepartmentPosition", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DepartmentPosition_AcademicDegree_AcademicDegreeId",
+                        column: x => x.AcademicDegreeId,
+                        principalTable: "AcademicDegree",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DepartmentPosition_Personel_PersonelId",
+                        column: x => x.PersonelId,
+                        principalTable: "Personel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DepartmentPosition_Position_PositionId",
+                        column: x => x.PositionId,
+                        principalTable: "Position",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -618,12 +655,8 @@ namespace CSD.ORM.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Peşə təhsili" },
-                    { 2, "Orta təhsil" },
-                    { 3, "İbtidai təhsil" },
-                    { 4, "Doktrantura təhsili" },
-                    { 5, "Magistratura təhsili" },
-                    { 6, "Bakalavr təhsili" }
+                    { 1, "Dosent" },
+                    { 2, "Professor" }
                 });
 
             migrationBuilder.InsertData(
@@ -633,6 +666,17 @@ namespace CSD.ORM.Migrations
                 {
                     { 1, "Azərbaycan", "222", "+994" },
                     { 2, "Turkiyə", "333", "+122" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Document",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Diplom" },
+                    { 2, "Atestat" },
+                    { 3, "Şəhadətnamə" },
+                    { 4, "Vəsiqə" }
                 });
 
             migrationBuilder.InsertData(
@@ -688,13 +732,13 @@ namespace CSD.ORM.Migrations
 
             migrationBuilder.InsertData(
                 table: "Personel",
-                columns: new[] { "Id", "AcademicDegreeId", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 1, 6, new DateTime(2020, 4, 6, 7, 40, 49, 475, DateTimeKind.Local).AddTicks(4488), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                columns: new[] { "Id", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
+                values: new object[] { 1, new DateTime(2020, 4, 7, 5, 41, 4, 419, DateTimeKind.Local).AddTicks(3081), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.InsertData(
                 table: "Personel",
-                columns: new[] { "Id", "AcademicDegreeId", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 2, 4, new DateTime(2020, 4, 6, 7, 40, 49, 477, DateTimeKind.Local).AddTicks(8709), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                columns: new[] { "Id", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
+                values: new object[] { 2, new DateTime(2020, 4, 7, 5, 41, 4, 421, DateTimeKind.Local).AddTicks(8906), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -761,6 +805,21 @@ namespace CSD.ORM.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DepartmentPosition_AcademicDegreeId",
+                table: "DepartmentPosition",
+                column: "AcademicDegreeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DepartmentPosition_PersonelId",
+                table: "DepartmentPosition",
+                column: "PersonelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DepartmentPosition_PositionId",
+                table: "DepartmentPosition",
+                column: "PositionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Education_CityId",
                 table: "Education",
                 column: "CityId");
@@ -821,11 +880,6 @@ namespace CSD.ORM.Migrations
                 column: "PersonelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Personel_AcademicDegreeId",
-                table: "Personel",
-                column: "AcademicDegreeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Personel_CityId",
                 table: "Personel",
                 column: "CityId");
@@ -882,6 +936,9 @@ namespace CSD.ORM.Migrations
                 name: "Certificate");
 
             migrationBuilder.DropTable(
+                name: "DepartmentPosition");
+
+            migrationBuilder.DropTable(
                 name: "Education");
 
             migrationBuilder.DropTable(
@@ -906,6 +963,12 @@ namespace CSD.ORM.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "AcademicDegree");
+
+            migrationBuilder.DropTable(
+                name: "Position");
+
+            migrationBuilder.DropTable(
                 name: "Document");
 
             migrationBuilder.DropTable(
@@ -928,9 +991,6 @@ namespace CSD.ORM.Migrations
 
             migrationBuilder.DropTable(
                 name: "Personel");
-
-            migrationBuilder.DropTable(
-                name: "AcademicDegree");
 
             migrationBuilder.DropTable(
                 name: "City");

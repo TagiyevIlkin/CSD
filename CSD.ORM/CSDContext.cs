@@ -34,7 +34,6 @@ namespace CSD.ORM
         public DbSet<Personel> Personels { get; set; }
         public DbSet<Certificate> Certificates { get; set; }
         public DbSet<Document> Documents { get; set; }
-        public DbSet<DocumetType> DocumetTypes { get; set; }
         public DbSet<EducationDegree> EducationDegrees { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<PersonDocument> PersonDocuments { get; set; }
@@ -43,6 +42,8 @@ namespace CSD.ORM
         public DbSet<WorkExperience> WorkExperiences { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<DepartmentPosition> DepartmentPosition { get; set; }
+        public DbSet<DocumetType> DocumetTypes { get; set; }
+
 
 
 
@@ -132,35 +133,7 @@ namespace CSD.ORM
                      new Document { Id = 3, Name = "Şəhadətnamə" },
                      new Document { Id = 4, Name = "Vəsiqə" }
                      );
-
-            modelBuilder.Entity<DocumetType>().HasData(
-         new DocumetType { Id = 1, Name = "Şəkil" },
-         new DocumetType { Id = 2, Name = "CV" },
-         new DocumetType { Id = 3, Name = "Şəhadətnamə" },
-         new DocumetType { Id = 4, Name = "Vəsiqə" },
-         new DocumetType { Id = 4, Name = "Atestat" },
-         new DocumetType { Id = 4, Name = "Diplom" }
-
-         );
-
-            modelBuilder.Entity<EducationDegree>().HasData(
-          new EducationDegree { Id = 1, Name = "Peşə təhsili" },
-          new EducationDegree { Id = 2, Name = "Orta təhsil" },
-          new EducationDegree { Id = 3, Name = "İbtidai təhsil" },
-          new EducationDegree { Id = 4, Name = "Doktrantura təhsili" },
-          new EducationDegree { Id = 5, Name = "Magistratura təhsili" },
-          new EducationDegree { Id = 6, Name = "Bakalavr təhsili" }
-          );
-
-            modelBuilder.Entity<PhoneType>().HasData(
-                new PhoneType() { Id = 1, Type = "Ev" },
-                new PhoneType() { Id = 2, Type = "Mobil" },
-                new PhoneType() { Id = 3, Type = "Iş" });
-
-            modelBuilder.Entity<Position>().HasData(
-                new Position() { Id = 1, Name = "Müəllim" },
-                new Position() { Id = 2, Name = "Başmüəllim" },
-                new Position() { Id = 3, Name = "Texnik" });
+      
         }
 
         #endregion

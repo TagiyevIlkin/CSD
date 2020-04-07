@@ -12,14 +12,7 @@ namespace CSD.Entities.Shared
         {
 
         }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-
-        public string Fullname
-        {
-            get { return $"{Firstname} {Lastname}"; }
-        }
-        public int ? PersonelId { get; set; }
+        public int  PersonelId { get; set; }
         public bool Status { get; set; }
 
         [ForeignKey("PersonelId")]

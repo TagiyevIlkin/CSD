@@ -17,7 +17,7 @@ namespace CSD.Entities.Shared
         [Key]
         public int Id { get; set; }
 
-        [MinLength(3), MaxLength(10), Required]
+        [MinLength(1), MaxLength(10), Required]
         public string Name { get; set; }
 
         public virtual ICollection<PersonDocument>  PersonDocument { get; set; }

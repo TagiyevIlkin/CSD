@@ -98,32 +98,12 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Peşə təhsili"
+                            Name = "Dosent"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Orta təhsil"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "İbtidai təhsil"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Doktrantura təhsili"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Magistratura təhsili"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Bakalavr təhsili"
+                            Name = "Professor"
                         });
                 });
 
@@ -222,6 +202,29 @@ namespace CSD.ORM.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CSD.Entities.Shared.DepartmentPosition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AcademicDegreeId");
+
+                    b.Property<int>("PersonelId");
+
+                    b.Property<int>("PositionId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AcademicDegreeId");
+
+                    b.HasIndex("PersonelId");
+
+                    b.HasIndex("PositionId");
+
+                    b.ToTable("DepartmentPosition");
+                });
+
             modelBuilder.Entity("CSD.Entities.Shared.Document", b =>
                 {
                     b.Property<int>("Id")
@@ -235,6 +238,28 @@ namespace CSD.ORM.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Document");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Diplom"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Atestat"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Şəhadətnamə"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Vəsiqə"
+                        });
                 });
 
             modelBuilder.Entity("CSD.Entities.Shared.DocumetType", b =>
@@ -499,8 +524,6 @@ namespace CSD.ORM.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AcademicDegreeId");
-
                     b.Property<DateTime>("Birthdate");
 
                     b.Property<int>("CityId");
@@ -533,8 +556,6 @@ namespace CSD.ORM.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AcademicDegreeId");
-
                     b.HasIndex("CityId");
 
                     b.HasIndex("FamilyStatusId");
@@ -547,8 +568,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 1,
-                            AcademicDegreeId = 6,
-                            Birthdate = new DateTime(2020, 4, 6, 7, 40, 49, 475, DateTimeKind.Local).AddTicks(4488),
+                            Birthdate = new DateTime(2020, 4, 7, 5, 41, 4, 419, DateTimeKind.Local).AddTicks(3081),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -563,8 +583,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 2,
-                            AcademicDegreeId = 4,
-                            Birthdate = new DateTime(2020, 4, 6, 7, 40, 49, 477, DateTimeKind.Local).AddTicks(8709),
+                            Birthdate = new DateTime(2020, 4, 7, 5, 41, 4, 421, DateTimeKind.Local).AddTicks(8906),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -593,6 +612,19 @@ namespace CSD.ORM.Migrations
                     b.ToTable("PhoneType");
                 });
 
+            modelBuilder.Entity("CSD.Entities.Shared.Position", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Position");
+                });
+
             modelBuilder.Entity("CSD.Entities.Shared.UserApp", b =>
                 {
                     b.Property<string>("Id")
@@ -608,10 +640,6 @@ namespace CSD.ORM.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("Firstname");
-
-                    b.Property<string>("Lastname");
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -624,7 +652,7 @@ namespace CSD.ORM.Migrations
 
                     b.Property<string>("PasswordHash");
 
-                    b.Property<int?>("PersonelId");
+                    b.Property<int>("PersonelId");
 
                     b.Property<string>("PhoneNumber");
 
@@ -881,6 +909,24 @@ namespace CSD.ORM.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("CSD.Entities.Shared.DepartmentPosition", b =>
+                {
+                    b.HasOne("CSD.Entities.Shared.AcademicDegree", "AcademicDegree")
+                        .WithMany("DepartmentPosition")
+                        .HasForeignKey("AcademicDegreeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CSD.Entities.Shared.Personel", "Personel")
+                        .WithMany("DepartmentPosition")
+                        .HasForeignKey("PersonelId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CSD.Entities.Shared.Position", "Position")
+                        .WithMany("DepartmentPosition")
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("CSD.Entities.Shared.Education", b =>
                 {
                     b.HasOne("CSD.Entities.Shared.City", "City")
@@ -937,11 +983,6 @@ namespace CSD.ORM.Migrations
 
             modelBuilder.Entity("CSD.Entities.Shared.Personel", b =>
                 {
-                    b.HasOne("CSD.Entities.Shared.AcademicDegree", "AcademicDegree")
-                        .WithMany("Personel")
-                        .HasForeignKey("AcademicDegreeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("CSD.Entities.Shared.City", "City")
                         .WithMany("Personel")
                         .HasForeignKey("CityId")
@@ -962,7 +1003,8 @@ namespace CSD.ORM.Migrations
                 {
                     b.HasOne("CSD.Entities.Shared.Personel", "Personel")
                         .WithMany("UserApp")
-                        .HasForeignKey("PersonelId");
+                        .HasForeignKey("PersonelId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CSD.Entities.Shared.WorkExperience", b =>
