@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using CSD.First.Helper;
 using CSD.ComSciDep.Services.Interfaces;
+using CSD.ComSciDep.Utility;
+using static CSD.Utility.Enum;
 
 namespace CSD.First.Controllers
 {
@@ -26,7 +28,7 @@ namespace CSD.First.Controllers
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IPersonService  _personService;
+        private readonly IPersonService _personService;
         public PersonController(IConfiguration configuration,
             IMapper mapper,
             IUnitOfWork unitOfWork,
@@ -88,6 +90,176 @@ namespace CSD.First.Controllers
         #endregion
 
 
+        #region Create Person
+        [HttpGet]
+        public IActionResult Create()
+        {
+
+            FillComboBox();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> Create(PersonViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                if (!_unitOfWork.Repository<Personel>().Exist(p =>
+                    p.FinCode == model.FinCode))
+                {
+                    if (!_unitOfWork.Repository<Personel>().Exist(p =>
+                        p.SerialNumber == model.SerialNumber))
+                    {
+
+                        var personel = _mapper.Map<Personel>(model);
+
+                        _unitOfWork.Repository<Personel>().AddUnCommitted(personel);
+
+
+                        #region Personel Phones
+
+                        List<PersonPhone> personPhones = new List<PersonPhone>();
+
+                        if (model.Home != null)
+                        {
+                            personPhones.Add(new PersonPhone()
+                            {
+                                PersonelId = personel.Id,
+                                PhoneTypeId = (int)EPhoneType.Home,
+                                CountryId = (int)ECountry.Aze,
+                                Number = model.Home,
+                            });
+                        }
+
+                        if (model.Work != null)
+                        {
+                            personPhones.Add(new PersonPhone()
+                            {
+                                PersonelId = personel.Id,
+                                PhoneTypeId = (int)EPhoneType.Work,
+                                CountryId = (int)ECountry.Aze,
+                                Number = model.Work
+                            });
+                        }
+
+                        if (model.Mobile != null)
+                        {
+                            personPhones.Add(new PersonPhone()
+                            {
+                                PersonelId = personel.Id,
+                                PhoneTypeId = (int)EPhoneType.Mobile,
+                                CountryId = (int)ECountry.Aze,
+                                Number = model.Mobile
+                            });
+                        }
+
+                        _unitOfWork.Repository<PersonPhone>().AddRangeUnCommitted(personPhones);
+
+                        var result =await _unitOfWork.Commit();
+                        if (result.IsSuccess)
+                        {
+                            return Json(new
+                            {
+                                personelId = personel.Id,
+                                status = 200,
+                                message = CsResultConst.OperationSuccessed
+                            });
+                        }
+                        _unitOfWork.Rollback();
+                        FillComboBox();
+
+                        return Json(new
+                        {
+                            status = 404,
+                            message = CsResultConst.Error
+                        });
+
+                        #endregion
+
+                    }
+                    FillComboBox();
+
+                    return Json(new
+                    {
+                        status = 201,
+                        message = CsResultConst.AleadyHaveSerialNumber
+                    });
+                }
+
+                FillComboBox();
+
+                return Json(new
+                {
+                    status = 201,
+                    message = CsResultConst.AleadyHaveFinNumber
+                });
+            }
+            FillComboBox();
+
+            return Json(new
+            {
+                status = 400,
+                message = CsResultConst.ModelNotValid
+            });
+        }
+        #endregion
+
+        #region DeletePerson
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deletedPerson = await _unitOfWork.Repository<Personel>().GetByIdAsync(id);
+            if (deletedPerson == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _unitOfWork.Repository<Personel>().DeleteAsync(deletedPerson);
+
+            if (result.IsSuccess)
+            {
+                return Json(new
+                {
+                    status = 200,
+                    message = CsResultConst.DeleteSuccess
+                });
+            }
+            return Json(new
+            {
+                status = 406,
+                message = CsResultConst.Error
+            });
+
+        }
+
+        #endregion
+
+
+        #region FillComboBox
+        private void FillComboBox()
+        {
+            ViewBag.CityId = _unitOfWork.Repository<City>().Query().Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.Id.ToString(),
+            });
+
+            ViewBag.GenderId = _unitOfWork.Repository<Gender>().Query().Select(x => new SelectListItem
+            {
+                Text = x.Type,
+                Value = x.Id.ToString()
+            });
+
+            ViewBag.FamilyStatusId = _unitOfWork.Repository<FamilyStatus>().Query().Select(x => new SelectListItem
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            });
+        }
+        #endregion
 
     }
 }

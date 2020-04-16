@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace CSD.First.Helper
 {
-    public class MappingEntity:Profile
+    public class MappingEntity : Profile
     {
         public MappingEntity()
         {
+            CreateMap<Personel, PersonViewModel>().ReverseMap();
 
         }
     }

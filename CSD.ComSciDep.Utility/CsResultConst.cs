@@ -7,6 +7,7 @@ namespace CSD.ComSciDep.Utility
     public static class CsResultConst
     {
         #region Global
+        public const string InvalidEmail = "Düzgün email formasını daxil edin";
         public const string RequiredProperty = "Bu məlumat daxil edilməlidir!";
         public const string NoChanges = "Heç bir dəyişiklik olunmadı";
         public const string Maxlength100 = "Ən çox 100 simvol daxil edilə bilər";
@@ -25,6 +26,25 @@ namespace CSD.ComSciDep.Utility
         public const string AddSuccess = "Uğurla əlavə edildi.!";
         public const string EditSuccess = "Uğurla redaktə edildi.!";
         public const string DeleteSuccess = "Uğurla silindi.!";
+        #endregion
+
+        #region Personel Crud Error
+        public const string MaxlengthPinCode = "Ən çox 7 simvol daxil edilə bilər";
+        public const string MinlengthPinCode = "Ən az 7 simvol daxil edilməlidir";
+
+        public const string MaxlengthSerialNumber = "Ən çox 10 simvol daxil edilə bilər";
+        public const string MinlengthSerialNumber = "Ən az 10 simvol daxil edilməlidir";
+
+        public const string NotFoundPersonel = "Axtardığınız şəxs sistemdə mövcud deyil!";
+        public const string AddPersonelOK = "Məlumatlar sistemə əlavə edildi! \n zəhmət olmasa 2-ci taba keçərək İşciyə aid sənədləri daxil edin";
+
+        public const string AleadyTakenPin = "Daxil etdiyiniz Fin kod artiq sistemde mövcuddur.!";
+
+        public const string AleadyHaveSerialNumber = "Daxil etdiyiniz Seria nömrəsi artiq sistemde mövcuddur.!";
+        public const string AleadyHaveFinNumber = "Daxil etdiyiniz Fin kod artiq sistemde mövcuddur.!";
+        public const string NotFoundDeleteFile = "Silmək istədiyiniz fayl mövcud deyil.!";
+        public const string NotFoundFile = "Endirmək istədiyiniz fayl mövcud deyil.!";
+
         #endregion
 
         #region Login

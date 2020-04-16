@@ -1,7 +1,6 @@
 ﻿
 @{
     ViewData["Title"] = "Personel";
-    Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
 @section styles{
@@ -12,7 +11,7 @@
     <div class="card">
         <div class="card-header">
             <div>
-                <a asp-controller="Personel" asp-action="Create" class="btn btn-outline-secondary "><span class="ti-plus mr-2"></span>Yeni işçi əlavə et</a>
+                <a asp-controller="Person" asp-action="Create" class="btn btn-outline-secondary "><span class="ti-plus mr-2"></span>Yeni işçi əlavə et</a>
             </div>
 
         </div>
@@ -31,10 +30,10 @@
                                 <th>#</th>
                                 <th>Id</th>
                                 <th>Personal Id</th>
-                                <th>Istifadəçi adi</th>
+                                <th>Istifadəçi Adi</th>
                                 <th>A.S.A</th>
                                 <th>Doğum tarixi</th>
-                                <th>Doğum yeri</th>
+                                <th>Doğum Yeri</th>
                                 <th>Ailə vəziyyəti</th>
                                 <th>Cins</th>
                                 <th>Fin kod</th>
@@ -70,8 +69,7 @@
     <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/DataTables/js/jquery.dataTables.min.js"></script>>
     <script src="~/DataTables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/Custom/Personel/PersonListFo rDataTables.js" asp-append-version="true"></script>
-    <script src="~/Custom/Personel/global.js" asp-append-version="true"></script>
+    <script src="~/Custom/Person/PersonListForDataTables.js" asp-append-version="true"></script>
+    <script src="~/Custom/Person/global.js" asp-append-version="true"></script>
 }
 <!-- #endregion -->
-

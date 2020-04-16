@@ -54,6 +54,7 @@ namespace CSD.First
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<DbContext, CSDContext>();
             #endregion
 
             #region CustomServices

@@ -51,7 +51,8 @@ namespace CSD.ComSciDep.Services
                                       Residence = person.Residence,
                                       SerialNumber = person.SerialNumber,
                                       PersonelId = person.Id,
-                                      Number = l2.Number
+                                      Number = l2.Number,
+                                      
                                   }).OrderByDescending(x => x.Id);
 
             return userPersonList;

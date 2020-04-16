@@ -1,0 +1,153 @@
+﻿@model PersonViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+@section styles{
+    <link href="~/Custom/Person/person.css" rel="stylesheet" />
+}
+<div class="row">
+
+    <div class="col-12 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <section class=" ">
+                    <div class="container">
+                        <nav class="nav-justified mb-5">
+                            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni işçinin daxil edilməsi</a>
+                            </div>
+                        </nav>
+                        <form asp-action="Create" asp-controller="Personel" id="createPerson" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" name="name" value="0" />
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class=" tex-left form-group ">
+                                        <label asp-for="Firstname" class="control-label">Adı</label>
+                                        <input asp-for="Firstname" required="required" class="form-control" type="text">
+                                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="Lastname" class="control-label">Soyadı</label>
+                                        <input asp-for="Lastname" class="form-control" required="required" type="text" aria-invalid="true">
+                                        <span asp-validation-for="Lastname" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="FatherName" class="control-label">Ata adı</label>
+                                        <input asp-for="FatherName" class="form-control" required="required" type="text" aria-invalid="true">
+                                        <span asp-validation-for="FatherName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="GenderId" class="control-label">Cinsi</label>
+                                        <select asp-for="GenderId" class="custom-select select2DropDown" asp-items="ViewBag.GenderId">
+                                            <option value="0">Seçilməyib</option>
+                                        </select>
+                                        <span asp-validation-for="GenderId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="Residence" class="control-label">Yaşayış ünvanı</label>
+                                        <input asp-for="Residence" class="form-control" required type="text" aria-invalid="true">
+                                        <span asp-validation-for="Residence" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="SerialNumber" class="control-label">Şəxsiyyə vəsiqəsinin seriya nömrəsi</label>
+                                        <input asp-for="SerialNumber" class="form-control" required type="number" aria-invalid="true">
+                                        <span asp-validation-for="SerialNumber" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="FinCode" class="control-label">Fin kodu</label>
+                                        <input asp-for="FinCode" class="form-control" required type="text" aria-invalid="true">
+                                        <span asp-validation-for="FinCode" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="FamilyStatusId" class="control-label">Ailə vəziyyəti</label>
+                                        <select asp-for="FamilyStatusId" class="custom-select select2DropDown" asp-items="ViewBag.FamilyStatusId">
+                                            <option value="0">Seçilməyib</option>
+                                        </select>
+                                        <span asp-validation-for="FamilyStatusId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <label asp-for="Birthdate" class="w-100"></label>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="ti-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <input asp-for="Birthdate" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
+                                        </div>
+                                        <span asp-validation-for="Birthdate" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group tex-lg-left">
+                                        <label asp-for="CityId" class="control-label">Doğum Yeri</label>
+                                        <select asp-for="CityId" class="custom-select select2DropDown" asp-items="ViewBag.CityId">
+                                            <option value="0">Seçilməyib</option>
+                                        </select>
+                                        <span asp-validation-for="CityId" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mt-4 tex-lg-left">
+                                        <label asp-for="Email" class="control-label">Elektron poçt ünvanı</label>
+                                        <input asp-for="Email" class="form-control" type="email" aria-invalid="true">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="pt-3 mt-3"><h4>Əlaqə nömrələri</h4></div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label asp-for="Mobile" class="control-label">Mobil</label>
+                                        <input asp-for="Mobile" class="form-control" type="tel">
+                                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label asp-for="Home" class="control-label">Ev</label>
+                                        <input asp-for="Home" class="form-control" type="tel">
+                                        <span asp-validation-for="Home" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label asp-for="Work" class="control-label">İş</label>
+                                        <input asp-for="Work" class="form-control" type="tel">
+                                        <span asp-validation-for="Work" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="justify-content-between mr-0 mt-4 row">
+                                <div class="ml-3">
+                                    <a asp-action="Index" class="btn btn-outline-secondary returnTablePersonel"><i class="fa fa-arrow-left"></i> Cədvələ Geri Dön</a>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class=" form-control border btn btn-outline-secondary btn-save " value="Saxla" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Custom/Person/person.js" asp-append-version="true"></script>
+}
+
+
+
