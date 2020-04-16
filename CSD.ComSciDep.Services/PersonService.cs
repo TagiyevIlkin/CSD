@@ -21,6 +21,7 @@ namespace CSD.ComSciDep.Services
         }
         public IQueryable<PersonListDTO> GetUserPersonList()
         {
+
             var userPersonList = (from person in _unitOfWork.Repository<Personel>().Query()
                                   join user in _unitOfWork.Repository<UserApp>().Query() on person.Id equals user.PersonelId
                                       into list1
@@ -35,8 +36,8 @@ namespace CSD.ComSciDep.Services
                                   {
                                       Id = person.Id,
                                       Status = l1.Status,
-                                      //UserName = l1.,
-                                      //UserId = l1,
+                                      UserName = l1.UserName,
+                                      UserId = l1.Id,
                                       Birthdate = person.Birthdate.ToString("dd/MM/yyyy"),
                                       City = person.City.Name,
                                       Gender = person.Gender.Type,
@@ -62,7 +63,7 @@ namespace CSD.ComSciDep.Services
                             select new UserForComboBoxDTO
                             {
                                 Id = user.PersonelId,
-                             //Username = user.UserName
+                                Username = user.UserName
 
                             }).OrderByDescending(x => x.Id);
 

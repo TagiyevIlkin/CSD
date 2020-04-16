@@ -6,8 +6,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CSD.ComSciDep.DTO\CSD.ComSciDep.DTO.csproj" />
+    <ProjectReference Include="..\CSD.ComSciDep.Utility\CSD.ComSciDep.Utility.csproj" />
     <ProjectReference Include="..\CSD.Entities\CSD.Entities.csproj" />
+    <ProjectReference Include="..\CSD.ORM\CSD.ORM.csproj" />
     <ProjectReference Include="..\CSD.Repositories.Interfaces\CSD.Repositories.Interfaces.csproj" />
+    <ProjectReference Include="..\CSD.Repositories\CSD.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

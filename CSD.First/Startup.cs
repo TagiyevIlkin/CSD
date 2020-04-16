@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CSD.ComSciDep.Services;
+using CSD.ComSciDep.Services.Interfaces;
 using CSD.Entities.Shared;
 using CSD.First.Helper;
 using CSD.ORM;
@@ -25,11 +27,12 @@ namespace CSD.First
 {
     public class Startup
     {
-        private IConfiguration _configuration;
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+        private IConfiguration _configuration;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -54,7 +57,7 @@ namespace CSD.First
             #endregion
 
             #region CustomServices
-
+            services.AddScoped<IPersonService, PersonService>();
             #endregion
 
             #region Mapper
@@ -96,7 +99,11 @@ namespace CSD.First
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app,
+                                    IHostingEnvironment env,
+                                    CSDContext context,
+                              UserManager<UserApp> userManager,
+                              RoleManager<ApplicationRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -127,7 +134,7 @@ namespace CSD.First
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Admin}/{action=LoginAdminPanel}/{id?}");
             });
         }
     }

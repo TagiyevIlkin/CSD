@@ -568,7 +568,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 1,
-                            Birthdate = new DateTime(2020, 4, 7, 5, 41, 4, 419, DateTimeKind.Local).AddTicks(3081),
+                            Birthdate = new DateTime(2020, 4, 7, 7, 13, 5, 256, DateTimeKind.Local).AddTicks(4614),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -583,7 +583,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 2,
-                            Birthdate = new DateTime(2020, 4, 7, 5, 41, 4, 421, DateTimeKind.Local).AddTicks(8906),
+                            Birthdate = new DateTime(2020, 4, 7, 7, 13, 5, 259, DateTimeKind.Local).AddTicks(4230),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,

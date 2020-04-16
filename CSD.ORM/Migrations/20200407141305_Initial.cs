@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSD.ORM.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -733,12 +733,12 @@ namespace CSD.ORM.Migrations
             migrationBuilder.InsertData(
                 table: "Personel",
                 columns: new[] { "Id", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 1, new DateTime(2020, 4, 7, 5, 41, 4, 419, DateTimeKind.Local).AddTicks(3081), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                values: new object[] { 1, new DateTime(2020, 4, 7, 7, 13, 5, 256, DateTimeKind.Local).AddTicks(4614), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.InsertData(
                 table: "Personel",
                 columns: new[] { "Id", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 2, new DateTime(2020, 4, 7, 5, 41, 4, 421, DateTimeKind.Local).AddTicks(8906), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                values: new object[] { 2, new DateTime(2020, 4, 7, 7, 13, 5, 259, DateTimeKind.Local).AddTicks(4230), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

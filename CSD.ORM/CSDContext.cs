@@ -11,8 +11,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSD.ORM
 {
-    public class CSDContext : IdentityDbContext<UserApp>
+    public class CSDContext : IdentityDbContext<UserApp,ApplicationRole, string,
+                                                IdentityUserClaim<string>,
+                                                ApplicationUserRole,
+                                                IdentityUserLogin<string>,
+                                                IdentityRoleClaim<string>,
+                                                IdentityUserToken<string>>
     {
+        public CSDContext()
+        {
+        }
+
         public CSDContext(DbContextOptions<CSDContext> options) : base(options)
         {
 
@@ -72,45 +81,48 @@ namespace CSD.ORM
         {
             base.OnModelCreating(modelBuilder);
 
-            #region Identity
-            modelBuilder.Entity<UserApp>(b =>
-            {
-                // Each User can have many UserClaims
-                b.HasMany(e => e.Claims)
-                    .WithOne()
-                    .HasForeignKey(uc => uc.UserId)
-                    .IsRequired();
 
-                // Each User can have many UserLogins
-                b.HasMany(e => e.Logins)
-                    .WithOne()
-                    .HasForeignKey(ul => ul.UserId)
-                    .IsRequired();
+            //#region Identity
+            //modelBuilder.Entity<UserApp>(b =>
+            //{
+            //    // Each User can have many UserClaims
+            //    b.HasMany(e => e.Claims)
+            //        .WithOne()
+            //        .HasForeignKey(uc => uc.UserId)
+            //        .IsRequired();
 
-                // Each User can have many UserTokens
-                b.HasMany(e => e.Tokens)
-                    .WithOne()
-                    .HasForeignKey(ut => ut.UserId)
-                    .IsRequired();
+            //    // Each User can have many UserLogins
+            //    b.HasMany(e => e.Logins)
+            //        .WithOne()
+            //        .HasForeignKey(ul => ul.UserId)
+            //        .IsRequired();
 
-                // Each User can have many entries in the UserRole join table
-                b.HasMany(e => e.UserRoles)
-                    .WithOne(e => e.User)
-                    .HasForeignKey(ur => ur.UserId)
-                    .IsRequired();
-            });
+            //    // Each User can have many UserTokens
+            //    b.HasMany(e => e.Tokens)
+            //        .WithOne()
+            //        .HasForeignKey(ut => ut.UserId)
+            //        .IsRequired();
 
-            modelBuilder.Entity<ApplicationRole>(b =>
-            {
-                // Each Role can have many entries in the UserRole join table
-                b.HasMany(e => e.UserRoles)
-                    .WithOne(e => e.Role)
-                    .HasForeignKey(ur => ur.RoleId)
-                    .IsRequired();
-            });
+            //    // Each User can have many entries in the UserRole join table
+            //    b.HasMany(e => e.UserRoles)
+            //        .WithOne(e => e.User)
+            //        .HasForeignKey(ur => ur.UserId)
+            //        .IsRequired();
+            //});
+
+            //modelBuilder.Entity<ApplicationRole>(b =>
+            //{
+            //    // Each Role can have many entries in the UserRole join table
+            //    b.HasMany(e => e.UserRoles)
+            //        .WithOne(e => e.Role)
+            //        .HasForeignKey(ur => ur.RoleId)
+            //        .IsRequired();
+            //});
 
 
-            #endregion
+            //#endregion
+
+
 
             modelBuilder.Entity<Country>().HasData(
                 new Country { Id = 1, Name = "Azərbaycan", NumCode = "222", Phonecode = "+994" },

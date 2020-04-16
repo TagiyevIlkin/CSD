@@ -12,6 +12,7 @@ namespace CSD.First.Controllers
 {
     public class AdminController : Controller
     {
+
         private readonly UserManager<UserApp> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<UserApp> _signInManager;
@@ -28,6 +29,7 @@ namespace CSD.First.Controllers
 
         public IActionResult Index()
         {
+         
             return View();
         }
         #region Login
