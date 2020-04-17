@@ -91,6 +91,7 @@ namespace CSD.First.Controllers
 
 
         #region Create Person
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -158,7 +159,7 @@ namespace CSD.First.Controllers
 
                         _unitOfWork.Repository<PersonPhone>().AddRangeUnCommitted(personPhones);
 
-                        var result =await _unitOfWork.Commit();
+                        var result = await _unitOfWork.Commit();
                         if (result.IsSuccess)
                         {
                             return Json(new
@@ -206,6 +207,120 @@ namespace CSD.First.Controllers
             });
         }
         #endregion
+
+
+        #region Edit Person
+
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+            var person = _unitOfWork.Repository<Personel>().GetById(Id);
+
+            if (person == null) return NotFound();
+
+            var personViewModel = _mapper.Map<PersonViewModel>(person);
+            var phones = _unitOfWork.Repository<PersonPhone>().FindAll(p => p.PersonelId == Id);
+            #region Phone Number
+
+            if (phones.Count > 0)
+            {
+                var personPhoneHome = phones.FirstOrDefault(p => p.PhoneTypeId == (int)EPhoneType.Home);
+                var personPhoneWork = phones.FirstOrDefault(p => p.PhoneTypeId == (int)EPhoneType.Work);
+                var personPhoneMobile = phones.FirstOrDefault(p => p.PhoneTypeId == (int)EPhoneType.Mobile);
+                personViewModel.Home = personPhoneHome?.Number;
+                personViewModel.Work = personPhoneWork?.Number;
+                personViewModel.Mobile = personPhoneMobile?.Number;
+            }
+            #endregion
+
+            FillComboBox();
+
+            return View(personViewModel);
+        }
+
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<JsonResult> Edit(PersonViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var person = _mapper.Map<Personel>(model);
+
+                _unitOfWork.Repository<Personel>().UpdateUnCommitted(person);
+
+                var phones = _unitOfWork.Repository<PersonPhone>()
+              .FindAll(p => p.PersonelId == person.Id);
+
+                var phoneDeleteResult = new TransResult<PersonPhone> { IsSuccess = true };
+
+                if (phones.Count > 0)
+                {
+                    phoneDeleteResult = _unitOfWork.Repository<PersonPhone>().DeleteRange(phones);
+                }
+
+
+                if (phoneDeleteResult.IsSuccess)
+                {
+                    List<PersonPhone> personPhones = new List<PersonPhone>();
+
+                    if (model.Home != null)
+                    {
+                        personPhones.Add(new PersonPhone()
+                        {
+                            PersonelId = model.Id,
+                            PhoneTypeId = (int)EPhoneType.Home,
+                            CountryId = (int)ECountry.Aze,
+                            Number = model.Home
+                        });
+                    }
+
+                    if (model.Work != null)
+                    {
+                        personPhones.Add(new PersonPhone()
+                        {
+                            PersonelId = model.Id,
+                            PhoneTypeId = (int)EPhoneType.Work,
+                            CountryId = (int)ECountry.Aze,
+                            Number = model.Work
+                        });
+                    }
+
+                    if (model.Mobile != null)
+                    {
+                        personPhones.Add(new PersonPhone()
+                        {
+                            PersonelId = model.Id,
+                            PhoneTypeId = (int)EPhoneType.Mobile,
+                            CountryId = 1,
+                            Number = model.Mobile
+                        });
+                    }
+
+                    _unitOfWork.Repository<PersonPhone>().AddRangeUnCommitted(personPhones);
+
+                    var result = await _unitOfWork.Commit();
+                    if (result.IsSuccess)
+                    {
+                        return Json(new
+                        {
+                            status = 200,
+                            message = CsResultConst.OperationSuccessed
+                        });
+                    }
+
+                }
+            }
+
+            return Json(new
+            {
+                status = 400,
+                message = CsResultConst.ModelNotValid
+            });
+
+        }
+        #endregion
+
 
         #region DeletePerson
         [HttpGet]

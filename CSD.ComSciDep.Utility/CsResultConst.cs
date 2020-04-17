@@ -62,5 +62,13 @@ namespace CSD.ComSciDep.Utility
 
 
         #endregion
+
+ 
+        #region User Crud Error
+        public const string AleadyTakenUsername = "Daxil etdiyiniz istifadəçi adı artiq sistemde mövcuddur.!";
+
+        public const string NotFoundUser = "Axtardığınız istifadəçi sistemdə mövcud deyil!";
+
+        #endregion
     }
 }

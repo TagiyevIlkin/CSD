@@ -1,0 +1,62 @@
+﻿@model UserEditViewModel
+
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Redaktə et</h5>
+            <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 p-5">
+                        <form asp-action="Edit" asp-controller="User" id="editUserForm" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input asp-for="Id" type="hidden" class="form-control" />
+                            <input asp-for="PersonelId" type="hidden" class="form-control" />
+                            <div>
+                                <div class="form-group">
+                                    <label asp-for="Username" class="control-label">İstifadəçi adı</label>
+                                    <input asp-for="Username" autocomplete="off" class="form-control" />
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PasswordEdit" class="control-label">Şifrə</label>
+                                    <input asp-for="PasswordEdit" autocomplete="off" type="password" class="form-control" />
+                                    <span asp-validation-for="PasswordEdit" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label asp-for="GetRoles" class="control-label">Səlahiyyətlər</label>
+                                    <select asp-for="GetRoles" class="custom-select multipleSelect" multiple="multiple" asp-items="ViewBag.Roles">
+                                        <option></option>
+                                    </select>
+                                    <span asp-validation-for="GetRoles" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="justify-content-end p-3 row">
+                                <button type="button" id="btnEditUser" class="btn btn-outline-dark">Yadda Saxla</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer ">
+            <div>
+                <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+            </div>
+        </div>
+    </div>
+}
+

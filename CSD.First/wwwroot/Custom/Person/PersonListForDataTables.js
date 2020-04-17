@@ -44,6 +44,36 @@ function deletePersonel(Fullname, id) {
 };
 
 
+function deleteUser(UserName, id) {
+
+    Swal.fire({
+        title: 'Diqqət!',
+        text: UserName + "  istifadəçisini  " + 'silmək istədiyinizə əminsiniz?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: "İmtina et",
+        confirmButtonText: 'Sil'
+    }).then((result) => {
+        if (result.value) {
+            $.get('/User/Delete/' + id)
+                .done(function (res) {
+                    var table = $("#dataTable").DataTable();
+                    table.draw();
+
+                    Swal.fire({
+                        type: 'success',
+                        title: res.message,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+                );
+        }
+    });
+};
+
 $(document).ready(function () {
 
     $("#dataTable").DataTable({
@@ -70,8 +100,7 @@ $(document).ready(function () {
                 data: null, render: function (row) {
                     return `<ul class="d-flex justify-content-center">
                                <li class="mr-2">
-                                 <a  href='/Personel/Edit/${row.Id}'  class='btn text-primary btn-sm'><i class='fa fa-edit'></i></a>
-                           
+                                 <a  href='/Person/Edit/${row.Id}'  class='btn text-primary btn-sm'><i class='fa fa-edit'></i></a>
                                </li>
                                <li >
                                   <a onclick="deletePersonel('${row.Fullname}','${row.Id}')" class="btn text-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -129,13 +158,22 @@ $(document).ready(function () {
 
 
 
-    
+
+
+
+
+
+
+
+
+
+
 
     //#region User Create
     $(document).on("click", "#btnCreateUser",
         function () {
             var $form = $("#createUserForm");
-            //alert($form);
+
             $.validator.unobtrusive.parse($form);
             if ($form.valid()) {
                 $.ajax({
@@ -143,7 +181,6 @@ $(document).ready(function () {
                     type: "POST",
                     data: $form.serialize(),
                     success: function (response) {
-                        console.log(response);
                         if (response.status === 200) {
                             var table = $("#dataTable").DataTable();
                             table.draw();
@@ -154,23 +191,10 @@ $(document).ready(function () {
                                 showConfirmButton: false,
                                 timer: 2000
                             });
+
                             $("button#closeModal").click();
 
-                        } else if (response.status === 204) {
-                            Swal.fire({
-                                type: 'error',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                        } else if (response.status === 406) {
-                            Swal.fire({
-                                type: 'error',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                        } else {
+                        }else {
                             Swal.fire({
                                 type: 'error',
                                 title: response.message,
@@ -209,21 +233,7 @@ $(document).ready(function () {
                             });
                             $("button#closeModal").click();
 
-                        } else if (response.status === 204) {
-                            Swal.fire({
-                                type: 'error',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                        } else if (response.status === 406) {
-                            Swal.fire({
-                                type: 'error',
-                                title: response.message,
-                                showConfirmButton: false,
-                                timer: 2000
-                            });
-                        } else {
+                        }  else {
                             Swal.fire({
                                 type: 'error',
                                 title: response.message,
@@ -237,5 +247,72 @@ $(document).ready(function () {
         });
     //#endregion
 });
+
+
+//#region modal for user create
+
+
+$(document).on("click",
+    "#createUser",
+    function () {
+
+        var personelId = $(this).data("id");
+        $.ajax({
+            url: '/User/Create',
+            data: { id: personelId }
+
+        })
+            .done(function (response) {
+
+
+
+                $("#createUserModal .modal-dialog").html(response);
+
+                var modal = $("#createUserModal .modal-dialog");
+                var Username = modal.find("input[name = 'Username']");
+                var Password = modal.find("input[name = 'Password']");
+                Username.val('istifadəçi Adı');
+                Password.val('');
+
+                var select = modal.find("select.multipleSelect");
+
+                $(select).select2({
+                    placeholder: "səlahiyyət seçin",
+                    allowClear: true,
+                    width: 'resolve'
+                });
+            });
+    });
+//#endregion
+
+
+//#region modal for user edit
+$(document).on("click",
+    "#editUser",
+    function () {
+
+        var UserId = $(this).data("id");
+        $.ajax({
+            url: '/User/Edit',
+            data: { id: UserId }
+
+        })
+            .done(function (response) {
+                $("#editUserModal .modal-dialog").html(response);
+
+                var modal = $("#editUserModal .modal-dialog");
+                var Password = modal.find("input[name = 'Password']");
+                Password.val('');
+
+                var select = modal.find("select.multipleSelect");
+
+                $(select).select2({
+                    placeholder: "səlahiyyət seçin",
+                    allowClear: true,
+                    width: 'resolve'
+                });
+            });
+    });
+//#endregion
 
 
