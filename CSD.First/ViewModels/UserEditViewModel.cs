@@ -1,6 +1,7 @@
 ﻿using CSD.ComSciDep.Utility;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,10 +16,12 @@ namespace CSD.First.ViewModels
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
         [StringLength(50)]
         [MinLength(3, ErrorMessage = CsResultConst.Minlength3)]
+        [DisplayName(CsDisplayName.UserName)]
         public string Username { get; set; }
 
         [StringLength(50)]
         [MinLength(6, ErrorMessage = CsResultConst.MinlengthLogin)]
+        [DisplayName(CsDisplayName.UserName)]
         public string PasswordEdit { get; set; }
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
