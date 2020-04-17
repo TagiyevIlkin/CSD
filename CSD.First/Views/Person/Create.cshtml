@@ -42,7 +42,7 @@
                                     <div class="form-group tex-lg-left">
                                         <label asp-for="GenderId" class="control-label">Cinsi</label>
                                         <select asp-for="GenderId" class="custom-select select2DropDown" asp-items="ViewBag.GenderId">
-                                            <option value="0">Seçilməyib</option>
+                                            <option value="-1">Seçilməyib</option>
                                         </select>
                                         <span asp-validation-for="GenderId" class="text-danger"></span>
                                     </div>
@@ -67,7 +67,7 @@
                                     <div class="form-group tex-lg-left">
                                         <label asp-for="FamilyStatusId" class="control-label">Ailə vəziyyəti</label>
                                         <select asp-for="FamilyStatusId" class="custom-select select2DropDown" asp-items="ViewBag.FamilyStatusId">
-                                            <option value="0">Seçilməyib</option>
+                                            <option value="-1">Seçilməyib</option>
                                         </select>
                                         <span asp-validation-for="FamilyStatusId" class="text-danger"></span>
                                     </div>
@@ -89,7 +89,7 @@
                                     <div class="form-group tex-lg-left">
                                         <label asp-for="CityId" class="control-label">Doğum Yeri</label>
                                         <select asp-for="CityId" class="custom-select select2DropDown" asp-items="ViewBag.CityId">
-                                            <option value="0">Seçilməyib</option>
+                                            <option value="-1">Seçilməyib</option>
                                         </select>
                                         <span asp-validation-for="CityId" class="text-danger"></span>
                                     </div>

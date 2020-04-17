@@ -26,7 +26,10 @@ namespace CSD.ComSciDep.Utility
         public const string FamilyStatus = "Ailə vəziyyəti";
         #endregion
 
-        public const string AcademicDegreeId = "Ailə vəziyyəti";
+        #region DepartmentPosition
+        public const string AcademicDegree = "Akademik dərəcəsi";
+        public const string Position = "Vəzifəsi";
+        #endregion
 
     }
 }

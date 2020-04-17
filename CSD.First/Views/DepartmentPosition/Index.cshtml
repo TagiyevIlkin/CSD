@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Personel";
+    ViewData["Title"] = "Index";
 }
 
 @section styles{
@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-header">
             <div>
-                <a asp-controller="Person" asp-action="Create" class="btn btn-outline-secondary "><span class="ti-plus mr-2"></span>Yeni işçi əlavə et</a>
+                <a asp-controller="DepartmentPosition" asp-action="Create" class="btn btn-outline-secondary "><span class="ti-plus mr-2"></span>Yeni vəzifə əlavə et</a>
             </div>
 
         </div>
@@ -29,19 +29,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Id</th>
-                                <th>Personal Id</th>
-                                <th>Istifadəçi Adı</th>
                                 <th>A.S.A</th>
-                                <th>Doğum tarixi</th>
-                                <th>Doğum Yeri</th>
-                                <th>Ailə vəziyyəti</th>
-                                <th>Cins</th>
-                                <th>Fin kod</th>
-                                <th>Seriya</th>
-                                <th>Yasayış ünvanı</th>
-                                <th>Nömrə</th>
-                                <th>Elektron Poçt</th>
-                                <th>UserId</th>
+                                <th>Vəzifə Adı</th>
+                                <th>Akademik Dərəcəsi</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -54,26 +44,13 @@
 
 
 
-<div id="createUserModal" class="modal fade" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-
-    </div>
-</div>
-
-
-<div id="editUserModal" class="modal fade" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-
-    </div>
-</div>
-
 @section scripts{
     <script src="~/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/DataTables/js/jquery.dataTables.min.js"></script>>
     <script src="~/DataTables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/Custom/Person/PersonListForDataTables.js" asp-append-version="true"></script>
+    <script src="~/Custom/DepartmentPosition/DepartmentPositionListForDataTables.js" asp-append-version="true"></script>
     <script src="~/Custom/Person/global.js" asp-append-version="true"></script>
 }
 <!-- #endregion -->

@@ -6,8 +6,8 @@ using System.Text;
 
 namespace CSD.ComSciDep.Services.Interfaces
 {
-    public interface IPersonService
+    public interface IDepartmentPositionService
     {
-        IQueryable<PersonListDTO> GetUserPersonList();
+        IQueryable<DepartmentPositionListDTO> GetDepartmentPositionList();
     }
 }

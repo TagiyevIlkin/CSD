@@ -47,6 +47,9 @@ namespace CSD.ComSciDep.Utility
 
         #endregion
 
+        #region DepartmentPosition
+        public const string AleadyExistedPersonPosition = "Bu işçiyə artiq vəzifə təyin edilib!";
+        #endregion
         #region Login
 
         public const string MinlengthLogin = "Ən az 6 simvol daxil edilməlidir";

@@ -6,10 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
-namespace CSD.ComSciDep.Services
+namespace CSD.ComSciDep.Services.Services
 {
     public class PersonService : IPersonService
     {
@@ -52,23 +50,11 @@ namespace CSD.ComSciDep.Services
                                       SerialNumber = person.SerialNumber,
                                       PersonelId = person.Id,
                                       Number = l2.Number,
-                                      
+
                                   }).OrderByDescending(x => x.Id);
 
             return userPersonList;
         }
 
-        public IQueryable<UserForComboBoxDTO> GetUsers()
-        {
-            var userList = (from user in _unitOfWork.Repository<UserApp>().Query()
-                            select new UserForComboBoxDTO
-                            {
-                                Id = user.PersonelId,
-                                Username = user.UserName
-
-                            }).OrderByDescending(x => x.Id);
-
-            return userList;
-        }
     }
 }

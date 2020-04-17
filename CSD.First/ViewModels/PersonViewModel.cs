@@ -12,11 +12,11 @@ namespace CSD.First.ViewModels
         public int Id { get; set; }
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
-        [StringLength(50), MinLength(3)]
+        [StringLength(50), MinLength(3, ErrorMessage = CsResultConst.Minlength3)]
         public string Firstname { get; set; }
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
-        [StringLength(50), MinLength(3)]
+        [StringLength(50,ErrorMessage =CsResultConst.Maxlength50), MinLength(3,ErrorMessage =CsResultConst.Minlength3)]
         public string Lastname { get; set; }
 
 

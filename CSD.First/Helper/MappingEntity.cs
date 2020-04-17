@@ -13,6 +13,7 @@ namespace CSD.First.Helper
         public MappingEntity()
         {
             CreateMap<Personel, PersonViewModel>().ReverseMap();
+            CreateMap<DepartmentPosition, DepartmentPositionViewModel>().ReverseMap();
 
         }
     }

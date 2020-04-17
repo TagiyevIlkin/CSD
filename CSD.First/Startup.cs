@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CSD.ComSciDep.Services;
 using CSD.ComSciDep.Services.Interfaces;
+using CSD.ComSciDep.Services.Services;
 using CSD.Entities.Shared;
 using CSD.First.Helper;
 using CSD.ORM;
@@ -59,6 +60,7 @@ namespace CSD.First
 
             #region CustomServices
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IDepartmentPositionService, DepartmentPositionService>();
             #endregion
 
             #region Mapper
