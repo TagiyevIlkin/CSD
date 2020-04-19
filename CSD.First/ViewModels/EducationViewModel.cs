@@ -46,7 +46,7 @@ namespace CSD.First.ViewModels
         public int EducationDegreeId { get; set; }
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
-        [DisplayName(CsDisplayName.City)]
+        [DisplayName(CsDisplayName.CityOrDistrict)]
         public int CityId { get; set; }
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]

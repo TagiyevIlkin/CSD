@@ -13,6 +13,7 @@ namespace CSD.Entities.Shared
         {
             Personel = new HashSet<Personel>();
             Education = new HashSet<Education>();
+            WorkExperiences = new HashSet<WorkExperience>();
         }
         [Key]
         public int Id { get; set; }
@@ -27,5 +28,6 @@ namespace CSD.Entities.Shared
 
         public virtual ICollection<Personel>  Personel { get; set; }
         public virtual ICollection<Education> Education { get; set; }
+        public virtual ICollection<WorkExperience>  WorkExperiences { get; set; }
     }
 }

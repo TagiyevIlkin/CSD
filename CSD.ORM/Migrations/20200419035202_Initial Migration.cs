@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CSD.ORM.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,6 @@ namespace CSD.ORM.Migrations
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -299,28 +298,6 @@ namespace CSD.ORM.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Certificate",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    PersonelId = table.Column<int>(nullable: false),
-                    ReceivedTime = table.Column<DateTime>(nullable: false),
-                    ExpiredTime = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Certificate", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Certificate_Personel_PersonelId",
-                        column: x => x.PersonelId,
-                        principalTable: "Personel",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "DepartmentPosition",
                 columns: table => new
                 {
@@ -364,6 +341,7 @@ namespace CSD.ORM.Migrations
                     Specialty = table.Column<string>(maxLength: 60, nullable: false),
                     BeginTime = table.Column<DateTime>(nullable: false),
                     EndTime = table.Column<DateTime>(nullable: false),
+                    Faculty = table.Column<string>(maxLength: 100, nullable: false),
                     EducationDegreeId = table.Column<int>(nullable: false),
                     CityId = table.Column<int>(nullable: false),
                     DocumentId = table.Column<int>(nullable: false),
@@ -534,20 +512,28 @@ namespace CSD.ORM.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CompanyName = table.Column<string>(maxLength: 250, nullable: false),
                     Position = table.Column<string>(maxLength: 60, nullable: false),
-                    JobResponsibilities = table.Column<string>(maxLength: 500, nullable: false),
+                    JobResponsibilities = table.Column<string>(maxLength: 250, nullable: false),
+                    AdditionalInfo = table.Column<string>(maxLength: 250, nullable: false),
                     BeginDate = table.Column<DateTime>(nullable: false),
                     EndTme = table.Column<DateTime>(nullable: false),
-                    PersonelId = table.Column<int>(nullable: false)
+                    PersonelId = table.Column<int>(nullable: false),
+                    CityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WorkExperience", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_WorkExperience_City_CityId",
+                        column: x => x.CityId,
+                        principalTable: "City",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_WorkExperience_Personel_PersonelId",
                         column: x => x.PersonelId,
                         principalTable: "Personel",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -597,7 +583,6 @@ namespace CSD.ORM.Migrations
                 {
                     UserId = table.Column<string>(nullable: false),
                     RoleId = table.Column<string>(nullable: false),
-                    Discriminator = table.Column<string>(nullable: false),
                     UserId1 = table.Column<string>(nullable: true),
                     RoleId1 = table.Column<string>(nullable: true)
                 },
@@ -605,29 +590,29 @@ namespace CSD.ORM.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId1",
-                        column: x => x.RoleId1,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId1",
-                        column: x => x.UserId1,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId1",
+                        column: x => x.RoleId1,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -733,12 +718,12 @@ namespace CSD.ORM.Migrations
             migrationBuilder.InsertData(
                 table: "Personel",
                 columns: new[] { "Id", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 1, new DateTime(2020, 4, 7, 7, 13, 5, 256, DateTimeKind.Local).AddTicks(4614), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                values: new object[] { 1, new DateTime(2020, 4, 18, 20, 52, 2, 151, DateTimeKind.Local).AddTicks(8635), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Ilkin", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.InsertData(
                 table: "Personel",
                 columns: new[] { "Id", "Birthdate", "CityId", "Email", "FamilyStatusId", "FatherName", "FinCode", "Firstname", "GenderId", "Lastname", "Residence", "SerialNumber" },
-                values: new object[] { 2, new DateTime(2020, 4, 7, 7, 13, 5, 259, DateTimeKind.Local).AddTicks(4230), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
+                values: new object[] { 2, new DateTime(2020, 4, 18, 20, 52, 2, 169, DateTimeKind.Local).AddTicks(2251), 1, "ilkintagiyev06@gmail.com", 2, "Rafiq", "111111", "Eltac", 1, "Tağıyev", "Oktay Veliyev", "09876543" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -763,6 +748,11 @@ namespace CSD.ORM.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId1",
                 table: "AspNetUserRoles",
                 column: "RoleId1");
@@ -771,11 +761,6 @@ namespace CSD.ORM.Migrations
                 name: "IX_AspNetUserRoles_UserId1",
                 table: "AspNetUserRoles",
                 column: "UserId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
-                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -792,11 +777,6 @@ namespace CSD.ORM.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_PersonelId",
                 table: "AspNetUsers",
-                column: "PersonelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Certificate_PersonelId",
-                table: "Certificate",
                 column: "PersonelId");
 
             migrationBuilder.CreateIndex(
@@ -910,6 +890,11 @@ namespace CSD.ORM.Migrations
                 column: "PhoneTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_WorkExperience_CityId",
+                table: "WorkExperience",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WorkExperience_PersonelId",
                 table: "WorkExperience",
                 column: "PersonelId");
@@ -931,9 +916,6 @@ namespace CSD.ORM.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Certificate");
 
             migrationBuilder.DropTable(
                 name: "DepartmentPosition");

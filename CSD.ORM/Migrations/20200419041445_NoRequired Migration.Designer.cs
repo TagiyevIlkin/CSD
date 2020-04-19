@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSD.ORM.Migrations
 {
     [DbContext(typeof(CSDContext))]
-    [Migration("20200407141305_Initial")]
-    partial class Initial
+    [Migration("20200419041445_NoRequired Migration")]
+    partial class NoRequiredMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,27 +109,51 @@ namespace CSD.ORM.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CSD.Entities.Shared.Certificate", b =>
+            modelBuilder.Entity("CSD.Entities.Shared.ApplicationRole", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("ExpiredTime");
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Description");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(256);
 
-                    b.Property<int>("PersonelId");
-
-                    b.Property<DateTime>("ReceivedTime");
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonelId");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Certificate");
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.ApplicationUserRole", b =>
+                {
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("RoleId");
+
+                    b.Property<string>("RoleId1");
+
+                    b.Property<string>("UserId1");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("RoleId1");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("AspNetUserRoles");
                 });
 
             modelBuilder.Entity("CSD.Entities.Shared.City", b =>
@@ -298,6 +322,10 @@ namespace CSD.ORM.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime>("EndTime");
+
+                    b.Property<string>("Faculty")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<int>("PersonelId");
 
@@ -570,7 +598,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 1,
-                            Birthdate = new DateTime(2020, 4, 7, 7, 13, 5, 256, DateTimeKind.Local).AddTicks(4614),
+                            Birthdate = new DateTime(2020, 4, 18, 21, 14, 44, 600, DateTimeKind.Local).AddTicks(8096),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -585,7 +613,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 2,
-                            Birthdate = new DateTime(2020, 4, 7, 7, 13, 5, 259, DateTimeKind.Local).AddTicks(4230),
+                            Birthdate = new DateTime(2020, 4, 18, 21, 14, 44, 603, DateTimeKind.Local).AddTicks(5184),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -690,7 +718,12 @@ namespace CSD.ORM.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AdditionalInfo")
+                        .HasMaxLength(250);
+
                     b.Property<DateTime>("BeginDate");
+
+                    b.Property<int>("CityId");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -700,7 +733,7 @@ namespace CSD.ORM.Migrations
 
                     b.Property<string>("JobResponsibilities")
                         .IsRequired()
-                        .HasMaxLength(500);
+                        .HasMaxLength(250);
 
                     b.Property<int>("PersonelId");
 
@@ -710,38 +743,11 @@ namespace CSD.ORM.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CityId");
+
                     b.HasIndex("PersonelId");
 
                     b.ToTable("WorkExperience");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -802,24 +808,6 @@ namespace CSD.ORM.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("RoleId");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<string>");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId");
@@ -833,30 +821,6 @@ namespace CSD.ORM.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("CSD.Entities.Shared.ApplicationRole", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
-
-                    b.Property<string>("Description");
-
-                    b.HasDiscriminator().HasValue("ApplicationRole");
-                });
-
-            modelBuilder.Entity("CSD.Entities.Shared.ApplicationUserRole", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<string>");
-
-                    b.Property<string>("RoleId1");
-
-                    b.Property<string>("UserId1");
-
-                    b.HasIndex("RoleId1");
-
-                    b.HasIndex("UserId1");
-
-                    b.HasDiscriminator().HasValue("ApplicationUserRole");
                 });
 
             modelBuilder.Entity("CSD.Entities.Computer_Engineering.KnownProgram", b =>
@@ -895,12 +859,25 @@ namespace CSD.ORM.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("CSD.Entities.Shared.Certificate", b =>
+            modelBuilder.Entity("CSD.Entities.Shared.ApplicationUserRole", b =>
                 {
-                    b.HasOne("CSD.Entities.Shared.Personel", "Personel")
-                        .WithMany("Certificate")
-                        .HasForeignKey("PersonelId")
+                    b.HasOne("CSD.Entities.Shared.ApplicationRole")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CSD.Entities.Shared.ApplicationRole", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId1");
+
+                    b.HasOne("CSD.Entities.Shared.UserApp")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CSD.Entities.Shared.UserApp", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("CSD.Entities.Shared.City", b =>
@@ -1011,15 +988,20 @@ namespace CSD.ORM.Migrations
 
             modelBuilder.Entity("CSD.Entities.Shared.WorkExperience", b =>
                 {
+                    b.HasOne("CSD.Entities.Shared.City", "City")
+                        .WithMany("WorkExperiences")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("CSD.Entities.Shared.Personel", "Personel")
                         .WithMany("WorkExperience")
                         .HasForeignKey("PersonelId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
+                    b.HasOne("CSD.Entities.Shared.ApplicationRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -1041,36 +1023,12 @@ namespace CSD.ORM.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CSD.Entities.Shared.UserApp")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.HasOne("CSD.Entities.Shared.UserApp")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CSD.Entities.Shared.ApplicationUserRole", b =>
-                {
-                    b.HasOne("CSD.Entities.Shared.ApplicationRole", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId1");
-
-                    b.HasOne("CSD.Entities.Shared.UserApp", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

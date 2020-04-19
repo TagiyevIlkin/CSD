@@ -18,8 +18,11 @@ namespace CSD.Entities.Shared
         [MinLength(3), MaxLength(60), Required]
         public string Position { get; set; }
 
-        [MinLength(3), MaxLength(500), Required]
+        [MinLength(3), MaxLength(250), Required]
         public string JobResponsibilities { get; set; }
+
+        [MinLength(3), MaxLength(250)]
+        public string AdditionalInfo { get; set; }
 
         [DataType(DataType.DateTime), Required]
         public DateTime BeginDate { get; set; }
@@ -28,10 +31,15 @@ namespace CSD.Entities.Shared
         public DateTime EndTme { get; set; }
 
         public int PersonelId { get; set; }
+        public int CityId { get; set; }
 
 
         [ForeignKey("PersonelId")]
         public virtual Personel Personel { get; set; }
+
+
+        [ForeignKey("CityId")]
+        public virtual City City { get; set; }
 
     }
 }

@@ -1,0 +1,121 @@
+﻿@model WorkExperienceViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section styles{
+    <link href="~/Custom/WorkExperience/workExperience.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-12 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <section class=" ">
+                    <div class="container">
+                        <nav class="nav-justified mb-5">
+                            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni işçinin daxil edilməsi</a>
+                            </div>
+                        </nav>
+                        <form asp-action="Create" asp-controller="WorkExperience" id="createWorkExperience" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" value="0" />
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="PersonelId" class="control-label"></label>
+                                        <select asp-for="PersonelId" class="custom-select PersonelId" required></select>
+                                        <span asp-validation-for="PersonelId" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label asp-for="CompanyName" class="control-label"></label>
+                                        <input type="text" asp-for="CompanyName" class="form-control" />
+                                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <label asp-for="BeginDate" class="w-100"></label>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="ti-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <input asp-for="BeginDate" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
+                                        </div>
+                                        <span asp-validation-for="BeginDate" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label asp-for="JobResponsibilities" class="control-label"></label>
+                                        <textarea asp-for="JobResponsibilities" class="form-control"></textarea>
+                                        <span asp-validation-for="JobResponsibilities" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="CityId" class="control-label"></label>
+                                        <select asp-for="CityId" class="custom-select select2DropDown " asp-items="ViewBag.CityId" required>
+                                            <option>      </option>
+                                        </select>
+                                        <span asp-validation-for="CityId" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Position" class="control-label"></label>
+                                        <input type="text" asp-for="Position" class="form-control" />
+                                        <span asp-validation-for="Position" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group mb-3">
+                                            <label asp-for="EndTme" class="w-100"></label>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <span class="ti-calendar"></span>
+                                                </span>
+                                            </div>
+                                            <input asp-for="EndTme" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
+                                        </div>
+                                        <span asp-validation-for="EndTme" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label asp-for="AdditionalInfo" class="control-label"></label>
+                                        <textarea asp-for="AdditionalInfo" class="form-control"></textarea>
+                                        <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="justify-content-between mr-0 mt-4 row">
+                                <div class="ml-3">
+                                    <a asp-action="Index" class="btn btn-outline-secondary returnTablePersonel"><i class="fa fa-arrow-left"></i> Cədvələ Geri Dön</a>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class=" form-control border btn btn-outline-secondary btn-save " value="Saxla" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Custom/WorkExperience/workExperience.js" asp-append-version="true"></script>
+    <script src="~/Custom/WorkExperience/Select.js"></script>
+}
+
+

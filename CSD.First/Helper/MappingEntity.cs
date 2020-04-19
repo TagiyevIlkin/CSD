@@ -15,6 +15,7 @@ namespace CSD.First.Helper
             CreateMap<Personel, PersonViewModel>().ReverseMap();
             CreateMap<DepartmentPosition, DepartmentPositionViewModel>().ReverseMap();
             CreateMap<Education, EducationViewModel>().ReverseMap();
+            CreateMap<WorkExperience, WorkExperienceViewModel>().ReverseMap();
 
         }
     }

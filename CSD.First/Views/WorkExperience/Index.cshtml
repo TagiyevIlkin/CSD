@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section styles{
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<!-- #region DataTable Person List -->
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <a asp-controller="WorkExperience" asp-action="Create" class="btn btn-outline-secondary "><span class="ti-plus mr-2"></span>Yeni iş təcrübəsi əlavə et</a>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class=" d-flex justify-content-between">
+                <h4 class="header-title">Təhsil</h4>
+            </div>
+            <hr />
+            <br />
+            <div class="single-table">
+                <div class="table-responsive">
+                    <table id="dataTable" style="width: 100%;" class="table table-hover progress-table text-center">
+                        <thead>
+                            <tr role="row">
+                            <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>A.S.A</th>
+                                <th>Müəssisə</th>
+                                <th>Vəzifə</th>
+                                <th>Vəzifə öhtəlikləri</th>
+                                <th>Şəhər/Rayon</th>
+                                <th>Başlama tarix</th>
+                                <th>Bitirmə tarixi</th>
+                                <th>Şəhər/Rayon</th>
+                                <th>Əlavə məlumat</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js"></script>>
+    <script src="~/DataTables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Custom/WorkExperience/workExperienceListForDataTables.js" asp-append-version="true"></script>
+}
+<!-- #endregion -->

@@ -122,6 +122,10 @@ namespace CSD.ORM
             //#endregion
 
 
+            modelBuilder.Entity<WorkExperience>().
+                  HasOne(x => x.Personel).
+                  WithMany(x => x.WorkExperience).
+                  OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Country>().HasData(
                 new Country { Id = 1, Name = "Azərbaycan", NumCode = "222", Phonecode = "+994" },

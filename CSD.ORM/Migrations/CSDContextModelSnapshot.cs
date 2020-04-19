@@ -596,7 +596,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 1,
-                            Birthdate = new DateTime(2020, 4, 18, 18, 15, 57, 376, DateTimeKind.Local).AddTicks(8540),
+                            Birthdate = new DateTime(2020, 4, 18, 21, 14, 44, 600, DateTimeKind.Local).AddTicks(8096),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -611,7 +611,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 2,
-                            Birthdate = new DateTime(2020, 4, 18, 18, 15, 57, 379, DateTimeKind.Local).AddTicks(6887),
+                            Birthdate = new DateTime(2020, 4, 18, 21, 14, 44, 603, DateTimeKind.Local).AddTicks(5184),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -716,7 +716,12 @@ namespace CSD.ORM.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AdditionalInfo")
+                        .HasMaxLength(250);
+
                     b.Property<DateTime>("BeginDate");
+
+                    b.Property<int>("CityId");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -726,7 +731,7 @@ namespace CSD.ORM.Migrations
 
                     b.Property<string>("JobResponsibilities")
                         .IsRequired()
-                        .HasMaxLength(500);
+                        .HasMaxLength(250);
 
                     b.Property<int>("PersonelId");
 
@@ -735,6 +740,8 @@ namespace CSD.ORM.Migrations
                         .HasMaxLength(60);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.HasIndex("PersonelId");
 
@@ -979,10 +986,15 @@ namespace CSD.ORM.Migrations
 
             modelBuilder.Entity("CSD.Entities.Shared.WorkExperience", b =>
                 {
+                    b.HasOne("CSD.Entities.Shared.City", "City")
+                        .WithMany("WorkExperiences")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("CSD.Entities.Shared.Personel", "Personel")
                         .WithMany("WorkExperience")
                         .HasForeignKey("PersonelId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
