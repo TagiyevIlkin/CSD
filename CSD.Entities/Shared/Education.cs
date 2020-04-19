@@ -27,6 +27,8 @@ namespace CSD.Entities.Shared
         [DataType(DataType.DateTime)]
         public DateTime EndTime { get; set; }
 
+        [MaxLength(100), MinLength(3), Required]
+        public string Faculty { get; set; }
         public int EducationDegreeId { get; set; }
 
         public int CityId { get; set; }

@@ -44,7 +44,6 @@ namespace CSD.ORM
         public DbSet<FamilyStatus> FamilyStatuses { get; set; }
         public DbSet<AcademicDegree> AcademicDegrees { get; set; }
         public DbSet<Personel> Personels { get; set; }
-        public DbSet<Certificate> Certificates { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<EducationDegree> EducationDegrees { get; set; }
         public DbSet<Education> Educations { get; set; }

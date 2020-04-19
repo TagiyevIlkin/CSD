@@ -17,7 +17,6 @@ namespace CSD.Entities.Shared
             Education = new HashSet<Education>();
             WorkExperience = new HashSet<WorkExperience>();
             KnownProgram = new HashSet<KnownProgram>();
-            Certificate = new HashSet<Certificate>();
             LevelOfLanguage = new HashSet<LevelOfLanguage>();
             UserApp = new HashSet<UserApp>();
             DepartmentPosition = new HashSet<DepartmentPosition>();
@@ -81,7 +80,6 @@ namespace CSD.Entities.Shared
         public virtual ICollection<WorkExperience> WorkExperience { get; set; }
         public virtual ICollection<KnownProgram> KnownProgram { get; set; }
         public virtual ICollection<PersonDocument> PersonDocument { get; set; }
-        public virtual ICollection<Certificate> Certificate { get; set; }
         public virtual ICollection<LevelOfLanguage> LevelOfLanguage { get; set; }
         public virtual ICollection<UserApp> UserApp { get; set; }
         public virtual ICollection<DepartmentPosition> DepartmentPosition { get; set; }

@@ -31,5 +31,16 @@ namespace CSD.ComSciDep.Utility
         public const string Position = "Vəzifəsi";
         #endregion
 
+        #region Education
+        public const string EducationalInstitution = "Təhsil müəssisəsi";
+        public const string Specialty = "İxtisas";
+        public const string BeginTime = "Başlama tarixi";
+        public const string EndTime = "Bitirmə tarixi";
+        public const string EducationDegree = "Təhsil dərəcəsi";
+        public const string Document = "Sənəd";
+        public const string City = "Şəhər/Rayon";
+        public const string Faculty = "Fakultə";
+        #endregion
+
     }
 }

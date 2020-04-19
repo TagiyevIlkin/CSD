@@ -1,10 +1,9 @@
 ﻿
 
 $(document).ready(function () {
-
     
-    //#region Create DepartmentPosition
-    $("#createDepartmentPosition").submit(function (event) {
+    //#region Create Education
+    $("#Create_Education").submit(function (event) {
 
         event.preventDefault();
 
@@ -19,7 +18,7 @@ $(document).ready(function () {
         if ($form.valid()) {
             $.ajax({
                 url: action,
-                data: new FormData(document.forms["createDepartmentPosition"]),
+                data: new FormData(document.forms["Create_Education"]),
                 contentType: false,
                 processData: false,
                 type: method,
@@ -35,7 +34,7 @@ $(document).ready(function () {
                             timer: 2000
                         }).then((result) => {
                             if (result) {
-                                window.location = '/DepartmentPosition/Index';
+                                window.location = '/Education/Index';
                             }
                         });
                     }
@@ -53,11 +52,8 @@ $(document).ready(function () {
     });
     //#endregion
 
-
-
-
-    //#region Edit DepartmentPosition
-    $("#editDepartmentPosition").submit(function (event) {
+    //#region Edit Education
+    $("#editEducation").submit(function (event) {
 
         event.preventDefault();
 
@@ -72,7 +68,7 @@ $(document).ready(function () {
         if ($form.valid()) {
             $.ajax({
                 url: action,
-                data: new FormData(document.forms["editDepartmentPosition"]),
+                data: new FormData(document.forms["editEducation"]),
                 contentType: false,
                 processData: false,
                 type: method,
@@ -88,7 +84,7 @@ $(document).ready(function () {
                             timer: 2000
                         }).then((result) => {
                             if (result) {
-                                window.location = '/DepartmentPosition/Index';
+                                window.location = '/Education/Index';
                             }
                         });
                     }
@@ -105,5 +101,6 @@ $(document).ready(function () {
         }
     });
     //#endregion
+
 
 });

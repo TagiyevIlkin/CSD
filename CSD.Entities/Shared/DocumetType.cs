@@ -10,6 +10,7 @@ namespace CSD.Entities.Shared
 
     public class DocumetType
     {
+        //sekil, Cv ve s.
         public DocumetType()
         {
             PersonDocument = new HashSet<PersonDocument>();

@@ -92,6 +92,8 @@ namespace CSD.First.Controllers
             FillComboBox();
             return View();
         }
+
+
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public JsonResult Create(DepartmentPositionViewModel model)
@@ -111,29 +113,23 @@ namespace CSD.First.Controllers
                             message = CsResultConst.AddSuccess
                         });
                     }
-
                     return Json(new
                     {
                         status = 406,
                         message = CsResultConst.Error
                     });
                 }
-
                 return Json(new
                 {
                     status = 201,
                     message = CsResultConst.AleadyExistedPersonPosition
                 });
-
             }
-
-
             return Json(new
             {
                 status = 404,
                 message = CsResultConst.ModelNotValid
             });
-
         }
 
         #endregion
@@ -146,7 +142,8 @@ namespace CSD.First.Controllers
             if (departmentPosition == null) return NotFound();
             FillComboBox();
             var departmentPositionViewModel = _mapper.Map<DepartmentPositionViewModel>(departmentPosition);
-            departmentPositionViewModel.PreviousPersonelId = departmentPosition.PositionId;
+            departmentPositionViewModel.PreviousPersonelId = departmentPosition.PersonelId;
+            departmentPositionViewModel.PreviousPersonelFullName = _unitOfWork.Repository<Personel>().GetById(departmentPosition.PersonelId).Fullname;
             return View(departmentPositionViewModel);
 
         }
@@ -156,6 +153,22 @@ namespace CSD.First.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                if (model.PreviousPersonelId==model.PersonelId)
+                {
+                    var departmentposition = _mapper.Map<DepartmentPosition>(model);
+
+                    var resilt = _unitOfWork.Repository<DepartmentPosition>().Update(departmentposition);
+                    if (resilt.IsSuccess)
+                    {
+                        return Json(new
+                        {
+                            status = 200,
+                            message = CsResultConst.EditSuccess
+                        });
+                    }
+                }
+
                 if (!(_unitOfWork.Repository<DepartmentPosition>().Exist(x=>x.PersonelId==model.PersonelId && 
                 _unitOfWork.Repository<DepartmentPosition>().Exist(m=>m.PositionId!=model.PreviousPersonelId))))
                 {

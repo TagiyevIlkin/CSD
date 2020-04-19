@@ -26,7 +26,7 @@
                                 <div class="col-lg-4">
                                     <div class=" tex-left form-group ">
                                         <label asp-for="Firstname" class="control-label">Adı</label>
-                                        <input asp-for="Firstname" required="required" class="form-control" type="text">
+                                        <input asp-for="Firstname" required="required" class="form-control " type="text">
                                         <span asp-validation-for="Firstname" class="text-danger"></span>
                                     </div>
                                     <div class="form-group tex-lg-left">
@@ -42,7 +42,7 @@
                                     <div class="form-group tex-lg-left">
                                         <label asp-for="GenderId" class="control-label">Cinsi</label>
                                         <select asp-for="GenderId" class="custom-select select2DropDown" asp-items="ViewBag.GenderId">
-                                            <option value="-1">Seçilməyib</option>
+                                            <option>     </option>
                                         </select>
                                         <span asp-validation-for="GenderId" class="text-danger"></span>
                                     </div>
@@ -67,7 +67,7 @@
                                     <div class="form-group tex-lg-left">
                                         <label asp-for="FamilyStatusId" class="control-label">Ailə vəziyyəti</label>
                                         <select asp-for="FamilyStatusId" class="custom-select select2DropDown" asp-items="ViewBag.FamilyStatusId">
-                                            <option value="-1">Seçilməyib</option>
+                                            <option>     </option>
                                         </select>
                                         <span asp-validation-for="FamilyStatusId" class="text-danger"></span>
                                     </div>
@@ -89,7 +89,7 @@
                                     <div class="form-group tex-lg-left">
                                         <label asp-for="CityId" class="control-label">Doğum Yeri</label>
                                         <select asp-for="CityId" class="custom-select select2DropDown" asp-items="ViewBag.CityId">
-                                            <option value="-1">Seçilməyib</option>
+                                            <option>  </option>
                                         </select>
                                         <span asp-validation-for="CityId" class="text-danger"></span>
                                     </div>
@@ -147,6 +147,8 @@
     <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/sweetalert/sweetalert.min.js"></script>
     <script src="~/Custom/Person/person.js" asp-append-version="true"></script>
+    <script src="~/Custom/DepartmentPosition/Select.js"></script>
+
 }
 
 

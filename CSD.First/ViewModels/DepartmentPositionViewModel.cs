@@ -14,9 +14,7 @@ namespace CSD.First.ViewModels
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
         [DisplayName(CsDisplayName.FullName)]
-        
         public int PersonelId { get; set; }
-        public int PreviousPersonelId { get; set; }
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
         [DisplayName(CsDisplayName.Position)]
@@ -25,5 +23,10 @@ namespace CSD.First.ViewModels
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
         [DisplayName(CsDisplayName.AcademicDegree)]
         public int AcademicDegreeId { get; set; }
+
+        #region For Edit
+        public int PreviousPersonelId { get; set; }
+        public string PreviousPersonelFullName { get; set; }
+        #endregion
     }
 }

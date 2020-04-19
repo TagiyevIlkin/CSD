@@ -62,7 +62,6 @@ namespace CSD.First.ViewModels
 
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
         public int FamilyStatusId { get; set; }
-
         [Phone]
         [StringLength(50), MinLength(10, ErrorMessage = CsResultConst.Minlength10)]
         public string Mobile { get; set; }
