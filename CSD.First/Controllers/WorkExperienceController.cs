@@ -11,6 +11,7 @@ using CSD.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace CSD.First.Controllers
 {
@@ -84,29 +85,50 @@ namespace CSD.First.Controllers
         #region Create  WorkExperience
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(int Id)
         {
+            FInalWorkExperienceViewModel fInalWorkExperienceViewModel = new FInalWorkExperienceViewModel()
+            {
+                WorkExperiencesForPerson = _unitOfWork.Repository<WorkExperience>().FindAll(x => x.PersonelId == Id),
+                WorkExperienceViewModel = new WorkExperienceViewModel()
+                {
+                    PersonelId = Id
+                },
+                CityLIst = _unitOfWork.Repository<City>().GetAll().ToList(),
+                CurrentPerson = _unitOfWork.Repository<Personel>().GetById(Id).Fullname
+
+            };
 
             FillComboBox();
-            return View();
+            return View(fInalWorkExperienceViewModel);
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public JsonResult Create(WorkExperienceViewModel model)
+        public JsonResult Create(FInalWorkExperienceViewModel model)
         {
 
             if (ModelState.IsValid)
             {
 
-                var workExperience = _mapper.Map<WorkExperience>(model);
+                var workExperience = _mapper.Map<WorkExperience>(model.WorkExperienceViewModel);
                 var result = _unitOfWork.Repository<WorkExperience>().Add(workExperience);
+                var cityname = _unitOfWork.Repository<City>().GetById(workExperience.CityId).Name;
+
                 if (result.IsSuccess)
                 {
                     return Json(new
                     {
                         status = 200,
-                        message = CsResultConst.AddSuccess
+                        message = CsResultConst.AddSuccess,
+                        CityName = cityname,
+                        Id = workExperience.Id,
+                        CompanyName = workExperience.CompanyName,
+                        Position = workExperience.Position,
+                        JobResponsibilities = workExperience.JobResponsibilities,
+                        BeginDate = workExperience.BeginDate.ToString("dd/MM/yyyy"),
+                        EndTme = workExperience.EndTme.ToString("dd/MM/yyyy"),
+                        AdditionalInfo = workExperience.AdditionalInfo
                     });
                 }
                 return Json(new
@@ -133,6 +155,32 @@ namespace CSD.First.Controllers
             var workExperience = _unitOfWork.Repository<WorkExperience>();
 
             return View();
+        }
+
+        #endregion
+
+        #region Delete WorkExperience
+
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var workExperience = await _unitOfWork.Repository<WorkExperience>().GetByIdAsync(Id);
+            if (workExperience == null) return NotFound();
+
+            var reult = await _unitOfWork.Repository<WorkExperience>().DeleteAsync(workExperience);
+            if (reult.IsSuccess)
+            {
+                return Json(new
+                {
+                    status = 200,
+                    message = CsResultConst.DeleteSuccess
+                });
+            }
+
+            return Json(new
+            {
+                status = 406,
+                message = CsResultConst.Error
+            });
         }
 
         #endregion

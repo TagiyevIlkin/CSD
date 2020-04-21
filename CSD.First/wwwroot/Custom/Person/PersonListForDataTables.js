@@ -3,7 +3,7 @@ function deletePersonel(Fullname, id) {
 
     Swal.fire({
         title: 'Diqqət!',
-        text: "İşçi  " +Fullname+ "  i  " +'silmək istədiyinizə əminsiniz?',
+        text: "İşçi  " + Fullname + "  i  " + 'silmək istədiyinizə əminsiniz?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -37,7 +37,7 @@ function deletePersonel(Fullname, id) {
                         }
                     )
                 }
-               
+
             });
         }
     });
@@ -92,7 +92,7 @@ $(document).ready(function () {
         },
         "columnDefs":
             [{
-                "targets": [1,2,14],
+                "targets": [2, 3, 15],
                 "visible": false
             }],
         "columns": [
@@ -104,6 +104,24 @@ $(document).ready(function () {
                                </li>
                                <li >
                                   <a onclick="deletePersonel('${row.Fullname}','${row.Id}')" class="btn text-danger btn-sm"><i class="fa fa-trash"></i></a>
+                               </li>
+                            </ul>
+                            <hr />
+                            <ul class="d-flex justify-content-center">
+                               
+                            </ul>`;
+                }
+            }, {
+                data: null, render: function (row) {
+                    return `<ul class="d-flex justify-content-center">
+                               <li class="mr-2">
+                                 <a  href='/Education/Create/${row.Id}' title='Təhsil əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-graduation-cap'></i></a>
+                               </li> 
+                              <li class="mr-2">
+                                 <a  href='/Language/Create/${row.Id}' title='Dil əlavə et' class='btn text-primary btn-sm'><i class='fa fa-language'></i></a>
+                               </li>
+                               <li >
+                                   <a  href='/WorkExperience/Create/${row.Id}' title='İş təcrübəsi əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-briefcase'></i></a>
                                </li>
                             </ul>
                             <hr />
@@ -152,7 +170,7 @@ $(document).ready(function () {
             { "data": "Number", "name": "Nömrə", "autoWidth": true },
             { "data": "Email", "name": "Elektron Poçt", "autoWidth": true },
             { "data": "UserId", "name": "UserId", "autoWidth": true }
-            
+
         ]
     });
 
@@ -194,7 +212,7 @@ $(document).ready(function () {
 
                             $("button#closeModal").click();
 
-                        }else {
+                        } else {
                             Swal.fire({
                                 type: 'error',
                                 title: response.message,
@@ -233,7 +251,7 @@ $(document).ready(function () {
                             });
                             $("button#closeModal").click();
 
-                        }  else {
+                        } else {
                             Swal.fire({
                                 type: 'error',
                                 title: response.message,

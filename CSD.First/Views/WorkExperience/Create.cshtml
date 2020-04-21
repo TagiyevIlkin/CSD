@@ -1,10 +1,12 @@
-﻿@model WorkExperienceViewModel
+﻿@model FInalWorkExperienceViewModel
 @{
     ViewData["Title"] = "Create";
 }
 
 @section styles{
     <link href="~/Custom/WorkExperience/workExperience.css" rel="stylesheet" />
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
 }
 <div class="row">
     <div class="col-12 mt-5">
@@ -14,82 +16,80 @@
                     <div class="container">
                         <nav class="nav-justified mb-5">
                             <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni işçinin daxil edilməsi</a>
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni iş təcrübəsinin daxil edilməsi</a>
                             </div>
                         </nav>
                         <form asp-action="Create" asp-controller="WorkExperience" id="createWorkExperience" method="post">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <input type="hidden" asp-for="Id" value="0" />
+                            <input type="hidden" asp-for="WorkExperienceViewModel.Id" value="0" />
+                            <input type="hidden" asp-for="WorkExperienceViewModel.PersonelId" />
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label asp-for="PersonelId" class="control-label"></label>
-                                        <select asp-for="PersonelId" class="custom-select PersonelId" required></select>
-                                        <span asp-validation-for="PersonelId" class="text-danger"></span>
+                                        <label asp-for="WorkExperienceViewModel.CityId" class="control-label"></label>
+                                        <select asp-for="WorkExperienceViewModel.CityId" class="custom-select select2DropDown " asp-items="ViewBag.CityId" required>
+                                            <option>      </option>
+                                        </select>
+                                        <span asp-validation-for="WorkExperienceViewModel.CityId" class="text-danger"></span>
                                     </div>
-
+                                </div>
+                                <div class="col-lg-6">
 
                                     <div class="form-group">
-                                        <label asp-for="CompanyName" class="control-label"></label>
-                                        <input type="text" asp-for="CompanyName" class="form-control" />
-                                        <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                        <label asp-for="WorkExperienceViewModel.CompanyName" class="control-label"></label>
+                                        <input type="text" asp-for="WorkExperienceViewModel.CompanyName" class="form-control" />
+                                        <span asp-validation-for="WorkExperienceViewModel.CompanyName" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                            <label asp-for="BeginDate" class="w-100"></label>
+                                            <label asp-for="WorkExperienceViewModel.BeginDate" class="w-100"></label>
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                     <span class="ti-calendar"></span>
                                                 </span>
                                             </div>
-                                            <input asp-for="BeginDate" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
+                                            <input asp-for="WorkExperienceViewModel.BeginDate" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
                                         </div>
-                                        <span asp-validation-for="BeginDate" class="text-danger"></span>
+                                        <span asp-validation-for="WorkExperienceViewModel.BeginDate" class="text-danger"></span>
                                     </div>
 
 
                                     <div class="form-group">
-                                        <label asp-for="JobResponsibilities" class="control-label"></label>
-                                        <textarea asp-for="JobResponsibilities" class="form-control"></textarea>
-                                        <span asp-validation-for="JobResponsibilities" class="text-danger"></span>
+                                        <label asp-for="WorkExperienceViewModel.JobResponsibilities" class="control-label"></label>
+                                        <textarea asp-for="WorkExperienceViewModel.JobResponsibilities" class="form-control"></textarea>
+                                        <span asp-validation-for="WorkExperienceViewModel.JobResponsibilities" class="text-danger"></span>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
 
-                                    <div class="form-group">
-                                        <label asp-for="CityId" class="control-label"></label>
-                                        <select asp-for="CityId" class="custom-select select2DropDown " asp-items="ViewBag.CityId" required>
-                                            <option>      </option>
-                                        </select>
-                                        <span asp-validation-for="CityId" class="text-danger"></span>
-                                    </div>
+
 
                                     <div class="form-group">
-                                        <label asp-for="Position" class="control-label"></label>
-                                        <input type="text" asp-for="Position" class="form-control" />
-                                        <span asp-validation-for="Position" class="text-danger"></span>
+                                        <label asp-for="WorkExperienceViewModel.Position" class="control-label"></label>
+                                        <input type="text" asp-for="WorkExperienceViewModel.Position" class="form-control" />
+                                        <span asp-validation-for="WorkExperienceViewModel.Position" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                            <label asp-for="EndTme" class="w-100"></label>
+                                            <label asp-for="WorkExperienceViewModel.EndTme" class="w-100"></label>
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                     <span class="ti-calendar"></span>
                                                 </span>
                                             </div>
-                                            <input asp-for="EndTme" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
+                                            <input asp-for="WorkExperienceViewModel.EndTme" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
                                         </div>
-                                        <span asp-validation-for="EndTme" class="text-danger"></span>
+                                        <span asp-validation-for="WorkExperienceViewModel.EndTme" class="text-danger"></span>
                                     </div>
 
 
                                     <div class="form-group">
-                                        <label asp-for="AdditionalInfo" class="control-label"></label>
-                                        <textarea asp-for="AdditionalInfo" class="form-control"></textarea>
-                                        <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+                                        <label asp-for="WorkExperienceViewModel.AdditionalInfo" class="control-label"></label>
+                                        <textarea asp-for="WorkExperienceViewModel.AdditionalInfo" class="form-control"></textarea>
+                                        <span asp-validation-for="WorkExperienceViewModel.AdditionalInfo" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -102,6 +102,55 @@
                                 </div>
                             </div>
                         </form>
+
+
+
+                        @if (Model.CurrentPerson != null)
+                        {
+                            <div class=" pt-4 pb-3"><p class="text-center "><b>@Model.CurrentPerson</b></p></div>
+                        }
+                        <div class="single-table">
+                            <div class="table-responsive">
+
+                                <table id="dataTableForCreateWorkExp" style="width: 100%;" class="table table-hover progress-table text-center">
+                                    <thead>
+                                        <tr role="row">
+                                        <tr>
+                                            <th>#</th>
+                                            <th hidden>Id</th>
+                                            <th>Müəssisə</th>
+                                            <th>Vəzifə</th>
+                                            <th>Vəzifə öhtəlikləri</th>
+                                            <th>Şəhər/Rayon</th>
+                                            <th>Başlama tarix</th>
+                                            <th>Bitirmə tarixi</th>
+                                            <th>Əlavə məlumat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @if (Model.WorkExperiencesForPerson.Count > 0)
+                                        {
+                                            foreach (var workExperience in Model.WorkExperiencesForPerson)
+                                            {
+                                                <tr class="@workExperience.Id">
+                                                    <td><input type="button" data-id="@workExperience.Id" aria-invalid="true" value="Sil" class="btn btn-sm btn-danger deleteWorkExperFromCreateView" /></td>
+                                                    <td hidden>@workExperience.Id</td>
+                                                    <td>@workExperience.CompanyName</td>
+                                                    <td>@workExperience.Position</td>
+                                                    <td>@workExperience.JobResponsibilities</td>
+                                                    <td>@Model.CityLIst.Find(x => x.Id == workExperience.CityId).Name</td>
+                                                    <td>@workExperience.BeginDate.ToString("dd/MM/yyyy")</td>
+                                                    <td>@workExperience.EndTme.ToString("dd/MM/yyyy")</td>
+                                                    <td>@workExperience.AdditionalInfo</td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -110,6 +159,8 @@
 </div>
 
 @section scripts{
+    <script src="~/DataTables/js/jquery.dataTables.min.js"></script>>
+    <script src="~/DataTables/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>

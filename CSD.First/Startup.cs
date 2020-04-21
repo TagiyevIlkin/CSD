@@ -94,11 +94,13 @@ namespace CSD.First
             #endregion
 
 
+
             services.AddSingleton<IFileProvider>(
                 new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
 
             services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.DateFormatString = "dd.MM.yyyy")
                  .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -141,6 +143,8 @@ namespace CSD.First
                     name: "default",
                     template: "{controller=Admin}/{action=LoginAdminPanel}/{id?}");
             });
+
+
         }
     }
 }
