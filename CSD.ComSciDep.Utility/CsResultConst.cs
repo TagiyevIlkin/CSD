@@ -16,6 +16,7 @@ namespace CSD.ComSciDep.Utility
         public const string Maxlength75 = "Ən çox 75 simvol daxil edilə bilər";
 
         public const string Minlength3 = "Ən az 3 simvol daxil edilməlidir";
+        public const string Minlength2 = "Ən az 2 simvol daxil edilməlidir";
         public const string Minlength10 = "Ən az 10 simvol daxil edilməlidir";
 
         public const string OperationSuccessed = "Əməliyyat uğurla başa çatdı.!";

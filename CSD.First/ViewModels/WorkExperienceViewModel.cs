@@ -51,5 +51,10 @@ namespace CSD.First.ViewModels
         [Required(ErrorMessage = CsResultConst.RequiredProperty)]
         [DisplayName(CsDisplayName.CityOrDistrict)]
         public int CityId { get; set; }
+
+        #region For Edit
+        public string PreviousPersonName { get; set; }
+        public int PreviousPersonId { get; set; }
+        #endregion
     }
 }

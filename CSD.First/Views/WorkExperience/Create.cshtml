@@ -27,7 +27,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label asp-for="WorkExperienceViewModel.CityId" class="control-label"></label>
-                                        <select asp-for="WorkExperienceViewModel.CityId" class="custom-select select2DropDown " asp-items="ViewBag.CityId" required>
+                                        <select asp-for="WorkExperienceViewModel.CityId" id="customers_select" class="custom-select select2DropDown " asp-items="ViewBag.CityId" required>
                                             <option>      </option>
                                         </select>
                                         <span asp-validation-for="WorkExperienceViewModel.CityId" class="text-danger"></span>

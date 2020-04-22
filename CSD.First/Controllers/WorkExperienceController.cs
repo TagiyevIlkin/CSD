@@ -152,9 +152,46 @@ namespace CSD.First.Controllers
         [HttpGet]
         public IActionResult Edit(int Id)
         {
-            var workExperience = _unitOfWork.Repository<WorkExperience>();
+            var workExperience = _unitOfWork.Repository<WorkExperience>().GetById(Id);
+            if (workExperience == null) return NotFound();
 
-            return View();
+            var workExperienceViewModel = _mapper.Map<WorkExperienceViewModel>(workExperience);
+
+            workExperienceViewModel.PreviousPersonId = workExperience.PersonelId;
+            workExperienceViewModel.PreviousPersonName = _unitOfWork.Repository<Personel>().GetById(workExperience.PersonelId).Fullname;
+            FillComboBox();
+            return View(workExperienceViewModel);
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public JsonResult Edit(WorkExperienceViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var workExperience = _mapper.Map<WorkExperience>(model);
+                var result = _unitOfWork.Repository<WorkExperience>().Update(workExperience);
+                if (result.IsSuccess)
+                {
+                    return Json(new
+                    {
+                        status = 200,
+                        message = CsResultConst.EditSuccess
+                    });
+                }
+                FillComboBox();
+                return Json(new
+                {
+                    status = 406,
+                    message = CsResultConst.Error
+                });
+            }
+            FillComboBox();
+            return Json(new
+            {
+                status = 400,
+                message = CsResultConst.ModelNotValid
+            });
         }
 
         #endregion

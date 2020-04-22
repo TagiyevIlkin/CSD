@@ -1,4 +1,5 @@
-﻿function DeleteFromView(id) {
+﻿
+function DeleteFromView(id) {
 
     $.ajax({
         url: '/WorkExperience/Delete/' + id,
@@ -7,11 +8,8 @@
         type: 'GET',
         success: function (response) {
 
-            if (response.status == 200) {
+            if (response.status != 200) {
 
-                window.location.reload(); //Duzelmelidir! reload edilmemelidir
-
-            } else {
 
                 Swal.fire({
                     title: 'Xəta!',
@@ -26,11 +24,9 @@
     });
 };
 
+$(document).on("click", '.delete', function () {
 
-
-$(document).ready(function () {
-
-   
+    $(this).closest('tr').remove();
 });
 
 $(document).ready(function () {
@@ -64,7 +60,7 @@ $(document).ready(function () {
                         var markup =
                             `<tr  id="${response.Id}">
 
-                            <td><a   onclick="DeleteFromView(${response.Id})"   href="#"    class="btn btn-sm btn-danger delete-row">Sil</a></td>
+                            <td><a   onclick="DeleteFromView(${response.Id})"   href="#"    class="btn btn-sm btn-danger delete ">Sil</a></td>
                             <td hidden>${response.Id}</td>
                             <td >${response.CompanyName}</td>
                             <td >${response.Position}</td>
@@ -78,6 +74,11 @@ $(document).ready(function () {
 
                         $("#dataTableForCreateWorkExp").append(markup);
 
+                        //#region  reset form
+                        $('#createWorkExperience').trigger("reset");
+                        $("#customers_select").select2();
+                        $("#customers_select").val(null).trigger("change");
+                        //#endregion
                     }
                     else {
                         Swal.fire({
@@ -92,17 +93,6 @@ $(document).ready(function () {
         }
     });
     //#endregion
-
-    $("a.delete-row").on('click', function (event) {
-        event.preventDefault();
-        alert("As you can see, the link no longer took you to jquery.com");
-        var href = $(this).attr('href');
-        alert(href);
-        $(this).closest("tr").remove(); // remove row
-        return false; // prevents default behavior
-    });
-
-
 
     //#region deleteWorkExperFromCreateView
 
@@ -140,10 +130,9 @@ $(document).ready(function () {
     //#endregion
 
 
+    //#region Edit WorkExperience
 
-
-    //#region Edit Education
-    $("#editEducation").submit(function (event) {
+    $("#editWorkExperience").submit(function (event) {
 
         event.preventDefault();
 
@@ -158,7 +147,7 @@ $(document).ready(function () {
         if ($form.valid()) {
             $.ajax({
                 url: action,
-                data: new FormData(document.forms["editEducation"]),
+                data: new FormData(document.forms["editWorkExperience"]),
                 contentType: false,
                 processData: false,
                 type: method,
@@ -174,7 +163,7 @@ $(document).ready(function () {
                             timer: 2000
                         }).then((result) => {
                             if (result) {
-                                window.location = '/Education/Index';
+                                window.location = '/WorkExperience/Index';
                             }
                         });
                     }
@@ -190,7 +179,6 @@ $(document).ready(function () {
             });
         }
     });
-    //#endregion
-
+    //#endregion
 
 });

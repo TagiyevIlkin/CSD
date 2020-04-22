@@ -27,7 +27,7 @@ namespace CSD.First.ViewModels
         public string Faculty { get; set; }
 
         [MaxLength(50, ErrorMessage = CsResultConst.Maxlength50),
-        MinLength(3, ErrorMessage = CsResultConst.Minlength3), 
+        MinLength(2, ErrorMessage = CsResultConst.Minlength2), 
         Required(ErrorMessage = CsResultConst.RequiredProperty)]
         [DisplayName(CsDisplayName.Specialty)]
         public string Specialty { get; set; }

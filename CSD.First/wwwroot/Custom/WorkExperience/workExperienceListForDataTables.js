@@ -71,7 +71,7 @@ $(document).ready(function () {
                 data: null, render: function (row) {
                     return `<ul class="d-flex justify-content-center">
                                <li class="mr-2">
-                                 <a  href='/Education/Edit/${row.Id}'  class='btn text-primary btn-sm'><i class='fa fa-edit'></i></a>
+                                 <a  href='/WorkExperience/Edit/${row.Id}'  class='btn text-primary btn-sm'><i class='fa fa-edit'></i></a>
                                </li>
                                <li >
                                   <a onclick="deleteWorkExperience('${row.Id}')" class="btn text-danger btn-sm"><i class="fa fa-trash"></i></a>

@@ -83,29 +83,56 @@ namespace CSD.First.Controllers
         #region Create Education
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(int Id)
         {
+            FinalEducationViewModel finalEducationViewModel = new FinalEducationViewModel()
+            {
+                CurrentPerson = _unitOfWork.Repository<Personel>().GetById(Id).Fullname,
+                EducationsForPerson = _unitOfWork.Repository<Education>().FindAll(x => x.PersonelId == Id),
+                CityLIst = _unitOfWork.Repository<City>().GetAll().ToList(),
+                DocumentLIst = _unitOfWork.Repository<Document>().GetAll().ToList(),
+                EducationDegreeLIst = _unitOfWork.Repository<EducationDegree>().GetAll().ToList(),
+                EducationViewModel = new EducationViewModel()
+                {
+                    PersonelId = Id
+                }
+
+
+            };
 
             FillComboBox();
 
-            return View();
+            return View(finalEducationViewModel);
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public JsonResult Create(EducationViewModel model)
+        public JsonResult Create(FinalEducationViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var education = _mapper.Map<Education>(model);
-
+                var education = _mapper.Map<Education>(model.EducationViewModel);
+                string cityName = _unitOfWork.Repository<City>().GetById(education.CityId).Name;
+                string documentName = _unitOfWork.Repository<Document>().GetById(education.DocumentId).Name;
+                string educationDegree = _unitOfWork.Repository<EducationDegree>().GetById(education.EducationDegreeId).Name;
                 var result = _unitOfWork.Repository<Education>().Add(education);
                 if (result.IsSuccess)
                 {
                     return Json(new
                     {
                         status = 200,
-                        message = CsResultConst.AddSuccess
+                        message = CsResultConst.AddSuccess,
+                        Id = education.Id,
+                        EducationalInstitution = education.EducationalInstitution,
+                        EducationDegree = educationDegree,
+                        Faculty =education.Faculty,
+                        Specialty=education.Specialty,
+                        BeginTime=education.BeginTime.ToString("dd/MM/yyyy"),
+                        EndTime = education.EndTime.ToString("dd/MM/yyyy"),
+                        CityName = cityName,
+                        DocumentName = documentName,
+
+
                     });
                 }
                 FillComboBox();

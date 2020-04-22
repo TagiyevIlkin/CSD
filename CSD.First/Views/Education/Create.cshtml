@@ -1,4 +1,4 @@
-﻿@model EducationViewModel
+﻿@model FinalEducationViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -14,89 +14,88 @@
                     <div class="container">
                         <nav class="nav-justified mb-5">
                             <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni işçinin daxil edilməsi</a>
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni təhsilin daxil edilməsi</a>
                             </div>
                         </nav>
                         <form asp-action="Create" asp-controller="Education" id="Create_Education" method="post">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <input type="hidden" asp-for="Id" value="0"/>
+                            <input type="hidden" asp-for="EducationViewModel.Id" value="0" />
+                            <input type="hidden" asp-for="EducationViewModel.PersonelId" />
                             <div class="row">
                                 <div class="col-lg-6">
+
                                     <div class="form-group">
-                                        <label asp-for="PersonelId" class="control-label"></label>
-                                        <select asp-for="PersonelId" class="custom-select PersonelId" required></select>
-                                        <span asp-validation-for="PersonelId" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label asp-for="CityId" class="control-label"></label>
-                                        <select asp-for="CityId" class="custom-select select2DropDown " asp-items="ViewBag.CityId" required>
+                                        <label asp-for="EducationViewModel.CityId" class="control-label"></label>
+                                        <select asp-for="EducationViewModel.CityId" class="custom-select customers_select select2DropDown " asp-items="ViewBag.CityId" required>
                                             <option>      </option>
                                         </select>
-                                        <span asp-validation-for="CityId" class="text-danger"></span>
+                                        <span asp-validation-for="EducationViewModel.CityId" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <label asp-for="Specialty" class="control-label"></label>
-                                        <input type="text" asp-for="Specialty" class="form-control" />
-                                        <span asp-validation-for="Specialty" class="text-danger"></span>
+                                        <label asp-for="EducationViewModel.Specialty" class="control-label"></label>
+                                        <input type="text" asp-for="EducationViewModel.Specialty" class="form-control" />
+                                        <span asp-validation-for="EducationViewModel.Specialty" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                            <label asp-for="BeginTime" class="w-100"></label>
+                                            <label asp-for="EducationViewModel.BeginTime" class="w-100"></label>
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                     <span class="ti-calendar"></span>
                                                 </span>
                                             </div>
-                                            <input asp-for="BeginTime" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
+                                            <input asp-for="EducationViewModel.BeginTime" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
                                         </div>
-                                        <span asp-validation-for="BeginTime" class="text-danger"></span>
+                                        <span asp-validation-for="EducationViewModel.BeginTime" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="EducationViewModel.Faculty" class="control-label"></label>
+                                        <input type="text" asp-for="EducationViewModel.Faculty" class="form-control" />
+                                        <span asp-validation-for="EducationViewModel.Faculty" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
 
                                     <div class="form-group">
-                                        <label asp-for="EducationDegreeId" class="control-label"></label>
-                                        <select asp-for="EducationDegreeId" class="custom-select select2DropDown" asp-items="ViewBag.EducationDegreeId">
+                                        <label asp-for="EducationViewModel.EducationDegreeId" class="control-label"></label>
+                                        <select asp-for="EducationViewModel.EducationDegreeId" class="custom-select customers_select select2DropDown" asp-items="ViewBag.EducationDegreeId">
                                             <option>     </option>
                                         </select>
-                                        <span asp-validation-for="EducationDegreeId" class="text-danger"></span>
+                                        <span asp-validation-for="EducationViewModel.EducationDegreeId" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="DocumentId" class="control-label"></label>
-                                        <select asp-for="DocumentId" class="custom-select select2DropDown" asp-items="ViewBag.DocumentId">
+                                        <label asp-for="EducationViewModel.DocumentId" class="control-label"></label>
+                                        <select asp-for="EducationViewModel.DocumentId" class="custom-select customers_select select2DropDown" asp-items="ViewBag.DocumentId">
                                             <option>     </option>
                                         </select>
-                                        <span asp-validation-for="DocumentId" class="text-danger"></span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label asp-for="EducationalInstitution" class="control-label"></label>
-                                        <input type="text" asp-for="EducationalInstitution" class="form-control" />
-                                        <span asp-validation-for="EducationalInstitution" class="text-danger"></span>
+                                        <span asp-validation-for="EducationViewModel.DocumentId" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="input-group mb-3">
-                                            <label asp-for="EndTime" class="w-100"></label>
+                                            <label asp-for="EducationViewModel.EndTime" class="w-100"></label>
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                     <span class="ti-calendar"></span>
                                                 </span>
                                             </div>
-                                            <input asp-for="EndTime" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
+                                            <input asp-for="EducationViewModel.EndTime" placeholder="dd.MM.yyyy" data-val="true" data-date-format='dd.MM.yyyy' class="form-control datePicker rounded-right" onkeydown="return false" , onpaste="return false" required autocomplete="off" type="datetime" asp-format="{0:dd.MM.yyyy}" aria-invalid="true">
                                         </div>
-                                        <span asp-validation-for="EndTime" class="text-danger"></span>
+                                        <span asp-validation-for="EducationViewModel.EndTime" class="text-danger"></span>
                                     </div>
-                                </div>
-                                <div class="col-lg-12">
+
                                     <div class="form-group">
-                                        <label asp-for="Faculty" class="control-label"></label>
-                                        <input type="text" asp-for="Faculty" class="form-control" />
-                                        <span asp-validation-for="Faculty" class="text-danger"></span>
+                                        <label asp-for="EducationViewModel.EducationalInstitution" class="control-label"></label>
+                                        <input type="text" asp-for="EducationViewModel.EducationalInstitution" class="form-control" />
+                                        <span asp-validation-for="EducationViewModel.EducationalInstitution" class="text-danger"></span>
                                     </div>
+
+
                                 </div>
+
                             </div>
                             <div class="justify-content-between mr-0 mt-4 row">
                                 <div class="ml-3">
@@ -107,13 +106,59 @@
                                 </div>
                             </div>
                         </form>
+
+                        @if (Model.CurrentPerson != null)
+                        {
+                            <div class=" pt-4 pb-3"><p class="text-center "><b>@Model.CurrentPerson</b></p></div>
+                        }
+                        <div class="single-table">
+                            <div class="table-responsive">
+
+                                <table id="dataTableForCreateEducation" style="width: 100%;" class="table table-hover progress-table text-center">
+                                    <thead>
+                                        <tr role="row">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Təhsil müəssisəsi</th>
+                                            <th>Təhsil dərəcəsi</th>
+                                            <th>Fakultə</th>
+                                            <th>İxtisas</th>
+                                            <th>Başlama tarix</th>
+                                            <th>Bitirmə tarixi</th>
+                                            <th>Şəhər/Rayon</th>
+                                            <th>Sənəd</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @if (Model.EducationsForPerson.Count > 0)
+                                        {
+                                            foreach (var education in Model.EducationsForPerson)
+                                            {
+                                                <tr class="@education.Id">
+                                                    <td><input type="button" data-id="@education.Id" aria-invalid="true" value="Sil" class="btn btn-sm btn-danger deleteEducationFromCreateView" /></td>
+                                                    <td>@education.EducationalInstitution</td>
+                                                    <td>@Model.EducationDegreeLIst.Find(x => x.Id == education.EducationDegreeId).Name</td>
+                                                    <td>@education.Faculty</td>
+                                                    <td>@education.Specialty</td>
+                                                    <td>@education.BeginTime.ToString("dd/MM/yyyy")</td>
+                                                    <td>@education.EndTime.ToString("dd/MM/yyyy")</td>
+                                                    <td>@Model.CityLIst.Find(x => x.Id == education.CityId).Name</td>
+                                                    <td>@Model.DocumentLIst.Find(x => x.Id == education.DocumentId).Name</td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
         </div>
     </div>
 </div>
-
 @section scripts{
     <script src="~/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
