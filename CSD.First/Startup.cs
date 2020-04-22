@@ -63,6 +63,7 @@ namespace CSD.First
             services.AddScoped<IDepartmentPositionService, DepartmentPositionService>();
             services.AddScoped<IEducationService, EducationService>();
             services.AddScoped<IWorkExperienceService, WorkExperienceService>();
+            services.AddScoped<IPersonFeaturesService, PersonFeaturesService>();
             #endregion
 
             #region Mapper

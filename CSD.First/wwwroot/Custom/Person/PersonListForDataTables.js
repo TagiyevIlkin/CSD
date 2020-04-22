@@ -92,7 +92,7 @@ $(document).ready(function () {
         },
         "columnDefs":
             [{
-                "targets": [2, 3, 15],
+                "targets": [1, 2, 14],
                 "visible": false
             }],
         "columns": [
@@ -111,25 +111,7 @@ $(document).ready(function () {
                                
                             </ul>`;
                 }
-            }, {
-                data: null, render: function (row) {
-                    return `<ul class="d-flex justify-content-center">
-                               <li class="mr-2">
-                                 <a  href='/Education/Create/${row.Id}' title='Təhsil əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-graduation-cap'></i></a>
-                               </li> 
-                              <li class="mr-2">
-                                 <a  href='/Language/Create/${row.Id}' title='Dil əlavə et' class='btn text-primary btn-sm'><i class='fa fa-language'></i></a>
-                               </li>
-                               <li >
-                                   <a  href='/WorkExperience/Create/${row.Id}' title='İş təcrübəsi əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-briefcase'></i></a>
-                               </li>
-                            </ul>
-                            <hr />
-                            <ul class="d-flex justify-content-center">
-                               
-                            </ul>`;
-                }
-            },
+            }, 
             { "data": "Id", "name": "Id", "autoWidth": true },
             { "data": "PersonelId", "name": "Personal Id", "autoWidth": true },
             {
