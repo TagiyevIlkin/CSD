@@ -1,0 +1,84 @@
+﻿@model LanguageViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@section styles{
+    <link href="~/Custom/Language/language.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-12 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <section class=" ">
+                    <div class="container">
+                        <nav class="nav-justified mb-5">
+                            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni dil biliyinin daxil edilməsi</a>
+                            </div>
+                        </nav>
+                        <form asp-action="Edit" asp-controller="Language" id="editLanguage" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id"  />
+                            <input type="hidden" asp-for="PreviousPersonId"  />
+                            <div class="row">
+
+                                <div class="col-lg-12">
+
+                                    <div class="form-group">
+                                        <label asp-for="PersonelId" class="control-label"></label>
+                                        <select asp-for="PersonelId" class="custom-select PersonelId" required>
+                                            <option value="@Model.PreviousPersonId">@Model.PreviousPersonFullName</option>
+                                        </select>
+                                        <span asp-validation-for="PersonelId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="LanguageId" class="control-label"></label>
+                                        <select asp-for="LanguageId" class="custom-select  select2DropDown " asp-items="ViewBag.LanguageId" required>
+                                            <option>      </option>
+                                        </select>
+                                        <span asp-validation-for="LanguageId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="LevelId" class="control-label"></label>
+                                        <select asp-for="LevelId" class="custom-select  select2DropDown" asp-items="ViewBag.LevelId">
+                                            <option>     </option>
+                                        </select>
+                                        <span asp-validation-for="LevelId" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="justify-content-between mr-0 mt-4 row">
+                                <div class="ml-3">
+                                    <a asp-action="Index" class="btn btn-outline-secondary returnTablePersonel"><i class="fa fa-arrow-left"></i> Cədvələ Geri Dön</a>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class=" form-control border btn btn-outline-secondary btn-save " value="Saxla" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Custom/Language/language.js" asp-append-version="true"></script>
+    <script src="~/Custom/Language/Select.js"></script>
+}
+
+

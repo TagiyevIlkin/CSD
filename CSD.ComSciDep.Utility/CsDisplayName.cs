@@ -52,5 +52,10 @@ namespace CSD.ComSciDep.Utility
         public const string AdditionalInfo = "Əlavə məlumat";
         #endregion
 
+        #region Language
+        public const string Language = "Dil";
+        public const string Level = "Səviyyəsi";
+        #endregion
+
     }
 }

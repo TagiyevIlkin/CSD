@@ -60,7 +60,7 @@ $(document).ready(function () {
                         var markup =
                             `<tr  id="${response.Id}">
 
-                            <td><a   onclick="DeleteFromView(${response.Id})"   href="#"    class="btn btn-sm btn-danger delete ">Sil</a></td>
+                            <td><input type='button'   onclick="DeleteFromView(${response.Id})"  value='Sil'   class="btn btn-sm btn-danger delete "/></td>
                             <td hidden>${response.Id}</td>
                             <td >${response.CompanyName}</td>
                             <td >${response.Position}</td>

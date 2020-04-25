@@ -51,6 +51,7 @@ namespace CSD.ComSciDep.Utility
         #region DepartmentPosition
         public const string AleadyExistedPersonPosition = "Bu işçiyə artiq vəzifə təyin edilib!";
         #endregion
+
         #region Login
 
         public const string MinlengthLogin = "Ən az 6 simvol daxil edilməlidir";
@@ -73,6 +74,10 @@ namespace CSD.ComSciDep.Utility
 
         public const string NotFoundUser = "Axtardığınız istifadəçi sistemdə mövcud deyil!";
 
+        #endregion
+
+        #region Language
+        public const string AleadyExistedLanguage = "Bu dil artıq əlavə edilib!";
         #endregion
     }
 }

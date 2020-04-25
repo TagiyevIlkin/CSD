@@ -104,22 +104,16 @@ namespace CSD.First.Controllers
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> Create(PersonViewModel model)
         {
-
             if (ModelState.IsValid)
             {
-
                 if (!_unitOfWork.Repository<Personel>().Exist(p =>
                     p.FinCode == model.FinCode))
                 {
                     if (!_unitOfWork.Repository<Personel>().Exist(p =>
                         p.SerialNumber == model.SerialNumber))
                     {
-
                         var personel = _mapper.Map<Personel>(model);
-
                         _unitOfWork.Repository<Personel>().AddUnCommitted(personel);
-
-
                         #region Personel Phones
 
                         List<PersonPhone> personPhones = new List<PersonPhone>();
@@ -166,7 +160,7 @@ namespace CSD.First.Controllers
                             {
                                 personelId = personel.Id,
                                 status = 200,
-                                message = CsResultConst.OperationSuccessed
+                                message = CsResultConst.AddSuccess
                             });
                         }
                         _unitOfWork.Rollback();
@@ -179,7 +173,6 @@ namespace CSD.First.Controllers
                         });
 
                         #endregion
-
                     }
                     FillComboBox();
 
@@ -305,7 +298,7 @@ namespace CSD.First.Controllers
                         return Json(new
                         {
                             status = 200,
-                            message = CsResultConst.OperationSuccessed
+                            message = CsResultConst.EditSuccess
                         });
                     }
 

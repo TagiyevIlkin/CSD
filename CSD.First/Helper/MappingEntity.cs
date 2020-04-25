@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CSD.Entities.Computer_Engineering;
 using CSD.Entities.Shared;
 using CSD.First.ViewModels;
 using System;
@@ -16,6 +17,7 @@ namespace CSD.First.Helper
             CreateMap<DepartmentPosition, DepartmentPositionViewModel>().ReverseMap();
             CreateMap<Education, EducationViewModel>().ReverseMap();
             CreateMap<WorkExperience, WorkExperienceViewModel>().ReverseMap();
+            CreateMap<LevelOfLanguage, LanguageViewModel>().ReverseMap();
 
         }
     }

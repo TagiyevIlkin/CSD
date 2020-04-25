@@ -4,10 +4,10 @@ $(document).on("click", '.delete', function () {
     $(this).closest('tr').remove();
 });
 
-function DeleteEducationFromView(id) {
+function DeleteLanguageFromView(id) {
 
     $.ajax({
-        url: '/Education/Delete/' + id,
+        url: '/Language/Delete/' + id,
         contentType: false,
         processData: false,
         type: 'GET',
@@ -31,9 +31,9 @@ function DeleteEducationFromView(id) {
 
 $(document).ready(function () {
     
-    //#region Create Education
+    //#region Create Language
 
-    $("#Create_Education").submit(function (event) {
+    $("#createLanguage").submit(function (event) {
 
         event.preventDefault();
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
         if ($form.valid()) {
             $.ajax({
                 url: action,
-                data: new FormData(document.forms["Create_Education"]),
+                data: new FormData(document.forms["createLanguage"]),
                 contentType: false,
                 processData: false,
                 type: method,
@@ -59,25 +59,16 @@ $(document).ready(function () {
 
                         var markup =
                             `<tr  id="${response.Id}">
-                            <td><input type='button'   onclick="DeleteEducationFromView(${response.Id})" value='Sil'  class="btn btn-sm btn-danger delete "/></td>
-                            <td >${response.EducationalInstitution}</td>
-                            <td >${response.EducationDegree}</td>
-                            <td >${response.Faculty}</td>
-                            <td >${response.Specialty}</td>
-                            <td >${response.BeginTime}</td>
-                            <td >${response.EndTime}</td>
-                            <td >${response.CityName}</td>
-                            <td >${response.DocumentName}</td>
+                            <td><input type='button'  onclick="DeleteLanguageFromView(${response.Id})"  value='Sil'   class="btn btn-sm btn-danger delete "/></td>
+                            <td >${response.Language}</td>
+                            <td >${response.Level}</td>
                              </tr>`;
 
-                        $("#dataTableForCreateEducation").append(markup);
-
+                        $("#dataTableForCreateLanguage").append(markup);
                         //#region  reset form
-                        $('#Create_Education').trigger("reset");
                         $(".customers_select").select2();
                         $(".customers_select").val(null).trigger("change");
-                        //#endregion
-                    }
+                        //#endregion                    }
                     else {
                         Swal.fire({
                             title: 'Xəta!',
@@ -92,8 +83,8 @@ $(document).ready(function () {
     });
     //#endregion
 
-    //#region Edit Education
-    $("#editEducation").submit(function (event) {
+    //#region Edit Language
+    $("#editLanguage").submit(function (event) {
 
         event.preventDefault();
 
@@ -108,7 +99,7 @@ $(document).ready(function () {
         if ($form.valid()) {
             $.ajax({
                 url: action,
-                data: new FormData(document.forms["editEducation"]),
+                data: new FormData(document.forms["editLanguage"]),
                 contentType: false,
                 processData: false,
                 type: method,
@@ -124,7 +115,7 @@ $(document).ready(function () {
                             timer: 2000
                         }).then((result) => {
                             if (result) {
-                                window.location = '/Education/Index';
+                                window.location = '/Language/Index';
                             }
                         });
                     }
@@ -143,15 +134,15 @@ $(document).ready(function () {
     //#endregion
 
 
-    //#region deleteEducationFromCreateView
+    //#region deleteLanguageFromCreateView
 
 
-    $('.deleteEducationFromCreateView').on('click', function myfunction() {
+    $('.deleteLanguageFromCreateView').on('click', function myfunction() {
 
         var id = $(this).data("id");
 
         $.ajax({
-            url: '/Education/Delete/' + id,
+            url: '/Language/Delete/' + id,
             contentType: false,
             processData: false,
             type: 'GET',
@@ -159,7 +150,7 @@ $(document).ready(function () {
 
                 if (response.status == 200) {
 
-                    $(`table#dataTableForCreateEducation tr.${id}`).remove();
+                    $(`table#dataTableForCreateLanguage tr.${id}`).remove();
 
                 } else {
 

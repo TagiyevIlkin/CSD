@@ -5,33 +5,42 @@
     <li class="active">
         <a href="@Url.Action("Index", "Admin")" aria-expanded="true"><span class="ti-home"></span><span>Əsas səhifə</span></a>
     </li>
-    <li class="active">
-        <a asp-controller="Education" asp-action="Index">
-            <span class="ti-book"></span>
-            <span>Təhsil</span>
-        </a>
-    </li>
-   
-    <li class="active">
-        <a asp-controller="DepartmentPosition" asp-action="Index">
-            <span class="ti-id-badge"></span>
-            <span>Vəzifə</span>
-        </a>
-    </li>
- 
+
     <li class="active">
         <a asp-controller="Person" asp-action="Index">
             <span class="ti-user"></span>
             <span>İşçi</span>
         </a>
     </li>
+
+    <li class="active">
+        <a asp-controller="DepartmentPosition" asp-action="Index">
+            <span class="ti-id-badge"></span>
+            <span>Vəzifə</span>
+        </a>
+    </li>
+
+    <li class="active">
+        <a asp-controller="Education" asp-action="Index">
+            <span class="fa fa-graduation-cap"></span>
+            <span>Təhsil</span>
+        </a>
+    </li>
+
     <li class="active">
         <a asp-controller="WorkExperience" asp-action="Index">
-            <span class="ti-list"></span>
-            <span>Iş Təcrübəsi</span>
+            <span class="fa fa-briefcase"></span>
+            <span>İş Təcrübəsi</span>
         </a>
-    </li> 
-    
+    </li>
+
+    <li class="active">
+        <a asp-controller="Language" asp-action="Index">
+            <span class="fa fa-language"></span>
+            <span>Dil Bilikləri</span>
+        </a>
+    </li>
+
     <li class="active">
         <a asp-controller="AddFeatures" asp-action="Index">
             <span class="ti-plus"></span>
