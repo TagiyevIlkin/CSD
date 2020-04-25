@@ -67,7 +67,7 @@ $(document).ready(function () {
                 data: null, render: function (row) {
                     return `<ul class="d-flex justify-content-center">
                                <li >
-                                   <a  href='/KnownProgram/Create/${row.Id}' title='İş təcrübəsi əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-code'></i></a>
+                                   <a  href='/KnownProgram/Create/${row.Id}' title='Proqram biliyi əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-code'></i></a>
                                </li>
                             </ul>
                             <hr />
@@ -80,7 +80,7 @@ $(document).ready(function () {
                 data: null, render: function (row) {
                     return `<ul class="d-flex justify-content-center">
                                <li >
-                                   <a  href='/PersonDocument/Create/${row.Id}' title='İş təcrübəsi əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-file'></i></a>
+                                   <a  href='/PersonDocument/Create/${row.Id}' title='Sənəd əlavə et'  class='btn text-primary btn-sm'><i class='fa fa-file'></i></a>
                                </li>
                             </ul>
                             <hr />

@@ -1,13 +1,12 @@
-﻿@model DepartmentPositionViewModel
+﻿@model KnownProgramViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 @section styles{
-    <link href="~/Custom/DepartmentPosition/departmentPosition.css" rel="stylesheet" />
+    <link href="~/Custom/KnownProgram/knownProgram.css" rel="stylesheet" />
 }
 <div class="row">
-
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
@@ -15,34 +14,45 @@
                     <div class="container">
                         <nav class="nav-justified mb-5">
                             <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni vəzifənin daxil edilməsi</a>
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Proqram biliyinin redaktə edilməsi</a>
                             </div>
                         </nav>
-                        <form asp-action="Create" asp-controller="DepartmentPosition" id="createDepartmentPosition" method="post">
+                        <form asp-action="Edit" asp-controller="KnownProgram" id="editKnownProgram" method="post">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <input type="hidden" asp-for="Id" value="0" />
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="PreviousPersonId" />
+                            <input type="hidden" asp-for="PreviousProgramId" />
                             <div class="row">
+
                                 <div class="col-lg-12">
 
                                     <div class="form-group">
                                         <label asp-for="PersonelId" class="control-label"></label>
-                                        <select asp-for="PersonelId" class="custom-select PersonelId" required></select>
+                                        <select asp-for="PersonelId" class="custom-select PersonelId" required>
+                                            <option value="@Model.PreviousPersonId">@Model.PreviousPersonFullName</option>
+                                        </select>
                                         <span asp-validation-for="PersonelId" class="text-danger"></span>
                                     </div>
+                                </div>
 
-                                    <div class="form-group tex-lg-left">
-                                        <label asp-for="PositionId" class="control-label"></label>
-                                        <select asp-for="PositionId" class="custom-select select2DropDown" asp-items="ViewBag.PositionId">
-                                            <option>  </option>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="ProgramId" class="control-label"></label>
+                                        <select asp-for="ProgramId" class="custom-select  select2DropDown " asp-items="ViewBag.ProgramId" required>
+                                            <option>      </option>
                                         </select>
-                                        <span asp-validation-for="PositionId" class="text-danger"></span>
+                                        <span asp-validation-for="ProgramId" class="text-danger"></span>
                                     </div>
-                                    <div class="form-group tex-lg-left">
-                                        <label asp-for="AcademicDegreeId" class="control-label"></label>
-                                        <select asp-for="AcademicDegreeId" class="custom-select select2DropDown" asp-items="ViewBag.AcademicDegreeId">
-                                            <option>   </option>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="LevelId" class="control-label"></label>
+                                        <select asp-for="LevelId" class="custom-select  select2DropDown" asp-items="ViewBag.LevelId">
+                                            <option>     </option>
                                         </select>
-                                        <span asp-validation-for="AcademicDegreeId" class="text-danger"></span>
+                                        <span asp-validation-for="LevelId" class="text-danger"></span>
                                     </div>
 
                                 </div>
@@ -63,14 +73,13 @@
         </div>
     </div>
 </div>
-
 @section scripts{
     <script src="~/jquery-validate/jquery.validate.min.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/sweetalert/sweetalert.min.js"></script>
-    <script src="~/Custom/DepartmentPosition/departmetPosition.js" asp-append-version="true"></script>
-    <script src="~/Custom/DepartmentPosition/Select.js"></script>
+    <script src="~/Custom/KnownProgram/knownProgram.js" asp-append-version="true"></script>
+    <script src="~/Custom/KnownProgram/Select.js"></script>
 }
 
 

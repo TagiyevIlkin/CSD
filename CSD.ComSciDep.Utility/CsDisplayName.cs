@@ -57,5 +57,9 @@ namespace CSD.ComSciDep.Utility
         public const string Level = "Səviyyəsi";
         #endregion
 
+        #region Program
+        public const string Program = "Proqram";
+        #endregion
+
     }
 }

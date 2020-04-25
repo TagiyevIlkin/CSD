@@ -4,18 +4,16 @@ $(document).on("click", '.delete', function () {
     $(this).closest('tr').remove();
 });
 
+
 function DeleteLanguageFromView(id) {
 
     $.ajax({
-        url: '/Language/Delete/' + id,
+        url: '/KnownProgram/Delete/' + id,
         contentType: false,
         processData: false,
         type: 'GET',
         success: function (response) {
-
-            if (response.status != 200) {
-                //something in success
-            }
+            //something in success
         }
 
 
@@ -24,9 +22,9 @@ function DeleteLanguageFromView(id) {
 
 $(document).ready(function () {
 
-    //#region Create Language
+    //#region Create KnownProgram
 
-    $("#createLanguage").submit(function (event) {
+    $("#createKnownProgram").submit(function (event) {
 
         event.preventDefault();
 
@@ -41,23 +39,22 @@ $(document).ready(function () {
         if ($form.valid()) {
             $.ajax({
                 url: action,
-                data: new FormData(document.forms["createLanguage"]),
+                data: new FormData(document.forms["createKnownProgram"]),
                 contentType: false,
                 processData: false,
                 type: method,
                 success: function (response) {
-
-                    console.log(response)
                     if (response.status === 200) {
 
                         var markup =
                             `<tr  id="${response.Id}">
                             <td><input type='button'  onclick="DeleteLanguageFromView(${response.Id})"  value='Sil'   class="btn btn-sm btn-danger delete "/></td>
-                            <td >${response.Language}</td>
+                            <td >${response.Program}</td>
                             <td >${response.Level}</td>
                              </tr>`;
 
-                        $("#dataTableForCreateLanguage").append(markup);
+                        $("#dataTableForCreateKnownProgram").append(markup);
+
                         //#region  reset form
                         $(".customers_select").select2();
                         $(".customers_select").val(null).trigger("change");
@@ -76,8 +73,8 @@ $(document).ready(function () {
     });
     //#endregion
 
-    //#region Edit Language
-    $("#editLanguage").submit(function (event) {
+    //#region KnownProgram
+    $("#editKnownProgram").submit(function (event) {
 
         event.preventDefault();
 
@@ -92,7 +89,7 @@ $(document).ready(function () {
         if ($form.valid()) {
             $.ajax({
                 url: action,
-                data: new FormData(document.forms["editLanguage"]),
+                data: new FormData(document.forms["editKnownProgram"]),
                 contentType: false,
                 processData: false,
                 type: method,
@@ -108,7 +105,7 @@ $(document).ready(function () {
                             timer: 2000
                         }).then((result) => {
                             if (result) {
-                                window.location = '/Language/Index';
+                                window.location = '/KnownProgram/Index';
                             }
                         });
                     }
@@ -130,12 +127,12 @@ $(document).ready(function () {
     //#region deleteLanguageFromCreateView
 
 
-    $('.deleteLanguageFromCreateView').on('click', function myfunction() {
+    $('.deleteKnownProgramFromCreateView').on('click', function myfunction() {
 
         var id = $(this).data("id");
 
         $.ajax({
-            url: '/Language/Delete/' + id,
+            url: '/KnownProgram/Delete/' + id,
             contentType: false,
             processData: false,
             type: 'GET',
@@ -143,7 +140,7 @@ $(document).ready(function () {
 
                 if (response.status == 200) {
 
-                    $(`table#dataTableForCreateLanguage tr.${id}`).remove();
+                    $(`table#dataTableForCreateKnownProgram tr.${id}`).remove();
 
                 } else {
 

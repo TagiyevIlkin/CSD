@@ -15,23 +15,22 @@ using Microsoft.Extensions.Configuration;
 
 namespace CSD.First.Controllers
 {
-    public class LanguageController : Controller
+    public class KnownProgramController : Controller
     {
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILanguageService _languageService;
-        public LanguageController(IConfiguration configuration,
+        private readonly IKnownProgramService _knownProgramService;
+        public KnownProgramController(IConfiguration configuration,
             IMapper mapper,
             IUnitOfWork unitOfWork,
-            ILanguageService languageService)
+            IKnownProgramService knownProgramService)
         {
             _configuration = configuration;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _languageService = languageService;
+            _knownProgramService = knownProgramService;
         }
-
 
         #region LanguageListForTable
 
@@ -55,7 +54,7 @@ namespace CSD.First.Controllers
             int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
 
-            var model = _languageService.GetLanguageList();
+            var model = _knownProgramService.GetKnownProgramList();
 
 
             if (!string.IsNullOrEmpty(searchValue))
@@ -74,44 +73,49 @@ namespace CSD.First.Controllers
 
         #endregion
 
+
         public IActionResult Index()
         {
             return View();
         }
 
-        #region Create Language
+        #region Create KnownProgram
+
         [HttpGet]
         public IActionResult Create(int Id)
         {
-            FinalLanguageViewModel finalLanguageViewModel = new FinalLanguageViewModel()
+            FinalKnownProgramViewModel finalKnownProgramViewModel = new FinalKnownProgramViewModel()
             {
-                CurrentPerson = _unitOfWork.Repository<Personel>().GetById(Id).Fullname,
-                LanguagesForPerson = _unitOfWork.Repository<LevelOfLanguage>().FindAll(x => x.PersonelId == Id),
-                LanguageList = _unitOfWork.Repository<Language>().GetAll().ToList(),
+                KnownProgramsForPerson = _unitOfWork.Repository<KnownProgram>().FindAll(x => x.PersonelId == Id),
+                ProgramList = _unitOfWork.Repository<CSD.Entities.Computer_Engineering.Program>().GetAll().ToList(),
                 LevelList = _unitOfWork.Repository<Level>().GetAll().ToList(),
-                LanguageViewModel = new LanguageViewModel()
+                CurrentPerson = _unitOfWork.Repository<Personel>().GetById(Id).Fullname,
+                KnownProgramViewModel = new KnownProgramViewModel()
                 {
                     PersonelId = Id
                 }
+
+
             };
             FillComboBox();
-            return View(finalLanguageViewModel);
+            return View(finalKnownProgramViewModel);
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public JsonResult Create(FinalLanguageViewModel model)
+
+        public JsonResult Create(FinalKnownProgramViewModel model)
         {
             if (ModelState.IsValid)
             {
 
-                if (!_unitOfWork.Repository<LevelOfLanguage>().Exist(x => x.LanguageId == model.LanguageViewModel.LanguageId && x.PersonelId == model.LanguageViewModel.PersonelId))
+                if (!_unitOfWork.Repository<KnownProgram>().Exist(x => x.ProgramId == model.KnownProgramViewModel.ProgramId && x.PersonelId == model.KnownProgramViewModel.PersonelId))
                 {
-                    var language = _mapper.Map<LevelOfLanguage>(model.LanguageViewModel);
-                    var result = _unitOfWork.Repository<LevelOfLanguage>().Add(language);
+                    var program = _mapper.Map<KnownProgram>(model.KnownProgramViewModel);
+                    var result = _unitOfWork.Repository<KnownProgram>().Add(program);
 
-                    string addedlanguage = _unitOfWork.Repository<Language>().GetById(language.LanguageId).Name;
-                    string level = _unitOfWork.Repository<Level>().GetById(language.LevelId).Name;
+                    string addedProgram = _unitOfWork.Repository<CSD.Entities.Computer_Engineering.Program>().GetById(program.ProgramId).Name;
+                    string level = _unitOfWork.Repository<Level>().GetById(program.LevelId).Name;
 
                     if (result.IsSuccess)
                     {
@@ -119,8 +123,8 @@ namespace CSD.First.Controllers
                         {
                             status = 200,
                             message = CsResultConst.AddSuccess,
-                            Id = language.Id,
-                            Language = addedlanguage,
+                            Id = program.Id,
+                            Program = addedProgram,
                             Level = level
                         });
                     }
@@ -135,7 +139,7 @@ namespace CSD.First.Controllers
                 return Json(new
                 {
                     status = 201,
-                    message = CsResultConst.AleadyExistedLanguage
+                    message = CsResultConst.AleadyExistedKnownProgram
                 });
 
             }
@@ -146,35 +150,34 @@ namespace CSD.First.Controllers
                 message = CsResultConst.ModelNotValid
             });
         }
-
-
         #endregion
 
-        #region Edit Language
+        #region Edit KnownProgram
+
         [HttpGet]
         public IActionResult Edit(int Id)
         {
-            var language = _unitOfWork.Repository<LevelOfLanguage>().GetById(Id);
-            if (language == null) return NotFound();
-            var languageViewModel = _mapper.Map<LanguageViewModel>(language);
-            languageViewModel.PreviousPersonFullName = _unitOfWork.Repository<Personel>().GetById(language.PersonelId).Fullname;
-            languageViewModel.PreviousPersonId = language.PersonelId;
-            languageViewModel.PreviousLanguageId = language.LanguageId;
+            var knownProgram = _unitOfWork.Repository<KnownProgram>().GetById(Id);
+            if (knownProgram == null) return NotFound();
+            var knownProgramViewModel = _mapper.Map<KnownProgramViewModel>(knownProgram);
+            knownProgramViewModel.PreviousPersonFullName = _unitOfWork.Repository<Personel>().GetById(knownProgram.PersonelId).Fullname;
+            knownProgramViewModel.PreviousPersonId = knownProgram.PersonelId;
+            knownProgramViewModel.PreviousProgramId = knownProgram.ProgramId;
             FillComboBox();
-            return View(languageViewModel);
+            return View(knownProgramViewModel);
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
 
-        public JsonResult Edit(LanguageViewModel model)
+        public JsonResult Edit(KnownProgramViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (model.PersonelId == model.PreviousPersonId && model.LanguageId == model.PreviousLanguageId)
+                if (model.PersonelId == model.PreviousPersonId && model.ProgramId == model.PreviousProgramId)
                 {
-                    var language = _mapper.Map<LevelOfLanguage>(model);
-                    var result = _unitOfWork.Repository<LevelOfLanguage>().Update(language);
+                    var knownProgram = _mapper.Map<KnownProgram>(model);
+                    var result = _unitOfWork.Repository<KnownProgram>().Update(knownProgram);
 
                     if (result.IsSuccess)
                     {
@@ -186,10 +189,10 @@ namespace CSD.First.Controllers
                     }
                 }
 
-                if (!_unitOfWork.Repository<LevelOfLanguage>().Exist(x => x.LanguageId == model.LanguageId && x.PersonelId == model.PersonelId))
+                if (!_unitOfWork.Repository<KnownProgram>().Exist(x => x.ProgramId == model.ProgramId && x.PersonelId == model.PersonelId))
                 {
-                    var language = _mapper.Map<LevelOfLanguage>(model);
-                    var result = _unitOfWork.Repository<LevelOfLanguage>().Update(language);
+                    var knownProgram = _mapper.Map<KnownProgram>(model);
+                    var result = _unitOfWork.Repository<KnownProgram>().Update(knownProgram);
 
                     if (result.IsSuccess)
                     {
@@ -204,7 +207,7 @@ namespace CSD.First.Controllers
                 return Json(new
                 {
                     status = 201,
-                    message = CsResultConst.AleadyExistedLanguage
+                    message = CsResultConst.AleadyExistedKnownProgram
                 });
             }
             FillComboBox();
@@ -217,12 +220,12 @@ namespace CSD.First.Controllers
 
         #endregion
 
-        #region Delete Language
+        #region Delete KnownProgram
         public async Task<IActionResult> Delete(int Id)
         {
-            var language = await _unitOfWork.Repository<LevelOfLanguage>().GetByIdAsync(Id);
-            if (language == null) return NotFound();
-            var result = await _unitOfWork.Repository<LevelOfLanguage>().DeleteAsync(language);
+            var program = await _unitOfWork.Repository<KnownProgram>().GetByIdAsync(Id);
+            if (program == null) return NotFound();
+            var result = await _unitOfWork.Repository<KnownProgram>().DeleteAsync(program);
 
             if (result.IsSuccess)
             {
@@ -243,7 +246,7 @@ namespace CSD.First.Controllers
         #region FillComboBox
         private void FillComboBox()
         {
-            ViewBag.LanguageId = _unitOfWork.Repository<Language>().Query().Select(x => new SelectListItem
+            ViewBag.ProgramId = _unitOfWork.Repository<CSD.Entities.Computer_Engineering.Program>().Query().Select(x => new SelectListItem
             {
                 Text = x.Name,
                 Value = x.Id.ToString()

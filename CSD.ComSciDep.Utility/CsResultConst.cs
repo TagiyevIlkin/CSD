@@ -79,5 +79,9 @@ namespace CSD.ComSciDep.Utility
         #region Language
         public const string AleadyExistedLanguage = "Bu dil artıq əlavə edilib!";
         #endregion
+
+        #region KnownProgram
+        public const string AleadyExistedKnownProgram = "Bu proqram artıq əlavə edilib!";
+        #endregion
     }
 }
