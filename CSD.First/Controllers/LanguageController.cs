@@ -104,7 +104,8 @@ namespace CSD.First.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_unitOfWork.Repository<LevelOfLanguage>().Exist(x => x.LanguageId == model.LanguageViewModel.LanguageId))
+
+                if (!_unitOfWork.Repository<LevelOfLanguage>().Exist(x => x.LanguageId == model.LanguageViewModel.LanguageId && x.PersonelId==model.LanguageViewModel.PersonelId))
                 {
                     var language = _mapper.Map<LevelOfLanguage>(model.LanguageViewModel);
                     var result = _unitOfWork.Repository<LevelOfLanguage>().Add(language);
@@ -169,7 +170,22 @@ namespace CSD.First.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!(_unitOfWork.Repository<LevelOfLanguage>().Exist(x => x.PersonelId == model.PersonelId && x.LanguageId == model.LanguageId || x.LanguageId != model.PreviousLanguageId)))
+                if (model.PersonelId==model.PreviousPersonId && model.LanguageId==model.PreviousLanguageId)
+                {
+                    var language = _mapper.Map<LevelOfLanguage>(model);
+                    var result = _unitOfWork.Repository<LevelOfLanguage>().Update(language);
+
+                    if (result.IsSuccess)
+                    {
+                        return Json(new
+                        {
+                            status = 200,
+                            message = CsResultConst.EditSuccess
+                        });
+                    }
+                }
+
+                if (!_unitOfWork.Repository<LevelOfLanguage>().Exist(x => x.LanguageId == model.LanguageId && x.PersonelId == model.PersonelId))
                 {
                     var language = _mapper.Map<LevelOfLanguage>(model);
                     var result = _unitOfWork.Repository<LevelOfLanguage>().Update(language);
