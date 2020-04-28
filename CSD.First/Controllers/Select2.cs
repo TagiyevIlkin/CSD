@@ -1,6 +1,7 @@
 ﻿using CSD.Entities.Shared;
 using CSD.First.ViewModels;
 using CSD.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace CSD.First.Controllers
 {
+    [Authorize]
     public class Select2 : Controller
     {
 

@@ -1,0 +1,88 @@
+﻿@model PersonDocumentViewModelForEdit
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@section styles{
+    <link href="~/Custom/PersonDocument/personDocument.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-12 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <section class=" ">
+                    <div class="container">
+                        <nav class="nav-justified mb-5">
+                            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Sənədin redaktə edilməsi</a>
+                            </div>
+                        </nav>
+                        <form asp-action="Edit" asp-controller="PersonDocument" id="editPersonDocument" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="PreviousPersonId" />
+                            <input type="hidden" asp-for="PreviousFilePath" />
+                            <input type="hidden" asp-for="PreviousDocumentTypeId" />
+                            <input type="hidden" asp-for="Path" />
+                            <input type="hidden" asp-for="Name" />
+                            <div class="row">
+
+                                <div class="col-lg-12">
+
+                                    <div class="form-group">
+                                        <label asp-for="PersonelId" class="control-label"></label>
+                                        <select asp-for="PersonelId" class="custom-select PersonelId" required>
+                                            <option value="@Model.PreviousPersonId">@Model.PreviousPersonFullName</option>
+                                        </select>
+                                        <span asp-validation-for="PersonelId" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="FileForEdit" class="control-label"></label>
+                                        <input asp-for="FileForEdit" id="fileopen" type="file" class="form-control">
+                                        <span asp-validation-for="FileForEdit" class="text-danger"></span>
+                                        <div class="mt-2">
+                                            <input type="text" id="FileInput" class="border-0 font-weight-bold w-auto" value="@Model.Name" />
+                                            <button type="button" data-id="@Model.Id" aria-invalid="true" title="Faylı sil"  class=" bg-light deletePreviousFile"><i class="text-danger fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label asp-for="DocumentTypeId" class="control-label"></label>
+                                        <select asp-for="DocumentTypeId" class="custom-select customers_select select2DropDown " asp-items="ViewBag.DocumentTypeId" required>
+                                            <option>      </option>
+                                        </select>
+                                        <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="justify-content-between mr-0 mt-4 row">
+                                <div class="ml-3">
+                                    <a asp-action="Index" class="btn btn-outline-secondary  "><i class="fa fa-arrow-left"></i> Cədvələ Geri Dön</a>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class=" form-control border btn btn-outline-secondary btn-save " value="Saxla" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Custom/PersonDocument/personDocument.js" asp-append-version="true"></script>
+    <script src="~/Custom/PersonDocument/Select.js"></script>
+}
+
+

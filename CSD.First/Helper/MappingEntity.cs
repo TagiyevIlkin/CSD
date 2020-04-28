@@ -19,6 +19,8 @@ namespace CSD.First.Helper
             CreateMap<WorkExperience, WorkExperienceViewModel>().ReverseMap();
             CreateMap<LevelOfLanguage, LanguageViewModel>().ReverseMap();
             CreateMap<KnownProgram, KnownProgramViewModel>().ReverseMap();
+            CreateMap<PersonDocument, PersonDocumentViewModel>().ReverseMap();
+            CreateMap<PersonDocument, PersonDocumentViewModelForEdit>().ReverseMap();
 
         }
     }

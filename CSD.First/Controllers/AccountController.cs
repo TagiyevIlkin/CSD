@@ -10,14 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CSD.First.Controllers
 {
-    public class AdminController : Controller
+    public class AccountController : Controller
     {
-
         private readonly UserManager<UserApp> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<UserApp> _signInManager;
 
-        public AdminController(
+        public AccountController(
             SignInManager<UserApp> signInManager,
             UserManager<UserApp> userManager,
             RoleManager<ApplicationRole> roleManager)
@@ -29,19 +28,20 @@ namespace CSD.First.Controllers
 
         public IActionResult Index()
         {
-         
+
             return View();
         }
         #region Login
 
-        public IActionResult LoginAdminPanel()
+       
+        public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginAdminPanel(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -71,7 +71,9 @@ namespace CSD.First.Controllers
             }
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Admin");
+                var action = "Index";
+                var controller = "Account";
+                return RedirectToAction(action, controller);
             }
 
             ModelState.AddModelError("", CsResultConst.UsernameorPassWrong);
@@ -88,7 +90,7 @@ namespace CSD.First.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction("LoginAdminPanel", "Admin");
+            return RedirectToAction("Login", "Account");
         }
 
         #endregion
@@ -97,6 +99,5 @@ namespace CSD.First.Controllers
         {
             return View();
         }
-
     }
 }

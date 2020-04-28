@@ -61,5 +61,10 @@ namespace CSD.ComSciDep.Utility
         public const string Program = "Proqram";
         #endregion
 
+        #region PersonDocument
+        public const string DocumentType = "Sənədin növü";
+        public const string File = "Fayl";
+        #endregion
+
     }
 }

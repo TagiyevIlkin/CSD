@@ -83,5 +83,10 @@ namespace CSD.ComSciDep.Utility
         #region KnownProgram
         public const string AleadyExistedKnownProgram = "Bu proqram artıq əlavə edilib!";
         #endregion
+
+        #region PersonDocument
+        public const string NoFile = "Heç bir fayl seçilməyib!";
+        public const string AleadyExistedDocument = "Bu sənəd artıq əlavə edilib!";
+        #endregion
     }
 }

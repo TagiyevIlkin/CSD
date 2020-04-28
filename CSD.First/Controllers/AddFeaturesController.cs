@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CSD.ComSciDep.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CSD.First.Controllers
 {
+    [Authorize]
     public class AddFeaturesController : Controller
     {
         private IPersonFeaturesService _personFeaturesService;

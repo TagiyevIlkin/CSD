@@ -41,7 +41,7 @@ $(document).ready(function () {
                 data: null, render: function (row) {
                     return `<ul class="d-flex justify-content-center">
                               <li class="mr-2">
-                                 <a  href='/Language/Create/${row.Id}' title='Dil əlavə et' class='btn text-primary btn-sm'><i class='fa fa-language'></i></a>
+                                 <a  href='/Language/Create/${row.Id}' title='Dil biliyi əlavə et' class='btn text-primary btn-sm'><i class='fa fa-language'></i></a>
                                </li>
                             </ul>
                             <hr />

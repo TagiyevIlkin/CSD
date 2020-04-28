@@ -21,6 +21,7 @@ using static CSD.Utility.Enum;
 
 namespace CSD.First.Controllers
 {
+    [Authorize]
     public class PersonController : Controller
     {
 

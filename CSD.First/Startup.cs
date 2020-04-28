@@ -66,6 +66,7 @@ namespace CSD.First
             services.AddScoped<IPersonFeaturesService, PersonFeaturesService>();
             services.AddScoped<ILanguageService, LanguageService>();
             services.AddScoped<IKnownProgramService, KnownProgramService>();
+            services.AddScoped<IPersonDocumentService, PersonDocumentService>();
             #endregion
 
             #region Mapper
@@ -144,7 +145,7 @@ namespace CSD.First
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Admin}/{action=LoginAdminPanel}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
 
 

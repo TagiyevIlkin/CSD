@@ -7,6 +7,7 @@ using CSD.ComSciDep.Utility;
 using CSD.Entities.Shared;
 using CSD.First.ViewModels;
 using CSD.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace CSD.First.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
 

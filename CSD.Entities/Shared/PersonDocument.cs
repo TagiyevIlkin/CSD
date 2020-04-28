@@ -12,7 +12,7 @@ namespace CSD.Entities.Shared
         [Key]
         public int Id { get; set; }
 
-        [MinLength(3), MaxLength(10), Required]
+        [MinLength(2), MaxLength(100), Required]
         public string Name { get; set; }
 
         public string Path { get; set; }
