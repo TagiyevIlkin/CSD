@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
+using static CSD.Utility.Enum;
 
 namespace CSD.First.Controllers
 {
@@ -105,21 +106,28 @@ namespace CSD.First.Controllers
             {
                 if (!_unitOfWork.Repository<DepartmentPosition>().Exist(x => x.PersonelId == model.PersonelId))
                 {
-                    var departmentPosition = _mapper.Map<DepartmentPosition>(model);
-
-                    var result = _unitOfWork.Repository<DepartmentPosition>().Add(departmentPosition);
-                    if (result.IsSuccess)
+                    if (!_unitOfWork.Repository<DepartmentPosition>().Exist(x=>x.PositionId==(int)EPosition.DepartmentChief))
                     {
+                        var departmentPosition = _mapper.Map<DepartmentPosition>(model);
+                        var result = _unitOfWork.Repository<DepartmentPosition>().Add(departmentPosition);
+                        if (result.IsSuccess)
+                        {
+                            return Json(new
+                            {
+                                status = 200,
+                                message = CsResultConst.AddSuccess
+                            });
+                        }
                         return Json(new
                         {
-                            status = 200,
-                            message = CsResultConst.AddSuccess
+                            status = 406,
+                            message = CsResultConst.Error
                         });
                     }
                     return Json(new
                     {
-                        status = 406,
-                        message = CsResultConst.Error
+                        status = 202,
+                        message = CsResultConst.AleadyExistedDepartmentChief
                     });
                 }
                 return Json(new

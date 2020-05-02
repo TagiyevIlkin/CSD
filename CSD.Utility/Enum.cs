@@ -19,7 +19,19 @@ namespace CSD.Utility
             Aze = 1,
         }
 
+        public enum EAcademicDegree
+        {
+            Docent=1,
+            Professor=2,
+            HeadTeacher=3,
+            Assistant=4,
+            TeacherAssistant=5
+        }
 
+        public enum EPosition
+        {
+            DepartmentChief=1
+        }
         #endregion
     }
 }

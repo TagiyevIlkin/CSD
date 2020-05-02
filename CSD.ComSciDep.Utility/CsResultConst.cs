@@ -50,6 +50,7 @@ namespace CSD.ComSciDep.Utility
 
         #region DepartmentPosition
         public const string AleadyExistedPersonPosition = "Bu işçiyə artiq vəzifə təyin edilib!";
+        public const string AleadyExistedDepartmentChief = "Kafedra müdiri vəzifəsi artiq təyin edilib!";
         #endregion
 
         #region Login

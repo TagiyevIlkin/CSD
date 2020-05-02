@@ -226,6 +226,71 @@ namespace CSD.ORM.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CSD.Entities.Shared.Credit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Credit");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "5"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "6"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "7"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "8"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "9"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "21"
+                        });
+                });
+
             modelBuilder.Entity("CSD.Entities.Shared.DepartmentPosition", b =>
                 {
                     b.Property<int>("Id")
@@ -504,7 +569,7 @@ namespace CSD.ORM.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(10);
+                        .HasMaxLength(100);
 
                     b.Property<string>("Path");
 
@@ -596,7 +661,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 1,
-                            Birthdate = new DateTime(2020, 4, 18, 21, 14, 44, 600, DateTimeKind.Local).AddTicks(8096),
+                            Birthdate = new DateTime(2020, 5, 1, 19, 32, 46, 892, DateTimeKind.Local).AddTicks(9564),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -611,7 +676,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 2,
-                            Birthdate = new DateTime(2020, 4, 18, 21, 14, 44, 603, DateTimeKind.Local).AddTicks(5184),
+                            Birthdate = new DateTime(2020, 5, 1, 19, 32, 46, 895, DateTimeKind.Local).AddTicks(4991),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -651,6 +716,429 @@ namespace CSD.ORM.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Position");
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.Semester", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Semester");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "I semestr"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "II semestr"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "III semestr"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "IV semestr"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "V semestr"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "VI semestr"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "VII semestr"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "VIII semestr"
+                        });
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.SpecialitySubject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CreditId");
+
+                    b.Property<int>("SemesterId");
+
+                    b.Property<int>("SpecialityId");
+
+                    b.Property<int>("SubjectId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreditId");
+
+                    b.HasIndex("SemesterId");
+
+                    b.HasIndex("SpecialityId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("SpecialitySubject");
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.Specialty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Major")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specialty");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "050631",
+                            Major = "Kompüter mühəndisliyi"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "050655",
+                            Major = "İnformasiya texnologiyaları"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "050656",
+                            Major = "Sistem mühəndisliyi"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "050629",
+                            Major = "Mexatronika və robototexnika mühəndisliyi"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Code = "XTB 050106",
+                            Major = "İnformasiya təhlükəsizliyi"
+                        });
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subject");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Azərbaycan tarixi"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Xarici dil"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Xarici dil - 1"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Xarici dil - 2"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Riyaziyyat"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Riyaziyyat-1"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Riyaziyyat-2"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Riyaziyyat-3"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Fizika"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Fizika-1"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Fizika-2"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Kompüter mühəndisliyinin əsasları"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Azərbaycan dili və nitq mədəniyyəti"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Azərbaycan Respublikasının Konstitusiyası və hüququn əsasları	"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Proqramlaşdırmanın əsasları"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "Multimediya texnologiyaları"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "Ehtimal nəzəriyyəsi və statistika"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "Dövrlər nəzəriyyəsi"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "Kompüter arxitekturası"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "Fəlsəfə"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "Kompüter şəbəkələri"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "Fəlsəfə"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "Sistemli analiz və kompüterdə modelləşdirmə"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "Kompüterlərin tətbiqi nəzəriyyəsinin əsasları"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "Veb proqramlaması və layihələndirmə"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "Qeyri - səlis məntiq"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "Qeyri-səlis sistemlər"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "Istehsalın iqtisadiyyatı və menecment"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "Elektronikanın əsasları"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "Rəqəmsal  sistemlər"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Name = "Verilənlərin strukturu və verilənlər bazası sistemləri"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Name = "Mobil və paralel kompüter sistemləri"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Name = "Neyron şəbəkələri"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Name = "Mobil qurğuların proqramlaşdırılması"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Name = "Obyektyönlü layihələndirmə proqramlaşdırma "
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Name = "Əməliyyatların tədqiqi"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Name = "Kompüter sxemotexnikası və mikroprosessor sistemləri "
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Name = "Həyat fəaliyyətinin təhlükəsizliyi"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Name = "Proqram mühəndisliyinin əsasları və layihələndirmə"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Name = "Süni intellekt"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Name = "Kompüter riyaziyyatı"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Name = "Kompüter qrafikası"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Name = "İdarəetmənin əsasları"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Name = "Kompüter mühəndisliyində siqnalların işlənməsi"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Name = "Kompüter sistemlərinin təhlükəsizliyi"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Name = "Sistemlərin simulyasiyası"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Name = "İnternet texnologiyaları"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Name = "Mülki müdafiə"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Name = "Qərar qəbuletmə sistemlərinin əsasları"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Name = "Verilənlərdən biliklərin əldə edilməsi"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Name = "Elektron sxemlərin kompüter modelləşdirilməsi"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Name = "Telekommunikasiya sistemləri və naqilsiz şəbəkələr"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Name = "Texniki xarici dil"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Name = "Təcrübə"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Name = "Yekun dövlət attestasiyası"
+                        });
                 });
 
             modelBuilder.Entity("CSD.Entities.Shared.UserApp", b =>
@@ -973,6 +1461,29 @@ namespace CSD.ORM.Migrations
                     b.HasOne("CSD.Entities.Shared.Gender", "Gender")
                         .WithMany("Personel")
                         .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CSD.Entities.Shared.SpecialitySubject", b =>
+                {
+                    b.HasOne("CSD.Entities.Shared.Credit", "Credit")
+                        .WithMany("SpecialitySubject")
+                        .HasForeignKey("CreditId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CSD.Entities.Shared.Semester", "Semester")
+                        .WithMany("SpecialitySubject")
+                        .HasForeignKey("SemesterId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CSD.Entities.Shared.Specialty", "Specialty")
+                        .WithMany()
+                        .HasForeignKey("SpecialityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CSD.Entities.Shared.Subject", "Subject")
+                        .WithMany("SpecialitySubject")
+                        .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

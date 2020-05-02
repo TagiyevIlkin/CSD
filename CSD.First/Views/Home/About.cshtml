@@ -1,0 +1,28 @@
+﻿@model AboutViewModel
+@{
+    ViewData["Title"] = "About";
+}
+<div class="site-section" id="about-section">
+    <div class="container">
+        <div class="row align-items-lg-center">
+            <div class="col-md-6 mb-5 mb-lg-0 position-relative">
+                <img src="~/clientSiteFiles/images/about_1.jpg" class="img-fluid" alt="Image">
+                <div class="experience">
+                        <span class="year">ADNSU</span>
+                        <span class="caption">16 noyabr 1920</span>
+                    </div>
+            </div>
+            <div class="col-md-5 ml-auto">
+                <h3 class="section-sub-title font-weight-bold text-black">Kompüter mühəndisliyi</h3>
+                <p class="mb-4">
+                <p> Bu kafedra “Avtomatlaşdırılmış idarəetmə sistemləri” və “Kompüter texnologiyaları və proqramlaşdırma” kafedralarının birləşdirilməsi nəticəsində təşkil olunub. Kafedra tədrisi “Rabitə və Yüksək Texnologiyalar” nazirliyinin müəssisələri ilə sıx əlaqədə aparır.</p>
+
+                <p> Kafedra müdiri, @Model.DepartmentChiefAcademicDegree  @Model.DepartmentChief</p>
+
+                <p> Kafedrada @Model.ProfessorCount.ToString() professor, @Model.DocentCount.ToString() dosent, @Model.HeadTeacherCount.ToString() baş müəllim, @Model.AssistantCount.ToString() assistent və @Model.TeachingAssistant.ToString() nəfər tədris köməkçi heyəti tədris prosesi ilə məşğuldur.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
