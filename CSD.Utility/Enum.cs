@@ -6,7 +6,6 @@ namespace CSD.Utility
 {
     public class Enum
     {
-
         #region ComSciDep
         public enum EPhoneType
         {
@@ -14,23 +13,32 @@ namespace CSD.Utility
             Mobile = 2,
             Work = 3,
         }
-         public enum ECountry
+        public enum ECountry
         {
             Aze = 1,
         }
 
         public enum EAcademicDegree
         {
-            Docent=1,
-            Professor=2,
-            HeadTeacher=3,
-            Assistant=4,
-            TeacherAssistant=5
+            Docent = 1,
+            Professor = 2,
+            HeadTeacher = 3,
+            Assistant = 4,
+            TeacherAssistant = 5
         }
 
         public enum EPosition
         {
-            DepartmentChief=1
+            DepartmentChief = 1
+        }
+
+        public enum ESpeciality
+        {
+            Computer_Engineering = 1,
+            Information_Technology = 2,
+            System_Engineering = 3,
+            Mexatronika_və_robototechnic_Engineering = 4,
+            Information_Security = 5
         }
         #endregion
     }

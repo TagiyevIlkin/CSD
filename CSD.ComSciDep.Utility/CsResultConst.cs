@@ -89,5 +89,11 @@ namespace CSD.ComSciDep.Utility
         public const string NoFile = "Heç bir fayl seçilməyib!";
         public const string AleadyExistedDocument = "Bu sənəd artıq əlavə edilib!";
         #endregion
+
+        #region SpecialitySubject
+        public const string AleadyExistedSubject = "Bu fənn artıq əlavə edilib!";
+        public const string NoAnySubject = "Bu ixtisas üçün heç bir fənn tapilmadi!";
+
+        #endregion
     }
 }

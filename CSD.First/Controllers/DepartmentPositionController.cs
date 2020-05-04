@@ -21,16 +21,14 @@ namespace CSD.First.Controllers
     public class DepartmentPositionController : Controller
     {
 
-        private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IDepartmentPositionService _departmentPositionService;
-        public DepartmentPositionController(IConfiguration configuration,
+        public DepartmentPositionController(
             IMapper mapper,
             IUnitOfWork unitOfWork,
             IDepartmentPositionService departmentPositionService)
         {
-            _configuration = configuration;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _departmentPositionService = departmentPositionService;

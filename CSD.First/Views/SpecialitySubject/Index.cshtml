@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section styles{
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<!-- #region DataTable SpecialitySubject List -->
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-header">
+            <div class="alert alert-info">
+                <h5> <strong class="mr-1">Info!</strong>Bu səhifədə ixtisaslar üçün fənləri alavə edə və silə bilərsiniz</h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class=" d-flex justify-content-between">
+                <h4 class="header-title">İxtisaslar</h4>
+            </div>
+            <hr />
+            <br />
+            <div class="single-table">
+                <div class="table-responsive">
+                    <table id="dataTable" style="width: 100%;" class="table table-hover progress-table text-center">
+                        <thead>
+                            <tr role="row">
+                            <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>Kodu</th>
+                                <th>İxtisas</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js"></script>>
+    <script src="~/DataTables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Custom/SpecialitySubject/specialitySubjecttListForDataTables.js" asp-append-version="true"></script>
+}
+<!-- #endregion -->

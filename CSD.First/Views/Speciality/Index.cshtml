@@ -1,0 +1,48 @@
+﻿@model SpecialityVievModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section styles{ 
+<link href="~/clientSiteFiles/Custom/Speciality/speciality.css" rel="stylesheet" />
+}
+<div class="site-section">
+
+    <div class="w-100 bgImageDiv"">
+        @* For bg Image*@
+    </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+
+                <h2 class="text-center mt-2">@Model.Title</h2>
+                <table class="table text-left w-100  table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>İxtisas kodu</th>
+                            <th>İxtisas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @if (Model.SpecialityList.Count > 0)
+                        {
+
+                            @for (int i = 1; i < Model.SpecialityList.Count; i++)
+                            {
+                                <tr>
+                                    <th scope="row">@i</th>
+                                    <td>@Model.SpecialityList[i - 1].Code</td>
+                                    <td><a style="color:black" target="_blank" href="#">@Model.SpecialityList[i - 1].Major <i class="ml-1 fa fa-external-link" aria-hidden="true"></i></a></td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

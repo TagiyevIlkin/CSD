@@ -66,5 +66,11 @@ namespace CSD.ComSciDep.Utility
         public const string File = "Fayl";
         #endregion
 
+        #region SpecialitySubject
+        public const string Subject = "Fənn";
+        public const string Credit = "Kredit";
+        public const string Semester = "Smestr";
+        #endregion
+
     }
 }
