@@ -1,0 +1,272 @@
+﻿@model FinalSpecialityViewModel
+@{
+    ViewData["Title"] = "ShowSubject";
+}
+
+@section styles{
+    <link href="~/clientSiteFiles/Custom/Speciality/speciality.css" rel="stylesheet" />
+}
+<div class="site-section">
+
+
+    <div class="w-100  bgImageDivForShowSubject">
+        @* For bg Image*@
+    </div>
+
+    @if (Model.CurrentSpeciality != null)
+    {
+        <div class=" pt-4 pb-3"><h2 class="text-center"><b>@Model.CurrentSpeciality</b></h2></div>
+    }
+
+
+    <div class="container">
+
+        <div class="row p-5">
+                <div class="col-6">
+                    @* 1 ci Semester*@
+                    <div class="w-100 text-center font-weight-bold  mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 1).Name</strong></h6></div>
+
+                    <div class="single-table">
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject1" style="width: 100%;" class="table table-hover table-sm table-sm text-center">
+                                <thead>
+
+                                    <tr>
+                                        <th class="text-left">Fənlər</th>
+                                        <th class="text-right">Kredit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 1))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="col-6">
+
+                    @* 2 ci Semester*@
+                    <div class="w-100 text-center font-weight-bold  mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 2).Name</strong></h6></div>
+
+
+                    <div class="single-table">
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject2" style="width: 100%;" class="table table-hover table-sm progress-table text-center">
+                                <thead>
+                                    <tr role="row">
+                                    <tr>
+                                        <th class="text-left">Fənlər</th>
+                                        <th class="text-right">Kredit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 2))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="col-6">
+
+                    @* 3 ci Semester*@
+                    <div class="single-table">
+                        <div class="w-100 text-center font-weight-bold mt-2 mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 3).Name</strong></h6></div>
+
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject3" style="width: 100%;" class="table table-hover table-sm progress-table text-center">
+
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 3))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="col-6">
+
+                    @* 4 ci Semester*@
+                    <div class="w-100 text-center font-weight-bold mt-2 mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 4).Name</strong></h6></div>
+
+                    <div class="single-table">
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject4" style="width: 100%;" class="table table-hover table-sm progress-table text-center">
+
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 4))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <hr />
+                </div>
+
+                <div class="col-6">
+                    @* 5 ci Semester*@
+                    <div class="w-100 text-center font-weight-bold mt-2 mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 5).Name</strong></h6></div>
+                    <div class="single-table">
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject5" style="width: 100%;" class="table table-hover table-sm progress-table text-center">
+
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 5))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="col-6">
+
+                    @* 6 ci Semester*@
+                    <div class="w-100 text-center font-weight-bold mt-2 mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 6).Name</strong></h6></div>
+
+
+                    <div class="single-table">
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject6" style="width: 100%;" class="table table-hover table-sm progress-table text-center">
+
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 6))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="col-6">
+
+                    @* 7 ci Semester*@
+                    <div class="single-table">
+                        <div class="w-100 text-center font-weight-bold mt-2 mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 7).Name</strong></h6></div>
+
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject7" style="width: 100%;" class="table table-hover table-sm progress-table text-center">
+
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 7))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="col-6">
+
+                    @* 8 ci Semester*@
+                    <div class="w-100 text-center font-weight-bold mt-2 mb-1 p-1"><h6><strong>@Model.SemesterList.Find(x => x.Id == 8).Name</strong></h6></div>
+
+
+                    <div class="single-table">
+                        <div class="table-responsive">
+
+                            <table id="dataTableForCreateSpecialitySubject8" style="width: 100%;" class="table table-hover table-sm progress-table text-center">
+                                <tbody>
+
+                                    @if (Model.SpecialitySubjectsForSpeciality.Count > 0)
+                                    {
+                                        foreach (var specialitySubject in Model.SpecialitySubjectsForSpeciality.FindAll(x => x.SemesterId == 8))
+                                        {
+                                            <tr>
+                                                <td class="text-left">@Model.SubjectList.Find(x => x.Id == specialitySubject.SubjectId).Name</td>
+                                                <td class="text-right">@Model.CreditList.Find(x => x.Id == specialitySubject.CreditId).Name</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <hr />
+                </div>
+  
+        </div>
+    </div>
+</div>

@@ -36,7 +36,20 @@ namespace CSD.First.Controllers
         }
 
 
-        #region Create 
+        #region SpecialitySubject
+
+        public IActionResult ShowSubject(int Id)
+        {
+            FinalSpecialityViewModel finalSpecialityViewModel = new FinalSpecialityViewModel()
+            {
+                CreditList = _unitOfWork.Repository<Credit>().GetAll().ToList(),
+                SemesterList = _unitOfWork.Repository<Semester>().GetAll().ToList(),
+                SubjectList = _unitOfWork.Repository<Subject>().GetAll().ToList(),
+                SpecialitySubjectsForSpeciality = _unitOfWork.Repository<SpecialitySubject>().FindAll(x => x.SpecialityId == Id).ToList(),
+                CurrentSpeciality = _unitOfWork.Repository<Specialty>().GetById(Id).Major
+            };
+            return View(finalSpecialityViewModel);
+        }
 
 
         #endregion

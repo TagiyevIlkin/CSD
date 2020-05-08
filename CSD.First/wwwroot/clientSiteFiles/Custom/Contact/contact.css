@@ -1,0 +1,9 @@
+﻿.bgImageDiv {
+    background-image: url(/clientSiteFiles/images/contact3.jpg );
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 300px;
+    background-position: top;
+    position: relative;
+}
