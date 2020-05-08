@@ -59,6 +59,7 @@ namespace CSD.ORM
         public DbSet<Semester> Semester { get; set; }
         public DbSet<Credit> Credit { get; set; }
         public DbSet<SpecialitySubject>  SpecialitySubject { get; set; }
+        public DbSet<Message> Message { get; set; }
 
 
 

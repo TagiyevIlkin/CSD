@@ -22,6 +22,7 @@ namespace CSD.First.Helper
             CreateMap<PersonDocument, PersonDocumentViewModel>().ReverseMap();
             CreateMap<PersonDocument, PersonDocumentViewModelForEdit>().ReverseMap();
             CreateMap<SpecialitySubject, SpecialitySubjectViewModel>().ReverseMap();
+            CreateMap<Message, MessageViewModel>().ReverseMap();
 
         }
     }

@@ -10,10 +10,13 @@ namespace CSD.ComSciDep.Utility
         public const string InvalidEmail = "Düzgün email formasını daxil edin";
         public const string RequiredProperty = "Bu məlumat daxil edilməlidir!";
         public const string NoChanges = "Heç bir dəyişiklik olunmadı";
+        public const string Maxlength500 = "Ən çox 500 simvol daxil edilə bilər";
         public const string Maxlength100 = "Ən çox 100 simvol daxil edilə bilər";
         public const string Maxlength250 = "Ən çox 250 simvol daxil edilə bilər";
         public const string Maxlength50 = "Ən çox 50 simvol daxil edilə bilər";
         public const string Maxlength75 = "Ən çox 75 simvol daxil edilə bilər";
+        public const string Maxlength20 = "Ən çox 20 simvol daxil edilə bilər";
+        public const string Maxlength25 = "Ən çox 25 simvol daxil edilə bilər";
 
         public const string Minlength3 = "Ən az 3 simvol daxil edilməlidir";
         public const string Minlength2 = "Ən az 2 simvol daxil edilməlidir";
@@ -94,6 +97,10 @@ namespace CSD.ComSciDep.Utility
         public const string AleadyExistedSubject = "Bu fənn artıq əlavə edilib!";
         public const string NoAnySubject = "Bu ixtisas üçün heç bir fənn tapilmadi!";
 
+        #endregion
+
+        #region Message
+        public const string MessageAddSuccess = "Təşəkkürlər. Mesajınız qeydə alındı";
         #endregion
     }
 }

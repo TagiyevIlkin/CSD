@@ -68,6 +68,7 @@ namespace CSD.First
             services.AddScoped<IKnownProgramService, KnownProgramService>();
             services.AddScoped<IPersonDocumentService, PersonDocumentService>();
             services.AddScoped<ISpecialitySubjectService, SpecialitySubjectService>();
+            services.AddScoped<INoteService, NoteService>();
             #endregion
 
             #region Mapper

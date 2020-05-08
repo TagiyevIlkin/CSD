@@ -4,14 +4,16 @@ using CSD.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSD.ORM.Migrations
 {
     [DbContext(typeof(CSDContext))]
-    partial class CSDContextModelSnapshot : ModelSnapshot
+    [Migration("20200508213405_ModelMessage")]
+    partial class ModelMessage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

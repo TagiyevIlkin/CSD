@@ -72,5 +72,11 @@ namespace CSD.ComSciDep.Utility
         public const string Semester = "Smestr";
         #endregion
 
+        #region Message
+        public const string NameFM = "Ad";
+        public const string SurnameFM = "Soyad";
+        public const string Title = "Başlıq";
+        public const string Note = "İsmarıc";
+        #endregion
     }
 }
