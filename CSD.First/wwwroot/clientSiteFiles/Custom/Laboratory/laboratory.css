@@ -1,0 +1,16 @@
+﻿.bgImageDiv {
+    background-image: url(/clientSiteFiles/images/lab9.jpg );
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 350px;
+    background-position: center;
+    position: relative;
+}
+
+.labImg {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    image-orientation: from-image;
+}

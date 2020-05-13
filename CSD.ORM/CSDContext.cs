@@ -30,9 +30,7 @@ namespace CSD.ORM
         #region DbSEet
 
 
-
         #region Shared
-
         public DbSet<UserApp> UserApps { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
@@ -60,10 +58,7 @@ namespace CSD.ORM
         public DbSet<Credit> Credit { get; set; }
         public DbSet<SpecialitySubject>  SpecialitySubject { get; set; }
         public DbSet<Message> Message { get; set; }
-
-
-
-
+        public DbSet<Laboratory> Laboratory { get; set; }
 
         #endregion
 

@@ -14,6 +14,7 @@ namespace CSD.ComSciDep.Utility
         public const string BeginTime = "Başlama tarixi";
         public const string EndTime = "Bitirmə tarixi";
         public const string CityOrDistrict = "Şəhər/Rayon";
+        public const string AdditionalInfo = "Əlavə məlumat";
         #endregion
 
         #region Login
@@ -49,7 +50,6 @@ namespace CSD.ComSciDep.Utility
         public const string CompanyName = "Müəssisə";
         public const string WorkPosition = "Vəzifə";
         public const string JobResponsibilities = "Vəzifə öhtəlikləri";
-        public const string AdditionalInfo = "Əlavə məlumat";
         #endregion
 
         #region Language
@@ -77,6 +77,11 @@ namespace CSD.ComSciDep.Utility
         public const string SurnameFM = "Soyad";
         public const string Title = "Başlıq";
         public const string Note = "İsmarıc";
+        #endregion
+
+        #region Laboratory
+        public const string RoomNumber = "Otaq nömrəsi";
+        public const string Picture = "Şəkil";
         #endregion
     }
 }

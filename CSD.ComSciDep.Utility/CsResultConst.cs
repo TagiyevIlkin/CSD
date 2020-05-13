@@ -17,6 +17,7 @@ namespace CSD.ComSciDep.Utility
         public const string Maxlength75 = "Ən çox 75 simvol daxil edilə bilər";
         public const string Maxlength20 = "Ən çox 20 simvol daxil edilə bilər";
         public const string Maxlength25 = "Ən çox 25 simvol daxil edilə bilər";
+        public const string Maxlength4 = "Ən çox 4 simvol daxil edilə bilər";
 
         public const string Minlength3 = "Ən az 3 simvol daxil edilməlidir";
         public const string Minlength2 = "Ən az 2 simvol daxil edilməlidir";
@@ -101,6 +102,13 @@ namespace CSD.ComSciDep.Utility
 
         #region Message
         public const string MessageAddSuccess = "Təşəkkürlər. Mesajınız qeydə alındı";
+
         #endregion
+
+        #region Laboratory
+        public const string AleadyExistedLaboratory = "Bu laboratorya artıq əlavə edilib!";
+        #endregion
+
+
     }
 }

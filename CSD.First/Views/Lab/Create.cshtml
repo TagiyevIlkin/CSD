@@ -1,0 +1,80 @@
+﻿@model LaboratoryViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section styles{
+    <link href="~/Custom/Lab/lab.css" rel="stylesheet" />
+}
+<div class="row">
+
+    <div class="col-12 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <section class=" ">
+                    <div class="container">
+                        <nav class="nav-justified mb-5">
+                            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="pop1-tab" data-toggle="tab" href="#pop1" role="tab" aria-controls="pop1" aria-selected="true">Yeni laboratoriyanın daxil edilməsi</a>
+                            </div>
+                        </nav>
+                        <form asp-action="Create" asp-controller="Lab" id="createLab" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" value="0" />
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label"></label>
+                                        <input  asp-for="Name" required="required" class="form-control " type="text">
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Picture" class="control-label"></label>
+                                        <input asp-for="Picture"  required="required" class="form-control " type="file">
+                                        <span asp-validation-for="Picture" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="RoomNumber" class="control-label"></label>
+                                        <input asp-for="RoomNumber" required="required" class="form-control " type="text">
+                                        <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="AdditionalInfo" class="control-label"></label>
+                                        <input asp-for="AdditionalInfo" class="form-control " type="text">
+                                        <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="justify-content-between mr-0 mt-4 row">
+                                <div class="ml-3">
+                                    <a asp-action="Index" class="btn btn-outline-secondary  "><i class="fa fa-arrow-left"></i> Cədvələ Geri Dön</a>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class=" form-control border btn btn-outline-secondary btn-save " value="Saxla" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Custom/Lab/lab.js" asp-append-version="true"></script>
+}
+
+

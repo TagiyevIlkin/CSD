@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section styles{
+    <link href="~/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<!-- #region DataTable Language List -->
+<div class="col-12 mt-5">
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <a asp-controller="Lab" asp-action="Create" class="btn btn-outline-secondary "><span class="ti-plus mr-2"></span>Yeni laboratoriya əlavə et</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class=" d-flex justify-content-between">
+                <h4 class="header-title">Laboratoriyalar</h4>
+            </div>
+            <hr />
+            <br />
+            <div class="single-table">
+                <div class="table-responsive">
+                    <table id="dataTable" style="width: 100%;" class="table table-hover progress-table text-center">
+                        <thead>
+                            <tr role="row">
+                            <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>Adı</th>
+                                <th>Otaq nömrəsi</th>
+                                <th>İndir</th>
+                                <th>Bax</th>
+                                <th>Əlavə məlumat</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/DataTables/js/jquery.dataTables.min.js"></script>>
+    <script src="~/DataTables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Custom/Lab/labListForDataTables.js" asp-append-version="true"></script>
+}
+<!-- #endregion -->

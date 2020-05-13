@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Upload\Laboratory\2020\" />
     <Folder Include="wwwroot\Upload\PersonDocument\2020\" />
   </ItemGroup>
 

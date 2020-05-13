@@ -1,0 +1,33 @@
+﻿@model List<LaboratoryViewModel>
+
+@section styles{
+    <link href="~/clientSiteFiles/Custom/Laboratory/laboratory.css" rel="stylesheet" />
+}
+<section class="site-section bg-light">
+    <div class="w-100 mb-2 bgImageDiv">
+        @* For bg Image*@
+    </div>
+    <div class="container">
+        <h2 class="w-100 text-center p-1 mt-2"><strong>Laboratoriyalar</strong></h2>
+        <p class="mt-3">Laboratoriyalar internetlə və komputerlərlə təmin olunub.</p>
+        <p class="mt-1">İnternet sürəti: 25-50 Mbps</p>
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="thumbnail p-3">
+                        <a href="@item.PicturePath" target="_blank">
+                            <img src="@item.PicturePath" class="labImg" alt="Laboratory" style="width:100%">
+                            <div class="caption mt-2 p-1 text-black">
+                                <h5>@item.Name</h5>
+                                <p>Otaq nömrəsi: @item.RoomNumber</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

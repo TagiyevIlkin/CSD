@@ -4,14 +4,16 @@ using CSD.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSD.ORM.Migrations
 {
     [DbContext(typeof(CSDContext))]
-    partial class CSDContextModelSnapshot : ModelSnapshot
+    [Migration("20200509224353_ModelLab")]
+    partial class ModelLab
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -493,8 +495,6 @@ namespace CSD.ORM.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("PictureName");
-
                     b.Property<string>("PicturePath");
 
                     b.Property<string>("RoomNumber")
@@ -717,7 +717,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 1,
-                            Birthdate = new DateTime(2020, 5, 9, 17, 39, 58, 225, DateTimeKind.Local).AddTicks(1432),
+                            Birthdate = new DateTime(2020, 5, 9, 15, 43, 52, 385, DateTimeKind.Local).AddTicks(7020),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,
@@ -732,7 +732,7 @@ namespace CSD.ORM.Migrations
                         new
                         {
                             Id = 2,
-                            Birthdate = new DateTime(2020, 5, 9, 17, 39, 58, 227, DateTimeKind.Local).AddTicks(6122),
+                            Birthdate = new DateTime(2020, 5, 9, 15, 43, 52, 388, DateTimeKind.Local).AddTicks(4213),
                             CityId = 1,
                             Email = "ilkintagiyev06@gmail.com",
                             FamilyStatusId = 2,

@@ -4,14 +4,16 @@ using CSD.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSD.ORM.Migrations
 {
     [DbContext(typeof(CSDContext))]
-    partial class CSDContextModelSnapshot : ModelSnapshot
+    [Migration("20200510003958_ModelLabNewProp")]
+    partial class ModelLabNewProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
