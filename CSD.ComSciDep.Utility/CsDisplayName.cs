@@ -15,6 +15,8 @@ namespace CSD.ComSciDep.Utility
         public const string EndTime = "Bitirmə tarixi";
         public const string CityOrDistrict = "Şəhər/Rayon";
         public const string AdditionalInfo = "Əlavə məlumat";
+        public const string About = "Haqqında";
+
         #endregion
 
         #region Login
@@ -82,6 +84,13 @@ namespace CSD.ComSciDep.Utility
         #region Laboratory
         public const string RoomNumber = "Otaq nömrəsi";
         public const string Picture = "Şəkil";
+        #endregion
+
+        #region Event
+        public const string Location = "Məkan";
+        public const string Date = "Tarix";
+        public const string BeginTimeFE = "Başlama vaxtı";
+        public const string EndTimeFE = "Bitmə vaxtı";
         #endregion
     }
 }

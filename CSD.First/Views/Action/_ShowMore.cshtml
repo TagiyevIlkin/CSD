@@ -1,0 +1,72 @@
+﻿@model EventViewModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h5 class="modal-title">İsmarıc</h5>
+            <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+        </div>
+        <div class="modal-body">
+            <h1>Modal</h1>
+            @*<div class="container">
+                <div class="row">
+                    <h5 class="w-100 text-center">Məlumatlar</h5>
+                    <div class="col-lg-6 p-5">
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Surname)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Surname)
+                            </dd>
+
+                        </dl>
+                    </div>
+
+                    <div class="col-lg-6 p-5">
+
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Title)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <h5 class="w-100 text-center mt-3">İsmarıc</h5>
+                    <div class="col-12">
+
+                        <p class="border p-1 mt-3">@Model.Note</p>
+
+                    </div>
+                </div>
+            </div>*@
+        </div>
+        <div class="modal-footer">
+            <div>
+                <button type="button" id="closeModal" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+

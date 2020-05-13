@@ -66,8 +66,8 @@ namespace CSD.First.Controllers
 
             if (!string.IsNullOrEmpty(searchValue))
             {
-                model = model.Where(m => m.AdditionalInfo == searchValue
-                                         || (m.AdditionalInfo != null && m.AdditionalInfo.StartsWith(searchValue))
+                model = model.Where(m => m.Name == searchValue
+                                         || (m.Name != null && m.Name.StartsWith(searchValue))
                                          || (m.RoomNumber != null && m.RoomNumber.StartsWith(searchValue)));
             }
             //total number of rows count 
@@ -291,28 +291,6 @@ namespace CSD.First.Controllers
         }
 
         #endregion
-
-
-        //#region Download File
-        //public async Task<IActionResult> DownloadFile(int Id)
-        //{
-        //    var model = await _unitOfWork.Repository<PersonDocument>().GetByIdAsync(Id);
-        //    var filepath = model.Path;
-
-        //    if (!System.IO.File.Exists(filepath))
-        //    {
-        //        return Json(new
-        //        {
-        //            status = 202,
-        //            message = CsResultConst.NotFoundFile
-        //        });
-        //    }
-
-        //    var fileName = model.Name;
-        //    byte[] fileBytes = System.IO.File.ReadAllBytes(filepath);
-        //    return File(fileBytes, "APPLICATION/octet-stream", fileName);
-        //}
-        //#endregion
 
         #region Delete File
 

@@ -56,9 +56,10 @@ namespace CSD.ORM
         public DbSet<Subject> Subject { get; set; }
         public DbSet<Semester> Semester { get; set; }
         public DbSet<Credit> Credit { get; set; }
-        public DbSet<SpecialitySubject>  SpecialitySubject { get; set; }
+        public DbSet<SpecialitySubject> SpecialitySubject { get; set; }
         public DbSet<Message> Message { get; set; }
         public DbSet<Laboratory> Laboratory { get; set; }
+        public DbSet<Event> Event { get; set; }
 
         #endregion
 
